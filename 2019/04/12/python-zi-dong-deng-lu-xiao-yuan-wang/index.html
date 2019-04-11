@@ -4,8 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 凡尘里的星">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="python自动登陆校园网, 凡尘里的星">
+    <meta name="description" content="由于每次打开电脑都要手动的登录校园网，导致很麻烦，所以写了一个爬虫来模拟浏览器自动登录校园网的功能
+1.使用Burpsuit对校园网登录界面进行抓包分析简介：burpsuite是一款渗透工具，运行环境是Java，所以需要先配置,主要可以用来">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | 凡尘里的星</title>
+    <title>python自动登陆校园网 | 凡尘里的星</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -257,13 +258,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        python自动登陆校园网
                     </div>
                 </div>
             </div>
@@ -372,9 +373,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/python黑客编程/" target="_blank">
+                                <span class="chip bg-color">python黑客编程</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -385,7 +390,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-10
+                    2019-04-12
                 </div>
 
                 
@@ -401,19 +406,70 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <p>由于每次打开电脑都要手动的登录校园网，导致很麻烦，所以写了一个爬虫来模拟浏览器自动登录校园网的功能</p>
+<h2 id="1-使用Burpsuit对校园网登录界面进行抓包分析"><a href="#1-使用Burpsuit对校园网登录界面进行抓包分析" class="headerlink" title="1.使用Burpsuit对校园网登录界面进行抓包分析"></a>1.使用Burpsuit对校园网登录界面进行抓包分析</h2><p>简介：<code>burpsuite</code>是一款渗透工具，运行环境是<code>Java</code>，所以需要先配置,主要可以用来对<code>HTTP</code>协议的工具包进行分析，也可以扫描网站的漏洞，接下来我们就用它来对校园网登录界面进行一个抓包。</p>
+<h2 id="1-1-设置浏览器代理"><a href="#1-1-设置浏览器代理" class="headerlink" title="1.1 设置浏览器代理"></a>1.1 设置浏览器代理</h2><p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4me17q2j31780mztaq.jpg" alt></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4mn5krcj30yz0ngmxc.jpg" alt></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4mtmx08j30sg0j4dm0.jpg" alt></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4n0lhg5j30sg0iyn5j.jpg" alt></p>
+<p>代理，就是拦截到浏览器的前面将数据包截取下来。</p>
+<h3 id="1-2-抓包分析"><a href="#1-2-抓包分析" class="headerlink" title="1.2 抓包分析"></a>1.2 抓包分析</h3><p>浏览器输入网址<code>http://10.10.1.6/srun_portal_pc.php?ac_id=1&amp;&amp;userurl=http://www.lzu.edu.cn</code></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4noqt36j308c04hq4f.jpg" alt></p>
+<p>然后打开<code>burpsuite</code>，点击<code>forward</code>（前进），就是讲刚才浏览器进行的动作，发送的包截取下来。</p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4nv60kbj30z00kfdhb.jpg" alt></p>
+<p>我们发现<code>post</code>一个表单到<code>auth_action.php</code>进行处理，在下面<code>cookie</code>里面有一个<code>login</code>还和上面一致。我们将报文复制一份进行分析，</p>
+<pre><code>POST /include/auth_action.php HTTP/1.1
+Host: 10.10.1.6
+Content-Length: 116
+Accept: */*
+Origin: http://10.10.1.6
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Referer: http://10.10.1.6/srun_portal_pc.php?ac_id=1&amp;&amp;userurl=http://www.lzu.edu.cn
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: login=bQ0qQMxJvKa38joL2%252FjcHkC%252BmsG82yAhTQz7gmzQkugXpBZMrQUGiPHbG7NW34vDounugHSLx5A8mO4foZDYk3gvuzEOm8oE2SVDxfjaQLfPK6S3nHNRFaSa5KKhD%252FBgYozWIuXKWglZ6pYHmbs0l2KSqBUsQnuEp%252Fth0bbc%252BjfILH2xC501DX3AWRxf9c4IHUiuZZvZAhRsJGqlP9ypVRn9Ii6bTg%253D%253D; language=en; login=bQ0qQMxJvKa38joL2%252FjcHkC%252BmsG82yAhTQz7gmzQkugXpBZMrQUGiPHbG7NW34vDounugHSLx5A8mO4foZDYk3gvuzEOm8oE2SVDxfjaQLfPK6S3nHNRFaSa5KKhD%252FBgYozWIuXKWglZ6pYHmbs0l2KSqBUsQnuEp%252Fth0bbc%252BjfILH2xC501DX3AWRxf9c4IHUiuZZvZAhRsJGqlP9ypVRn9Ii6bTg%253D%253D
+Connection: close
+
+action=login&amp;username=********&amp;domain=@cernet&amp;password={B}MTk5NjEy&amp;ac_id=1&amp;user_ip=&amp;nas_ip=&amp;user_mac=&amp;save_me=1&amp;ajax=1
+</code></pre><p>下面是<code>post</code>出去的表单数据，<code>username</code>通过猜测肯定是用户名，然后<code>password</code>是密码，但是发现这个是一个加密的报文，我们来打开<code>firebug</code>查看下网页的<code>javascript</code>代码，发现是<code>base64</code>加密，<br><code>save_me</code>字段应该是是否记住密码，如果点击了记住密码就是<code>1</code>否则就是<code>0</code>，接下来我们验证一下这个密码字段是否是<code>base64</code>.</p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4oac6qyj30z40ke0uj.jpg" alt></p>
+<p>选中<code>password</code>字段，然后点击<code>send to decoder</code>，<code>decoder</code>是<code>burp</code>的一个编码解码模块，可以进行解码</p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4ohgne3j30z90kigm7.jpg" alt></p>
+<p>发现密码和输入的一致但是前面加了一个<code>{B}</code>，可能有什么标志位，接下来，我们继续对这个包进行分析，我们将它发送到<code>repeater</code>模块（中继器模块）可以对包进行修改。右击选中<code>send to repeater</code></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4oonn7hj30z10kntal.jpg" alt></p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4ouv13nj30yp0kj405.jpg" alt></p>
+<p>选择<code>Go</code>,发送包，看返回结果是什么</p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4p1f5saj30yl0kgjtp.jpg" alt></p>
+<p><code>login_ok</code>说明我们已经模拟浏览器登陆成功，但是我想测试下去掉几个无关紧要的字段是否也可以登录呢。经过<code>repeater</code>发包测试发现只有这几个字段是必须的。</p>
+<p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g1z4p7dbl9j30yn0kegnv.jpg" alt></p>
+<p>经过测试只有<code>request</code>是如上的请求报文，我们就可以登陆成功，接下来我们用<code>python</code>模拟这个请求发送数据。<br>以下是代码：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+
+url<span class="token operator">=</span><span class="token string">"http://10.10.1.6/include/auth_action.php"</span>
+password<span class="token operator">=</span><span class="token string">"{B}MTk5NjEy"</span>
+username<span class="token operator">=</span><span class="token string">"********"</span>
+ac_id<span class="token operator">=</span><span class="token string">'2'</span>
+save_me<span class="token operator">=</span><span class="token string">'1'</span>
+ajax<span class="token operator">=</span><span class="token string">'1'</span>
+cookie<span class="token operator">=</span><span class="token string">"login=bQ0qQMxJvKa38joL2%252FjcHkC%252BmsG82yAnZjIv2aOiNLgdcFisQOPGduNfpXrq1m1kMaO3V9pmNJPwW7CiRVsfuOiIH7CP%252BlGaKj03wx3EcoSa1nagEF2HgnfjJcmJl6udXJxskZT0T9dmFgWtrhEObjLeL%252B05%252B3BB0l8ay8RfSeheGn%252F6p7YnxP46H43utiPMSxuZEl5YwF0dIA%253D%253D; language=en; login=bQ0qQMxJvKa38joL2%252FjcHkC%252BmsG82yAnZjIv2aOiNLgdcFisQOPGduNfpXrq1m1kMaO3V9pmNJPwW7CiRVsfuOiIH7CP%252BlGaKj03wx3EcoSa1nagEF2HgnfjJcmJl6udXJxskZT0T9dmFgWtrhEObjLeL%252B05%252B3BB0l8ay8RfSeheGn%252F6p7YnxP46H43utiPMSxuZEl5YwF0dIA%253D%253D"</span>
+
+
+postdata<span class="token operator">=</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">"username"</span><span class="token punctuation">:</span>username<span class="token punctuation">,</span>
+    <span class="token string">"password"</span><span class="token punctuation">:</span>password<span class="token punctuation">,</span>
+    <span class="token string">"ac_id"</span><span class="token punctuation">:</span>ac_id<span class="token punctuation">,</span>
+    <span class="token string">"save_me"</span><span class="token punctuation">:</span>save_me<span class="token punctuation">,</span>
+    <span class="token string">"ajax"</span><span class="token punctuation">:</span>ajax<span class="token punctuation">,</span>
+    <span class="token string">"action"</span><span class="token punctuation">:</span><span class="token string">"login"</span>
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+req<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token punctuation">,</span>postdata<span class="token punctuation">)</span>
+req<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'User-Agent'</span><span class="token punctuation">,</span><span class="token string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'</span><span class="token punctuation">)</span>
+req<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">"Cookie"</span><span class="token punctuation">,</span>cookie<span class="token punctuation">)</span>
+data<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
 </code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
             </div>
             <hr>
@@ -561,7 +617,7 @@
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">凡尘里的星</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/10/hello-world/" class="b-link-green">Hello World</a>
+                    <a href="/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/" class="b-link-green">python自动登陆校园网</a>
                 </p>
             </div>
         </div>
@@ -584,24 +640,23 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/10/hello-world/">
+                <a href="/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="机器学习之线性回归方法">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">机器学习之线性回归方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">1. 多元线性回归以预测房子价格为例，房子的属性除了其面积大小外，这里还有房子楼层数、房子年龄、厅室数等。也就是说一个房子的特征将不只一个，而是多个。这里用n表示特征数目，x(i)表示的是训练集中第i个样本的特征向量，x(i)j表示的第i个</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -610,7 +665,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/机器学习/" target="_blank">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -618,23 +680,27 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/10/hello-world/">
+                <a href="/2019/04/12/admin-ti-quan-wei-system/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="admin提权为system">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">admin提权为system</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">windows底下设置密码
+net user username *
+提醒输入密码，确认密码
+net user查看当前系统下面的用户账号 XP底下是HelpAssistant是远程协助的账号
+net user username查看当前系统这个</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-10
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
                             </span>
                         <span class="publish-author">
                             
@@ -644,7 +710,14 @@
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web安全笔记/" target="_blank">
+                        <span class="chip bg-color">web安全笔记</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

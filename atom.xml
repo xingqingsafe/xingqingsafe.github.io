@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-10T14:20:09.453Z</updated>
+  <updated>2019-04-11T16:12:53.519Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2019/04/10/hello-world/"/>
-    <id>http://yoursite.com/2019/04/10/hello-world/</id>
-    <published>2019-04-10T14:20:09.453Z</published>
-    <updated>2019-04-10T14:20:09.453Z</updated>
+    <title>matlab中mapminmax函数的总结</title>
+    <link href="http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/"/>
+    <id>http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/</id>
+    <published>2019-04-11T16:12:25.000Z</published>
+    <updated>2019-04-11T16:12:53.519Z</updated>
     
     <summary type="html">
     
@@ -29,12 +29,90 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;h2 id=&quot;01-mapminmax-函数&quot;&gt;&lt;a href=&quot;#01-mapminmax-函数&quot; class=&quot;headerlink&quot; title=&quot;01 mapminmax()函数&quot;&gt;&lt;/a&gt;01
         
       
     
     </summary>
     
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习之线性回归方法</title>
+    <link href="http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/"/>
+    <id>http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/</id>
+    <published>2019-04-11T16:11:19.000Z</published>
+    <updated>2019-04-11T16:11:53.362Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-多元线性回归&quot;&gt;&lt;a href=&quot;#1-多元线性回归&quot; class=&quot;headerlink&quot; title=&quot;1. 多元线性回归&quot;&gt;&lt;/a&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python自动登陆校园网</title>
+    <link href="http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/"/>
+    <id>http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/</id>
+    <published>2019-04-11T16:10:02.000Z</published>
+    <updated>2019-04-11T16:10:31.949Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;由于每次打开电脑都要手动的登录校园网，导致很麻烦，所以写了一个爬虫来模拟浏览器自动登录校园网的功能&lt;/p&gt;
+&lt;h2 id=&quot;1-使用Burpsuit对校园网登录界面进行抓包分析&quot;&gt;&lt;a href=&quot;#1-使用Burpsuit对校园网登录界面进行抓包分析&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>admin提权为system</title>
+    <link href="http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/"/>
+    <id>http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/</id>
+    <published>2019-04-11T16:08:38.000Z</published>
+    <updated>2019-04-11T16:09:24.715Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;code&gt;windows&lt;/code&gt;底下设置密码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;net user username *
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;提醒输入密码，确认密码&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;net user&lt;/code&gt;查看当前系统下面的用户账号
+        
+      
+    
+    </summary>
+    
+    
+      <category term="web安全笔记" scheme="http://yoursite.com/tags/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
