@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>凡尘里的星</title>
+  <title>星晴</title>
   
   <subtitle>努力努力再努力</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -41,30 +41,6 @@
   </entry>
   
   <entry>
-    <title>机器学习之线性回归方法</title>
-    <link href="http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/"/>
-    <id>http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/</id>
-    <published>2019-04-11T16:11:19.000Z</published>
-    <updated>2019-04-11T16:11:53.362Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-多元线性回归&quot;&gt;&lt;a href=&quot;#1-多元线性回归&quot; class=&quot;headerlink&quot; title=&quot;1. 多元线性回归&quot;&gt;&lt;/a&gt;1.
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python批量爆破phpMyadmin</title>
     <link href="http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/"/>
     <id>http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/</id>
@@ -85,6 +61,30 @@
     
     
       <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习之线性回归方法</title>
+    <link href="http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/"/>
+    <id>http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/</id>
+    <published>2019-04-11T16:11:19.000Z</published>
+    <updated>2019-04-11T16:11:53.362Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-多元线性回归&quot;&gt;&lt;a href=&quot;#1-多元线性回归&quot; class=&quot;headerlink&quot; title=&quot;1. 多元线性回归&quot;&gt;&lt;/a&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -110,6 +110,30 @@
     
     
       <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安全行业小工具以及学习资源收集</title>
+    <link href="http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/"/>
+    <id>http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/</id>
+    <published>2019-04-11T16:10:02.000Z</published>
+    <updated>2019-04-12T15:29:36.761Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;安全行业小工具以及学习资源收集项目，此项目部分内容来自：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="学习工具" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
