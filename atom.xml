@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>凡尘里的星</title>
   
-  
+  <subtitle>努力努力再努力</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -61,6 +61,30 @@
     
     
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python批量爆破phpMyadmin</title>
+    <link href="http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/"/>
+    <id>http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/</id>
+    <published>2019-04-11T16:11:19.000Z</published>
+    <updated>2019-04-12T05:30:59.047Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;使用python实现phpMyadmin的批量爆破&quot;&gt;&lt;a href=&quot;#使用python实现phpMyadmin的批量爆破&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
