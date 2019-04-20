@@ -450,7 +450,7 @@ if(isset($payload)){
 </code></pre>
 <p>然后继续使用伪协议读取hint.php文件如下：</p>
 <p><a href="http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php" target="_blank" rel="noopener">http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php</a><br>解码base64如下：</p>
-<pre class=" language-php5"><code class="language-php5"><?php  
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?php  
 class Handle{ 
     private $handle;  
     public function __wakeup(){
@@ -489,7 +489,7 @@ class Flag{
     }
 }
 
-?>
+?></span>
 </code></pre>
 <h3 id="0x02-反序列化漏洞"><a href="#0x02-反序列化漏洞" class="headerlink" title="0x02 反序列化漏洞"></a>0x02 反序列化漏洞</h3><p>分析hint.php代码，我们需要绕过对payload里面字符串的检测，即：</p>
 <pre class=" language-php5"><code class="language-php5">var_dump($_SERVER['REQUEST_URI']);
