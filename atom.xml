@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-18T10:25:19.634Z</updated>
+  <updated>2019-07-17T13:47:54.584Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,1447 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql提权笔记</title>
+    <link href="http://yoursite.com/2019/07/17/mysql-ti-quan-bi-ji/"/>
+    <id>http://yoursite.com/2019/07/17/mysql-ti-quan-bi-ji/</id>
+    <published>2019-07-17T13:32:46.000Z</published>
+    <updated>2019-07-17T13:47:54.584Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;0x01-phpnyadmin一句话提权&quot;&gt;&lt;a href=&quot;#0x01-phpnyadmin一句话提权&quot; class=&quot;headerlink&quot; title=&quot;0x01 phpnyadmin一句话提权&quot;&gt;&lt;/a&gt;0x01
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>利用配置不当提权</title>
+    <link href="http://yoursite.com/2019/07/17/li-yong-pei-zhi-bu-dang-ti-quan/"/>
+    <id>http://yoursite.com/2019/07/17/li-yong-pei-zhi-bu-dang-ti-quan/</id>
+    <published>2019-07-17T11:25:21.000Z</published>
+    <updated>2019-07-17T13:31:05.283Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;利用配置不当提权-后渗透测试&quot;&gt;&lt;a href=&quot;#利用配置不当提权-后渗透测试&quot; class=&quot;headerlink&quot; title=&quot;利用配置不当提权,后渗透测试&quot;&gt;&lt;/a&gt;利用配置不当提权,后渗透测试&lt;/h1&gt;&lt;h2 id=&quot;0x01-利用条件&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>栈和队列算法题</title>
+    <link href="http://yoursite.com/2019/07/15/zhan-he-dui-lie-suan-fa-ti/"/>
+    <id>http://yoursite.com/2019/07/15/zhan-he-dui-lie-suan-fa-ti/</id>
+    <published>2019-07-15T13:04:07.000Z</published>
+    <updated>2019-07-18T09:14:38.508Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;栈和队列的算法&quot;&gt;&lt;a href=&quot;#栈和队列的算法&quot; class=&quot;headerlink&quot; title=&quot;栈和队列的算法&quot;&gt;&lt;/a&gt;栈和队列的算法&lt;/h1&gt;&lt;hr&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>流畅的Python学习笔记</title>
+    <link href="http://yoursite.com/2019/07/15/liu-chang-de-python-xue-xi-bi-ji/"/>
+    <id>http://yoursite.com/2019/07/15/liu-chang-de-python-xue-xi-bi-ji/</id>
+    <published>2019-07-15T02:14:50.000Z</published>
+    <updated>2019-07-16T10:18:04.312Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;流畅的python学习笔记&quot;&gt;&lt;a href=&quot;#流畅的python学习笔记&quot; class=&quot;headerlink&quot; title=&quot;流畅的python学习笔记&quot;&gt;&lt;/a&gt;流畅的python学习笔记&lt;/h1&gt;&lt;hr&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Billu_box靶机渗透</title>
+    <link href="http://yoursite.com/2019/07/14/billu-box-ba-ji-shen-tou/"/>
+    <id>http://yoursite.com/2019/07/14/billu-box-ba-ji-shen-tou/</id>
+    <published>2019-07-14T02:54:52.000Z</published>
+    <updated>2019-07-14T12:06:48.079Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;0x01-信息收集&quot;&gt;&lt;a href=&quot;#0x01-信息收集&quot; class=&quot;headerlink&quot; title=&quot;0x01 信息收集&quot;&gt;&lt;/a&gt;0x01
+        
+      
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>breach靶机渗透提权</title>
+    <link href="http://yoursite.com/2019/07/10/breach-ba-ji-shen-tou-ti-quan/"/>
+    <id>http://yoursite.com/2019/07/10/breach-ba-ji-shen-tou-ti-quan/</id>
+    <published>2019-07-10T02:16:46.000Z</published>
+    <updated>2019-07-10T02:16:46.433Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>burpsuit常用插件笔记</title>
+    <link href="http://yoursite.com/2019/07/10/burpsuit-chang-yong-cha-jian-bi-ji/"/>
+    <id>http://yoursite.com/2019/07/10/burpsuit-chang-yong-cha-jian-bi-ji/</id>
+    <published>2019-07-10T02:16:15.000Z</published>
+    <updated>2019-07-16T09:40:13.451Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;burpsuit常用插件学习笔记&quot;&gt;&lt;a href=&quot;#burpsuit常用插件学习笔记&quot; class=&quot;headerlink&quot; title=&quot;burpsuit常用插件学习笔记&quot;&gt;&lt;/a&gt;burpsuit常用插件学习笔记&lt;/h1&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>信息收集</title>
+    <link href="http://yoursite.com/2019/07/10/xin-xi-shou-ji/"/>
+    <id>http://yoursite.com/2019/07/10/xin-xi-shou-ji/</id>
+    <published>2019-07-10T02:13:44.000Z</published>
+    <updated>2019-07-10T02:13:44.514Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>flask框架学习笔记</title>
+    <link href="http://yoursite.com/2019/07/10/flask-kuang-jia-xue-xi-bi-ji/"/>
+    <id>http://yoursite.com/2019/07/10/flask-kuang-jia-xue-xi-bi-ji/</id>
+    <published>2019-07-10T02:09:59.000Z</published>
+    <updated>2019-07-10T03:30:49.281Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;0x01-flask简介&quot;&gt;&lt;a href=&quot;#0x01-flask简介&quot; class=&quot;headerlink&quot; title=&quot;0x01 flask简介&quot;&gt;&lt;/a&gt;0x01
+        
+      
+    
+    </summary>
+    
+    
+      <category term="学习笔记" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免杀思路总结</title>
+    <link href="http://yoursite.com/2019/07/01/mian-sha-si-lu-zong-jie/"/>
+    <id>http://yoursite.com/2019/07/01/mian-sha-si-lu-zong-jie/</id>
+    <published>2019-07-01T02:03:58.000Z</published>
+    <updated>2019-07-01T02:03:58.816Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>css学习笔记</title>
+    <link href="http://yoursite.com/2019/05/29/css-xue-xi-bi-ji-div-bu-ju/"/>
+    <id>http://yoursite.com/2019/05/29/css-xue-xi-bi-ji-div-bu-ju/</id>
+    <published>2019-05-29T02:14:38.000Z</published>
+    <updated>2019-05-30T03:27:10.531Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-使用table布局的一些缺点&quot;&gt;&lt;a href=&quot;#1-使用table布局的一些缺点&quot; class=&quot;headerlink&quot; title=&quot;1. 使用table布局的一些缺点&quot;&gt;&lt;/a&gt;1. 使用table布局的一些缺点&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;采用表格容易出错,嵌套层级很多，一旦出现嵌套顺序错乱，整个页面达不到效果&lt;/li&gt;
+&lt;li&gt;采用表格布局页面不够灵活，动一块整个表格的布局就得变&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;2-引入css&quot;&gt;&lt;a href=&quot;#2-引入css&quot; class=&quot;headerlink&quot; title=&quot;2. 引入css&quot;&gt;&lt;/a&gt;2. 引入css&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;外部样式表：link标签&lt;/li&gt;
+&lt;li&gt;内部：style标签编写&lt;/li&gt;
+&lt;li&gt;行内：直接标签内添加style&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;3-css的块标签&quot;&gt;&lt;a href=&quot;#3-css的块标签&quot; class=&quot;headerlink&quot; title=&quot;3 . css的块标签&quot;&gt;&lt;/a&gt;3 . css的块标签&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;span 内容显示在一行&lt;/li&gt;
+&lt;li&gt;div 默认占一行，自动换行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;align属性&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;4-css的选择器&quot;&gt;&lt;a href=&quot;#4-css的选择器&quot; class=&quot;headerlink&quot; title=&quot;4. css的选择器&quot;&gt;&lt;/a&gt;4. css的选择器&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;元素选择器&lt;/li&gt;
+&lt;li&gt;id选择器 id必须是唯一的  #开头 js,jquery只会找到重复的id中的第一 个&lt;/li&gt;
+&lt;li&gt;类选择器： .开头&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;5-CSS中的其它选择器&quot;&gt;&lt;a href=&quot;#5-CSS中的其它选择器&quot; class=&quot;headerlink&quot; title=&quot;5.  CSS中的其它选择器&quot;&gt;&lt;/a&gt;5.  CSS中的其它选择器&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;选择器分组: 选择器1,选择器2{ 属性的名称:属性的值}&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;属性选择器:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;a[title]
+a[titile=&amp;#39;aaa&amp;#39;]
+a[href][title]
+a[href][title=&amp;#39;aaa&amp;#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;后代选择器: 爷爷选择器  孙子选择器   找出所有的后代&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;子元素选择器:  父选择器  &amp;gt; 儿子选择器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;伪类选择器: 通常都是用在A标签上&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;5-css的浮动&quot;&gt;&lt;a href=&quot;#5-css的浮动&quot; class=&quot;headerlink&quot; title=&quot;5. css的浮动&quot;&gt;&lt;/a&gt;5. css的浮动&lt;/h3&gt;&lt;p&gt;浮动的元素会脱离正常的文档流,在正常的文档流中不占空间&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;float属性:
+                left
+                right
+
+            clear属性: 清除浮动
+                both : 两边都不允许浮动
+                left: 左边不允许浮动
+                right : 右边不允许浮动
+            流式布局
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;6-盒子模型&quot;&gt;&lt;a href=&quot;#6-盒子模型&quot; class=&quot;headerlink&quot; title=&quot;6. 盒子模型&quot;&gt;&lt;/a&gt;6. 盒子模型&lt;/h3&gt;&lt;p&gt;CSS的盒子模型: 万物皆盒子&lt;/p&gt;
+&lt;p&gt;内边距:  &lt;/p&gt;
+&lt;p&gt;padding-top:&lt;/p&gt;
+&lt;p&gt;padding-right:&lt;/p&gt;
+&lt;p&gt;padding-bottom:&lt;/p&gt;
+&lt;p&gt;padding-left:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;padding:10px;  上下左右都是10px
+padding:10px 20px;  上下是10px 左右是20px
+padding: 10px 20px 30px;  上 10px 右20px  下30px  左20px
+padding: 10px 20px 30px 40px;  上右下左, 顺时针的方向
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;外边距:&lt;/p&gt;
+&lt;p&gt;margin-top:&lt;/p&gt;
+&lt;p&gt;margin-right:&lt;/p&gt;
+&lt;p&gt;margin-bottom:&lt;/p&gt;
+&lt;p&gt;margin-left: &lt;/p&gt;
+&lt;p&gt;CSS绝对定位:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;position: absolute&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;top: 控制距离顶部的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;left: 控制距离左边的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;7-选择器的优先级&quot;&gt;&lt;a href=&quot;#7-选择器的优先级&quot; class=&quot;headerlink&quot; title=&quot;7. 选择器的优先级&quot;&gt;&lt;/a&gt;7. 选择器的优先级&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;行内&amp;gt;id&amp;gt;class&amp;gt;元素&lt;/li&gt;
+&lt;li&gt;就内原则，最后修改的成功&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;8-使用div布局首页&quot;&gt;&lt;a href=&quot;#8-使用div布局首页&quot; class=&quot;headerlink&quot; title=&quot;8. 使用div布局首页&quot;&gt;&lt;/a&gt;8. 使用div布局首页&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;创一个最外层div&lt;/li&gt;
+&lt;li&gt;第一部份: LOGO部分: 嵌套三个div&lt;/li&gt;
+&lt;li&gt;第二部分: 导航栏部分 : 放置5个超链接&lt;/li&gt;
+&lt;li&gt;第三部分: 轮播图 &lt;/li&gt;
+&lt;li&gt;第四部分: &lt;/li&gt;
+&lt;li&gt;第五部分: 直接放一张图片&lt;/li&gt;
+&lt;li&gt;第六部分: 抄第四部分的&lt;/li&gt;
+&lt;li&gt;第七部分: 放置一张图片&lt;/li&gt;
+&lt;li&gt;第八部分: 放一堆超链接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot; /&amp;gt;
+        &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+        &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+            .logo {
+                float: left;
+                width: 33%;
+                height: 60px;
+                border: 1px red solid;
+                line-height: 60px;
+            }
+
+            .daohang {
+                float: left;
+                border: 1px red solid;
+                height: 100%;
+            }
+
+            .amenu {
+                color: white;
+                font-size: 20px;
+                height: 40px;
+                line-height: 40px;
+                text-decoration: none;
+            }
+            #logos{
+                line-height:100% ;
+            }
+        &amp;lt;/style&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;div id=&amp;#39;logos&amp;#39;&amp;gt;
+            &amp;lt;div class=&amp;#39;logo&amp;#39;&amp;gt;&amp;lt;img src=&amp;quot;./img/logo2.png&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;#39;logo&amp;#39;&amp;gt;&amp;lt;img src=&amp;quot;./img/header.png&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;#39;logo&amp;#39; style=&amp;quot;text-align: center;&amp;quot;&amp;gt;
+                &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;登陆&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;注册&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;购物车&amp;lt;/a&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;div id=&amp;quot;blank&amp;quot; style=&amp;quot;clear: both;&amp;quot;&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;div style=&amp;quot;background-color: black; height: 50px; text-align: center;&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;#39;daohang&amp;#39;&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                    首页
+                &amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                    手机数码
+                &amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                    电脑办公
+                &amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                    电脑办公
+                &amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                    办公
+                &amp;lt;/a&amp;gt;
+            &amp;lt;/div&amp;gt;
+            &amp;lt;div class=&amp;#39;daohang&amp;#39; style=&amp;quot;line-height: 50px;height: 50px;position: right;&amp;quot;&amp;gt;
+                &amp;lt;div class=&amp;quot;mui-input-row mui-search&amp;quot;&amp;gt;
+                    &amp;lt;input type=&amp;quot;search&amp;quot; class=&amp;quot;mui-input-clear&amp;quot; placeholder=&amp;quot;&amp;quot;&amp;gt;
+                    &amp;lt;font size=4 color=&amp;quot;white&amp;quot;&amp;gt;搜索&amp;lt;/font&amp;gt;
+                &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+
+        &amp;lt;/div&amp;gt;
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+            &amp;lt;img src=&amp;quot;./img/1.jpg&amp;quot; width=&amp;quot;100%&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+            &amp;lt;h2&amp;gt;最新商品&amp;lt;img src=&amp;quot;./img/title2.jpg&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/h2&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot; style=&amp;quot;border: 2px solid blueviolet;height: 480px; width: 100%;&amp;quot;&amp;gt;
+            &amp;lt;div id=&amp;quot;left&amp;quot; style=&amp;quot;float:left;width: 15%;height: 480px;border: 1px cyan solid;&amp;quot;&amp;gt;&amp;lt;img  src=&amp;quot;./products/hao/big01.jpg&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+            &amp;lt;div id=&amp;quot;right&amp;quot; style=&amp;quot;float:left;width:84%;height: 480px; border: 1px red solid;&amp;quot;&amp;gt;
+                &amp;lt;div style=&amp;quot;height: 240px;width: 50%; float: left;border: coral 1px solid;&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;./products/hao/middle01.jpg&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;240&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+                &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;border: 1px yellow solid;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;img src=&amp;quot;./products/hao/ad.jpg&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+            &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+            &amp;lt;h2&amp;gt;最新商品&amp;lt;img src=&amp;quot;./img/title2.jpg&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/h2&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot; style=&amp;quot;height: 480px; width: 100%;&amp;quot;&amp;gt;
+            &amp;lt;div id=&amp;quot;left&amp;quot; style=&amp;quot;float:left;width: 15%;height: 480px;&amp;quot;&amp;gt;&amp;lt;img  src=&amp;quot;./products/hao/big01.jpg&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+            &amp;lt;div id=&amp;quot;right&amp;quot; style=&amp;quot;float:left;width:84%;height: 480px; &amp;quot;&amp;gt;
+                &amp;lt;div style=&amp;quot;height: 240px;width: 50%; float: left;&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;./products/hao/middle01.jpg&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;240&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+                &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;    &amp;lt;div style=&amp;quot;float: left;text-align: center; height: 240px;width: 16%;&amp;quot;&amp;gt;
+                    &amp;lt;img src=&amp;quot;./products/hao/small08.jpg&amp;quot; alt=&amp;quot;&amp;quot; &amp;gt;
+                    &amp;lt;p&amp;gt;高压锅&amp;lt;/p&amp;gt;
+                    &amp;lt;p style=&amp;quot;color: red;&amp;quot;&amp;gt;$298&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+&amp;lt;img src=&amp;quot;./img/footer.jpg&amp;quot; width=&amp;quot;100%&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+
+        &amp;lt;div id=&amp;quot;&amp;quot; style=&amp;quot;text-align: center;&amp;quot;&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+&amp;lt;br&amp;gt;
+copyright@xingqign
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;9-使用div布局注册页面&quot;&gt;&lt;a href=&quot;#9-使用div布局注册页面&quot; class=&quot;headerlink&quot; title=&quot;9. 使用div布局注册页面&quot;&gt;&lt;/a&gt;9. 使用div布局注册页面&lt;/h3&gt;&lt;p&gt; 总共是5部分&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;        2. 第一部分是LOGO部分
+        3. 第二部分是导航菜单
+        4. 第三部分是注册部分
+        5. 第四部分是FOOTER图片
+        6. 第五部分是一堆超链接
+&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+        &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+        &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+            .logo {
+                float: left;
+                width: 33%;
+                height: 60px;
+                border: 1px red solid;
+                line-height: 60px;
+            }
+
+            .daohang {
+                float: left;
+                border: 1px red solid;
+                height: 100%;
+            }
+
+            .amenu {
+                color: white;
+                font-size: 20px;
+                height: 40px;
+                line-height: 40px;
+                text-decoration: none;
+            }
+
+            #logos {
+                line-height: 100%;
+            }
+        &amp;lt;/style&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;div&amp;gt;
+            &amp;lt;div id=&amp;#39;logos&amp;#39;&amp;gt;
+                &amp;lt;div class=&amp;#39;logo&amp;#39;&amp;gt;&amp;lt;img src=&amp;quot;./img/logo2.png&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+                &amp;lt;div class=&amp;#39;logo&amp;#39;&amp;gt;&amp;lt;img src=&amp;quot;./img/header.png&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+                &amp;lt;div class=&amp;#39;logo&amp;#39; style=&amp;quot;text-align: center;&amp;quot;&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;登陆&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;注册&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;购物车&amp;lt;/a&amp;gt;
+                &amp;lt;/div&amp;gt;
+            &amp;lt;/div&amp;gt;
+
+            &amp;lt;div id=&amp;quot;blank&amp;quot; style=&amp;quot;clear: both;&amp;quot;&amp;gt;
+            &amp;lt;/div&amp;gt;
+
+            &amp;lt;div style=&amp;quot;background-color: black; height: 50px; text-align: center;&amp;quot;&amp;gt;
+                &amp;lt;div class=&amp;#39;daohang&amp;#39;&amp;gt;
+                    &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                        首页
+                    &amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                        手机数码
+                    &amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                        电脑办公
+                    &amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                        电脑办公
+                    &amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;&amp;quot; class=&amp;quot;amenu&amp;quot;&amp;gt;
+                        办公
+                    &amp;lt;/a&amp;gt;
+                &amp;lt;/div&amp;gt;
+                &amp;lt;div class=&amp;#39;daohang&amp;#39; style=&amp;quot;line-height: 50px;height: 50px;position: right;&amp;quot;&amp;gt;
+                    &amp;lt;div class=&amp;quot;mui-input-row mui-search&amp;quot;&amp;gt;
+                        &amp;lt;input type=&amp;quot;search&amp;quot; class=&amp;quot;mui-input-clear&amp;quot; placeholder=&amp;quot;&amp;quot;&amp;gt;
+                        &amp;lt;font size=4 color=&amp;quot;white&amp;quot;&amp;gt;搜索&amp;lt;/font&amp;gt;
+                    &amp;lt;/div&amp;gt;
+                &amp;lt;/div&amp;gt;
+
+            &amp;lt;/div&amp;gt;
+
+
+
+            &amp;lt;div style=&amp;quot;background:url(&amp;#39;./image/regist_bg.jpg &amp;#39;); width: 100%; height: 700px;&amp;quot;&amp;gt;
+                &amp;lt;div id=&amp;quot;myform&amp;quot; style=&amp;quot;position :absolute; border: black solid 5px;left: 300px; top:200px ;width:700px;height: 480px;background-color: white ;padding: 50px;padding-left: 200px;&amp;quot;&amp;gt;
+                    &amp;lt;table   width=&amp;quot;60%&amp;quot; height=&amp;quot;100%&amp;quot;  align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt;tr&amp;gt;
+                            &amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;font size=5 color=&amp;quot;blue&amp;quot; &amp;gt;会员注册&amp;lt;/font&amp;gt;USER REGISTER&amp;lt;/td&amp;gt;
+
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;用户名&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;密码&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;确认密码&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;Email&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;email&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;姓名&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;性别&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;
+                                &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;sex&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;男
+                                &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;sex&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;女
+                                &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;sex&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;妖
+                            &amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;出生日期&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;date&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;验证码&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                            &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;submit&amp;quot; name=&amp;quot;&amp;quot; id=&amp;quot;&amp;quot; value=&amp;quot;注册&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;/tr&amp;gt;
+
+                    &amp;lt;/table&amp;gt;
+                &amp;lt;/div&amp;gt;
+
+            &amp;lt;/div&amp;gt;
+
+
+            &amp;lt;hr&amp;gt;
+
+            &amp;lt;div id=&amp;quot;&amp;quot;&amp;gt;
+                &amp;lt;img src=&amp;quot;./img/footer.jpg&amp;quot; width=&amp;quot;100%&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;
+            &amp;lt;/div&amp;gt;
+
+
+            &amp;lt;div id=&amp;quot;&amp;quot; style=&amp;quot;text-align: center;&amp;quot;&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                &amp;lt;br&amp;gt;
+                copyright@xingqign
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+      <category term="web前端 -" scheme="http://yoursite.com/categories/web%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="web前端学习 - -" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>html基础学习笔记</title>
+    <link href="http://yoursite.com/2019/05/28/html5-xue-xi-table-bu-ju-bi-ji/"/>
+    <id>http://yoursite.com/2019/05/28/html5-xue-xi-table-bu-ju-bi-ji/</id>
+    <published>2019-05-28T01:59:55.000Z</published>
+    <updated>2019-05-30T03:26:35.971Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-html的常用标签&quot;&gt;&lt;a href=&quot;#1-html的常用标签&quot; class=&quot;headerlink&quot; title=&quot;1. html的常用标签&quot;&gt;&lt;/a&gt;1. html的常用标签&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;常用标签：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;b : 加粗&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;i : 斜体&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;strong: 加粗, 带语义标签&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;em:  斜体, 带语义&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;p: 段落标签 &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;img:&lt;br&gt;常用的属性:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; - width : 宽度
+
+ - height: 高度
+
+ - src :  指定文件路径
+
+ - alt:  图片加载失败时的提示内容
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;宽度设定，高度会自己进行一个合适的放缩，否则就会产生一个畸形的图片。宽度可以设置成百分比的形式。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;列表标签&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;无序列表：ul&lt;br&gt;属性设置type:小圆圈,小圆点, 小方块&lt;/li&gt;
+&lt;li&gt;有序列表: ol&lt;br&gt;type: 1,a ,A,I,&lt;br&gt;start: 指定是起始索引&lt;/li&gt;
+&lt;li&gt;放置列表项目：li&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;超链接标签a：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;href: 指定要跳转去的链接地址 ,如果是网络地址需要加上http协议 , 如果访问的是本网站的html文件,可以直接写文件路径&lt;/li&gt;
+&lt;li&gt;target: &lt;ul&gt;
+&lt;li&gt;_self: 默认打开方式,在当前窗口打开&lt;/li&gt;
+&lt;li&gt;_blank:  新起一个标签页打开页面&lt;/li&gt;
+&lt;li&gt;[framename]: 指定哪个框架进行一个链接的跳转&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;字体标签font:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;color&lt;/li&gt;
+&lt;li&gt;size(1-7)超过7都会按照7显示&lt;/li&gt;
+&lt;li&gt;face 改变字体&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;p 段落标签&lt;/li&gt;
+&lt;li&gt;h 标题标签 1-6&lt;/li&gt;
+&lt;li&gt;hr 水平线&lt;/li&gt;
+&lt;li&gt;table&lt;br&gt;属性： &lt;ul&gt;
+&lt;li&gt;border: 指定边框&lt;/li&gt;
+&lt;li&gt;width : 宽度&lt;/li&gt;
+&lt;li&gt;height : 高度&lt;/li&gt;
+&lt;li&gt;bgcolor : 背景颜色&lt;/li&gt;
+&lt;li&gt;align : 水平对齐方式&lt;/li&gt;
+&lt;li&gt;vlign: 垂直对齐方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;tr 行标签&lt;/li&gt;
+&lt;li&gt;td 单元格标签&lt;br&gt;属性：&lt;ul&gt;
+&lt;li&gt;colspan: 跨行操作&lt;/li&gt;
+&lt;li&gt;rowspan:跨列操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;br&lt;br&gt;是不能包裹住的，后面不能设置他的一个style，而&lt;p&gt;是包裹住，后面可以对标签进行一个样式设定。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;frameset&lt;br&gt;如果使用frameset一定要将body标签去掉&lt;/li&gt;
+&lt;li&gt;frame&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;input：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;type:&lt;ul&gt;
+&lt;li&gt;password&lt;/li&gt;
+&lt;li&gt;text&lt;/li&gt;
+&lt;li&gt;submit&lt;/li&gt;
+&lt;li&gt;button&lt;/li&gt;
+&lt;li&gt;reset&lt;/li&gt;
+&lt;li&gt;tel&lt;/li&gt;
+&lt;li&gt;number&lt;/li&gt;
+&lt;li&gt;radio： 单选按钮，需要将name设置相同的&lt;/li&gt;
+&lt;li&gt;hidden&lt;/li&gt;
+&lt;li&gt;checkbox: 复选按钮&lt;/li&gt;
+&lt;li&gt;date&lt;/li&gt;
+&lt;li&gt;email&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;select-option&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;textarea&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;一个简介的实例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+    &amp;lt;!--
+        1. 上面是一个文档声明 
+        2. 根标签 html
+        3. html文件主要包含两部分. 头部分和体部分
+            头部分 : 主要是用来放置一些页面信息
+            体部分 : 主要来放置我们的HTML页面内容
+        4. 通过标签来对内容进行描述,标签通常都是由开始标签和结束标签组成  
+        5. 标签不区分大小写, 官方建议使用小写
+    --&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;&amp;lt;!-- 头去放置一些页面信息，体部分是页面内容 --&amp;gt;
+        &amp;lt;meta charset=&amp;quot;gbk&amp;quot; /&amp;gt;
+        &amp;lt;!-- 指定浏览器打开页面的编码方式 --&amp;gt;
+        &amp;lt;!-- 网站的配置信息 --&amp;gt;
+        &amp;lt;!-- 通过标签对内容进行描述 &amp;lt;br/&amp;gt;是一个空标签
+        标签不区分大小写
+        他是一个解释性的语言
+        --&amp;gt;
+        &amp;lt;title&amp;gt;入门案例&amp;lt;/title&amp;gt;
+    &amp;lt;!-- 浏览器会帮我们去整理 --&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;h1&amp;gt;公司简介&amp;lt;/h1&amp;gt;&amp;lt;!-- h是1到6 ,如果不是就超出了范围就按照正常的显示 --&amp;gt;
+
+        &amp;lt;hr /&amp;gt;&amp;lt;!-- 水平分割线 --&amp;gt;
+        &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;中国&amp;lt;/strong&amp;gt;ssx&amp;lt;em&amp;gt;asdasdasdasdasdas&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;
+        &amp;lt;!-- font的大小范围为0-7 --&amp;gt;&amp;lt;p&amp;gt;&amp;lt;font size=7 face=blackadder itc color=&amp;quot;blue&amp;quot;&amp;gt;中国&amp;lt;/font&amp;gt;ssxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&amp;lt;/p&amp;gt;
+        &amp;lt;p&amp;gt;&amp;lt;b&amp;gt;asdasdasdas&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;
+        &amp;lt;p&amp;gt;asasasasasasasasasasasasasasasas&amp;lt;/p&amp;gt;
+        &amp;lt;!-- src指定图片路径 
+        width自己设置,高度会随着width进行一个自我调整
+        alt:在文件加载失败时候的提示下.
+        --&amp;gt;
+        &amp;lt;ul&amp;gt;
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+
+        &amp;lt;/ul&amp;gt;
+        &amp;lt;hr /&amp;gt;
+        &amp;lt;ul type=square&amp;gt;&amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    
+    &amp;lt;li&amp;gt;haasas&amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;
+        &amp;lt;ul&amp;gt;hahahah&amp;lt;/ul&amp;gt;
+        &amp;lt;ul type=disc&amp;gt;友情链接
+        &amp;lt;hr /&amp;gt;
+            &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://www.baidu.com&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;百度&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;谷歌&amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;百合&amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;世纪佳缘&amp;lt;/li&amp;gt;
+        &amp;lt;/ol&amp;gt;
+        &amp;lt;hr /&amp;gt;
+&amp;lt;table &amp;gt;&amp;lt;/table&amp;gt;
+    &amp;lt;/body&amp;gt;
+    &amp;lt;!-- em和i都是斜体
+        b加粗,i是斜体,\
+        strong也是加粗,带有语义的标签
+        em:斜体,带有语义,搜索引擎友好的.
+
+     --&amp;gt;
+&amp;lt;/html&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;2-使用表格进行一个页面的布局&quot;&gt;&lt;a href=&quot;#2-使用表格进行一个页面的布局&quot; class=&quot;headerlink&quot; title=&quot;2. 使用表格进行一个页面的布局&quot;&gt;&lt;/a&gt;2. 使用表格进行一个页面的布局&lt;/h3&gt;&lt;h4 id=&quot;2-1-表格的嵌套以及跨行跨列&quot;&gt;&lt;a href=&quot;#2-1-表格的嵌套以及跨行跨列&quot; class=&quot;headerlink&quot; title=&quot;2.1 表格的嵌套以及跨行跨列&quot;&gt;&lt;/a&gt;2.1 表格的嵌套以及跨行跨列&lt;/h4&gt;&lt;p&gt;colspan跨列，rowspan是跨列&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;首先分析一共需要几行几列：创建八行一列的表格&lt;/p&gt;
+&lt;h6 id=&quot;第一部分：logo部分，嵌套一个一行三列的表格&quot;&gt;&lt;a href=&quot;#第一部分：logo部分，嵌套一个一行三列的表格&quot; class=&quot;headerlink&quot; title=&quot;第一部分：logo部分，嵌套一个一行三列的表格&quot;&gt;&lt;/a&gt;第一部分：logo部分，嵌套一个一行三列的表格&lt;/h6&gt;&lt;h6 id=&quot;第二部分：导航栏部分，只用放置5个超链接&quot;&gt;&lt;a href=&quot;#第二部分：导航栏部分，只用放置5个超链接&quot; class=&quot;headerlink&quot; title=&quot;第二部分：导航栏部分，只用放置5个超链接&quot;&gt;&lt;/a&gt;第二部分：导航栏部分，只用放置5个超链接&lt;/h6&gt;&lt;h6 id=&quot;第三部分：轮播图&quot;&gt;&lt;a href=&quot;#第三部分：轮播图&quot; class=&quot;headerlink&quot; title=&quot;第三部分：轮播图&quot;&gt;&lt;/a&gt;第三部分：轮播图&lt;/h6&gt;&lt;h6 id=&quot;第四部分：嵌套一个表格：三行其七个列，&quot;&gt;&lt;a href=&quot;#第四部分：嵌套一个表格：三行其七个列，&quot; class=&quot;headerlink&quot; title=&quot;第四部分：嵌套一个表格：三行其七个列，&quot;&gt;&lt;/a&gt;第四部分：嵌套一个表格：三行其七个列，&lt;/h6&gt;&lt;h6 id=&quot;第五部分-放一张图片&quot;&gt;&lt;a href=&quot;#第五部分-放一张图片&quot; class=&quot;headerlink&quot; title=&quot;第五部分:放一张图片&quot;&gt;&lt;/a&gt;第五部分:放一张图片&lt;/h6&gt;&lt;h6 id=&quot;第六：抄第四部分&quot;&gt;&lt;a href=&quot;#第六：抄第四部分&quot; class=&quot;headerlink&quot; title=&quot;第六：抄第四部分&quot;&gt;&lt;/a&gt;第六：抄第四部分&lt;/h6&gt;&lt;h6 id=&quot;第七部分：放置一张图片&quot;&gt;&lt;a href=&quot;#第七部分：放置一张图片&quot; class=&quot;headerlink&quot; title=&quot;第七部分：放置一张图片&quot;&gt;&lt;/a&gt;第七部分：放置一张图片&lt;/h6&gt;&lt;h6 id=&quot;第八部分：放置超链接&quot;&gt;&lt;a href=&quot;#第八部分：放置超链接&quot; class=&quot;headerlink&quot; title=&quot;第八部分：放置超链接&quot;&gt;&lt;/a&gt;第八部分：放置超链接&lt;/h6&gt;&lt;p&gt;表格布局的一些技巧：&lt;/p&gt;
+&lt;p&gt;table常用属性：&lt;br&gt;1、border 定义表格的边框&lt;/p&gt;
+&lt;p&gt;2、cellpadding 定义单元格内内容与边框的距离&lt;/p&gt;
+&lt;p&gt;3、cellspacing 定义单元格与单元格之间的距离&lt;/p&gt;
+&lt;p&gt;4、align 设置单元格中内容的水平对齐方式,设置值有：left | center | right&lt;/p&gt;
+&lt;p&gt;5、valign 设置单元格中内容的垂直对齐方式 top | middle | bottom&lt;/p&gt;
+&lt;p&gt;6、colspan 设置单元格水平合并&lt;/p&gt;
+&lt;p&gt;7、rowspan 设置单元格垂直合并&lt;/p&gt;
+&lt;p&gt;传统布局：&lt;br&gt;传统的布局方式就是使用table来做整体页面的布局，布局的技巧归纳为如下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;定义表格宽高，将border、cellpadding、cellspacing全部设置为0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单元格里面嵌套表格&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单元格中的元素和嵌套的表格用align和valign设置对齐方式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过属性或者css样式设置单元格中元素的样式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;一定要注意闭合标签&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;一些整体的布局思路&lt;/strong&gt;：&lt;br&gt;先整体大的分，再小的分。可以把边框调出来。&lt;br&gt;首先分析需要几行几列，接着分析哪个需要嵌套一个表格，一般最外围的table需要一个width=100%,然后如果一行里面还需要分几个格子，然后再嵌套一个表格，如果行内只有一个单元格，那就不需要嵌套。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+        &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;table  width=&amp;quot;100%&amp;quot;&amp;gt;
+            &amp;lt;tr width=&amp;quot;100%&amp;quot;&amp;gt;
+                &amp;lt;td&amp;gt;
+                    &amp;lt;table width=&amp;quot;100%&amp;quot;&amp;gt;
+                &amp;lt;td&amp;gt;&amp;lt;img src=&amp;quot;./img/logo2.png&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;td&amp;gt;&amp;lt;img src=&amp;quot;./img/header.jpg&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;td&amp;gt;
+                    &amp;lt;a href&amp;gt;登陆&amp;lt;/href&amp;gt;
+                        &amp;lt;a href&amp;gt;注册&amp;lt;/href&amp;gt;
+                            &amp;lt;a href&amp;gt;购物车&amp;lt;/href&amp;gt;
+                &amp;lt;/td&amp;gt;
+        &amp;lt;/table&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr  width=&amp;quot;100%&amp;quot;&amp;gt;
+
+            &amp;lt;table width=&amp;quot;100%&amp;quot;&amp;gt;
+                &amp;lt;tr bgcolor=&amp;quot;black&amp;quot;&amp;gt;
+                    &amp;lt;td&amp;gt;
+                        &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;首页&amp;lt;/font&amp;gt;
+                        &amp;lt;/a&amp;gt;
+                        &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;手机数码&amp;lt;/font&amp;gt;
+                        &amp;lt;/a&amp;gt;
+                        &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;鞋靴箱包&amp;lt;/font&amp;gt;
+                        &amp;lt;/a&amp;gt;
+                        &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;电脑办公&amp;lt;/font&amp;gt;
+                        &amp;lt;/a&amp;gt;
+                        &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;香烟香水&amp;lt;/font&amp;gt;
+                        &amp;lt;/a&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td height=&amp;quot;50px&amp;quot; align=&amp;quot;right&amp;quot;&amp;gt;
+
+                            &amp;lt;input type=&amp;quot;search&amp;quot; class=&amp;quot;mui-input-clear&amp;quot; placeholder=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt; 搜索&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+            &amp;lt;/table&amp;gt;
+
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;hr&amp;gt;
+        &amp;lt;!-- 如何在列表中设置他们的位置,比如说一行里面的位置是如何摆放的 
+          如何            
+
+            --&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;table width=&amp;quot;100%&amp;quot; &amp;gt;
+                &amp;lt;tr&amp;gt;
+                    &amp;lt;td&amp;gt;&amp;lt;img src=&amp;quot;img/1.jpg&amp;quot; alt=&amp;quot;图片加载错误....&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+            &amp;lt;/table&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;table cellspacing=10px &amp;gt;
+                &amp;lt;tr&amp;gt;
+                    &amp;lt;td&amp;gt;
+                        &amp;lt;h2&amp;gt;最新商品&amp;lt;/h2&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td&amp;gt;&amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;根据你的喜好精心为你推荐!&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+            &amp;lt;/table&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;table width=&amp;quot;100%&amp;quot; cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot; height=&amp;quot;500px&amp;quot;&amp;gt;
+                &amp;lt;tr valign=&amp;quot;top&amp;quot; align=&amp;quot;center&amp;quot; width=100% cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot;&amp;gt;
+                    &amp;lt;td rowspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/hao/big01.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td colspan=&amp;quot;3&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/hao/middle01.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+                &amp;lt;tr&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt; &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                            &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+                &amp;lt;tr height=&amp;quot;20px&amp;quot; width=100%&amp;gt;
+                    &amp;lt;td colspan=&amp;quot;7&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/ad.jpg&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;
+                    &amp;lt;/td&amp;gt;
+
+                &amp;lt;/tr&amp;gt;
+
+            &amp;lt;/table&amp;gt;
+        &amp;lt;/tr&amp;gt;
+
+        &amp;lt;tr&amp;gt;
+            &amp;lt;table cellspacing=10px &amp;gt;
+                &amp;lt;tr&amp;gt;
+                    &amp;lt;td&amp;gt;
+                        &amp;lt;h2&amp;gt;热门商品&amp;lt;/h2&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td&amp;gt;&amp;lt;em&amp;gt;&amp;lt;strong&amp;gt;根据你的喜好精心为你推荐!&amp;lt;/strong&amp;gt;&amp;lt;/em&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+            &amp;lt;/table&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;table width=&amp;quot;100%&amp;quot;  cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot; height=&amp;quot;500px&amp;quot;&amp;gt;
+                &amp;lt;tr valign=&amp;quot;top&amp;quot; align=&amp;quot;center&amp;quot; width=100% cellpadding=&amp;quot;0&amp;quot; cellspacing=&amp;quot;0&amp;quot;&amp;gt;
+                    &amp;lt;td rowspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/hao/big01.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td colspan=&amp;quot;3&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/hao/middle01.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot; height=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+                &amp;lt;tr&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt; &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                            &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;
+
+                        &amp;lt;img src=&amp;quot;img/hao/small03.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;br&amp;gt;
+                        &amp;lt;font color=&amp;quot;red&amp;quot;&amp;gt;$289&amp;lt;/font&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                &amp;lt;/tr&amp;gt;
+                &amp;lt;tr height=&amp;quot;20px&amp;quot; width=100%&amp;gt;
+                    &amp;lt;td colspan=&amp;quot;7&amp;quot;&amp;gt;
+                        &amp;lt;img src=&amp;quot;img/hao/ad.jpg&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;
+                    &amp;lt;/td&amp;gt;
+
+                &amp;lt;/tr&amp;gt;
+
+            &amp;lt;/table&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/footer.jpg&amp;quot; alt=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+&amp;lt;hr&amp;gt;
+        &amp;lt;tr border=&amp;quot;2px&amp;quot;&amp;gt;
+            &amp;lt;td &amp;gt;
+                &amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+    &amp;lt;p &amp;gt;copyright by @星晴&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;
+
+            &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+
+        &amp;lt;/table&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;p&gt;注册页面设计：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;logo部分&lt;/li&gt;
+&lt;li&gt;导航栏&lt;/li&gt;
+&lt;li&gt;注册部分&lt;/li&gt;
+&lt;li&gt;页脚部分&lt;/li&gt;
+&lt;li&gt;网站声明信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+        &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;table border=&amp;quot;3px&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;
+            &amp;lt;tr&amp;gt;
+                &amp;lt;td&amp;gt;
+                    &amp;lt;table width=&amp;quot;100%&amp;quot;&amp;gt;
+                &amp;lt;td&amp;gt;&amp;lt;img src=&amp;quot;./img/logo2.png&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;td&amp;gt;&amp;lt;img src=&amp;quot;./img/header.jpg&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                &amp;lt;td&amp;gt;
+                    &amp;lt;a href&amp;gt;登陆&amp;lt;/href&amp;gt;
+                        &amp;lt;a href&amp;gt;注册&amp;lt;/href&amp;gt;
+                            &amp;lt;a href&amp;gt;购物车&amp;lt;/href&amp;gt;
+                &amp;lt;/td&amp;gt;
+        &amp;lt;/table&amp;gt;
+        &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr width=&amp;quot;100%&amp;quot;&amp;gt;
+            &amp;lt;td&amp;gt;
+                &amp;lt;table width=&amp;quot;100%&amp;quot;&amp;gt;
+                    &amp;lt;tr bgcolor=&amp;quot;black&amp;quot;&amp;gt;
+                        &amp;lt;td&amp;gt;
+                            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                                &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;首页&amp;lt;/font&amp;gt;
+                            &amp;lt;/a&amp;gt;
+                            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                                &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;手机数码&amp;lt;/font&amp;gt;
+                            &amp;lt;/a&amp;gt;
+                            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                                &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;鞋靴箱包&amp;lt;/font&amp;gt;
+                            &amp;lt;/a&amp;gt;
+                            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                                &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;电脑办公&amp;lt;/font&amp;gt;
+                            &amp;lt;/a&amp;gt;
+                            &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt;
+                                &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt;香烟香水&amp;lt;/font&amp;gt;
+                            &amp;lt;/a&amp;gt;
+                        &amp;lt;/td&amp;gt;
+                        &amp;lt;td height=&amp;quot;50px&amp;quot; align=&amp;quot;right&amp;quot;&amp;gt;
+                            &amp;lt;input type=&amp;quot;search&amp;quot; class=&amp;quot;mui-input-clear&amp;quot; placeholder=&amp;quot;&amp;quot;&amp;gt;
+                            &amp;lt;font color=&amp;quot;aliceblue&amp;quot;&amp;gt; 搜索&amp;lt;/font&amp;gt;
+                        &amp;lt;/td&amp;gt;
+
+                    &amp;lt;/tr&amp;gt;
+                &amp;lt;/table&amp;gt;
+            &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;tr&amp;gt;
+            &amp;lt;td align=&amp;quot;center&amp;quot; background=&amp;quot;./img/regist_bg.jpg&amp;quot;&amp;gt;
+                &amp;lt;table border=&amp;quot;2px&amp;quot; width=&amp;quot;600px&amp;quot;  bgcolor=azure&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td colspan=&amp;quot;2&amp;quot; align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;font size=&amp;quot;5&amp;quot; color=&amp;quot;blue&amp;quot;&amp;gt;会员注册&amp;lt;/font&amp;gt; USER REGISTER&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;用户名&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;username&amp;quot;  placeholder=&amp;quot;请输入用户名&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;密码&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;username&amp;quot;  placeholder=&amp;quot;请输入密码&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;确认密码&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;username&amp;quot;  placeholder=&amp;quot;请再次输入密码&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;确认密码&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;username&amp;quot;  placeholder=&amp;quot;请再次输入密码&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;确认密码&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;input type=&amp;quot;password&amp;quot; name=&amp;quot;username&amp;quot;  placeholder=&amp;quot;请再次输入密码&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                    &amp;lt;tr&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                        &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;/tr&amp;gt;
+                &amp;lt;/table&amp;gt;
+            &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+
+
+        &amp;lt;tr align=&amp;quot;center&amp;quot;&amp;gt;
+            &amp;lt;td align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;img/footer.jpg&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;100%&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;hr&amp;gt;
+        &amp;lt;tr border=&amp;quot;2px&amp;quot;&amp;gt;
+            &amp;lt;td&amp;gt;
+                &amp;lt;div align=&amp;quot;center&amp;quot;&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;友情链接&amp;lt;/a&amp;gt;
+                    &amp;lt;p&amp;gt;copyright by @星晴&amp;lt;/p&amp;gt;
+                &amp;lt;/div&amp;gt;
+
+            &amp;lt;/td&amp;gt;
+        &amp;lt;/tr&amp;gt;
+        &amp;lt;/table&amp;gt;
+
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="web前端学习 -" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码审计--CTF</title>
+    <link href="http://yoursite.com/2019/05/24/dai-ma-shen-ji/"/>
+    <id>http://yoursite.com/2019/05/24/dai-ma-shen-ji/</id>
+    <published>2019-05-24T01:30:29.000Z</published>
+    <updated>2019-05-24T04:29:35.285Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-extract变量覆盖漏洞&quot;&gt;&lt;a href=&quot;#1-extract变量覆盖漏洞&quot; class=&quot;headerlink&quot; title=&quot;1. extract变量覆盖漏洞&quot;&gt;&lt;/a&gt;1. extract变量覆盖漏洞&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;
+&amp;lt;?php
+
+$flag=&amp;#39;xxx&amp;#39;; 
+extract($_GET);
+ if(isset($shiyan))
+ { 
+    $content=trim(file_get_contents($flag));
+    if($shiyan==$content)
+    { 
+        echo&amp;#39;ctf{xxx}&amp;#39;; 
+    }
+   else
+   { 
+    echo&amp;#39;Oh.no&amp;#39;;
+   } 
+   }
+
+?&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当file_get_contents函数里面是一个不可读的路径，那么content的内容就是空，然后我们在初始化的时候将shiyan置空，那么$shiyan==$content就会成立，就会直接输出我们想要的内容。&lt;/p&gt;
+&lt;h3 id=&quot;2-绕过空白字符&quot;&gt;&lt;a href=&quot;#2-绕过空白字符&quot; class=&quot;headerlink&quot; title=&quot;2. 绕过空白字符&quot;&gt;&lt;/a&gt;2. 绕过空白字符&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php
+
+$info = &amp;quot;&amp;quot;; 
+$req = [];
+$flag=&amp;quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&amp;quot;;
+
+ini_set(&amp;quot;display_error&amp;quot;, false); //为一个配置选项设置值
+error_reporting(0); //关闭所有PHP错误报告
+
+if(!isset($_GET[&amp;#39;number&amp;#39;])){
+   header(&amp;quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&amp;quot;); //HTTP头显示hint 26966dc52e85af40f59b4fe73d8c323a.txt
+
+   die(&amp;quot;have a fun!!&amp;quot;); //die — 等同于 exit()
+
+}
+
+foreach([$_GET, $_POST] as $global_var) {  //foreach 语法结构提供了遍历数组的简单方式 
+    foreach($global_var as $key =&amp;gt; $value) { 
+        $value = trim($value);  //trim — 去除字符串首尾处的空白字符（或者其他字符）
+        is_string($value) &amp;amp;&amp;amp; $req[$key] = addslashes($value); // is_string — 检测变量是否是字符串，addslashes — 使用反斜线引用字符串
+    } 
+} 
+
+
+function is_palindrome_number($number) { 
+    $number = strval($number); //strval — 获取变量的字符串值
+    $i = 0; 
+    $j = strlen($number) - 1; //strlen — 获取字符串长度
+    while($i &amp;lt; $j) { 
+        if($number[$i] !== $number[$j]) { 
+            return false; 
+        } 
+        $i++; 
+        $j--; 
+    } 
+    return true; 
+} 
+
+
+if(is_numeric($_REQUEST[&amp;#39;number&amp;#39;])) //is_numeric — 检测变量是否为数字或数字字符串 
+{
+
+   $info=&amp;quot;sorry, you cann&amp;#39;t input a number!&amp;quot;;
+
+}
+elseif($req[&amp;#39;number&amp;#39;]!=strval(intval($req[&amp;#39;number&amp;#39;]))) //intval — 获取变量的整数值
+{
+
+     $info = &amp;quot;number must be equal to it&amp;#39;s integer!! &amp;quot;;  
+
+}
+else
+{
+
+     $value1 = intval($req[&amp;quot;number&amp;quot;]);
+     $value2 = intval(strrev($req[&amp;quot;number&amp;quot;]));  
+
+     if($value1!=$value2){
+          $info=&amp;quot;no, this is not a palindrome number!&amp;quot;;
+     }
+     else
+     {
+
+          if(is_palindrome_number($req[&amp;quot;number&amp;quot;])){
+              $info = &amp;quot;nice! {$value1} is a palindrome number!&amp;quot;; 
+          }
+          else
+          {
+             $info=$flag;
+          }
+     }
+
+}
+
+echo $info;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;trim函数会移除空白，然后也会移除&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“\0” - NULL&lt;/li&gt;
+&lt;li&gt;“\t” - 制表符&lt;/li&gt;
+&lt;li&gt;“\n” - 换行&lt;/li&gt;
+&lt;li&gt;“\x0B” - 垂直制表符&lt;/li&gt;
+&lt;li&gt;“\r” - 回车&lt;/li&gt;
+&lt;li&gt;“ “ - 空格&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;$value = trim($value)&lt;/code&gt;之后$value为%0c191，四个字符，过滤了%00（NULL）&lt;br&gt; &lt;code&gt;addslashes&lt;/code&gt;会添加反斜杠&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单引号（’）&lt;/li&gt;
+&lt;li&gt;双引号（”）&lt;/li&gt;
+&lt;li&gt;反斜杠（\）&lt;/li&gt;
+&lt;li&gt;NULL&lt;br&gt;&lt;code&gt;is_numeric&lt;/code&gt;只是检测的是否是数字，01a就不是数字，0x1十六进制是，我们的是&lt;br&gt;&lt;code&gt;is_numeric($_REQUEST[&amp;#39;number&amp;#39;])&lt;/code&gt;这边是通过$_REQUEST[‘number’]进行判断，所以直接是false，然后进入下一个判断，下一个是判断是否是一个191，也就是开头首个数字和最后的数字是否相等，intval($req[‘number’])，$req[‘number’]是一个%0c191,然后intval之后就是191，这边如果是%00%0c191那么转换就是0这个时候是不相等的。他们两个不相等就会跳过去，然后最后得is_palindrome_number，这个函数时候number是%0c191是四个肯定是不对称所以跳过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;0x03-多重加密&quot;&gt;&lt;a href=&quot;#0x03-多重加密&quot; class=&quot;headerlink&quot; title=&quot;0x03 多重加密&quot;&gt;&lt;/a&gt;0x03 多重加密&lt;/h3&gt;&lt;h3 id=&quot;0x04-sql注入-WITH-ROLLUP绕过&quot;&gt;&lt;a href=&quot;#0x04-sql注入-WITH-ROLLUP绕过&quot; class=&quot;headerlink&quot; title=&quot;0x04 sql注入_WITH ROLLUP绕过&quot;&gt;&lt;/a&gt;0x04 sql注入_WITH ROLLUP绕过&lt;/h3&gt;
+    
+    </summary>
+    
+      <category term="代码审计 -" scheme="http://yoursite.com/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+    
+      <category term="代码审计 -" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>选择排序(简单题)</title>
+    <link href="http://yoursite.com/2019/05/20/suan-fa-xuan-ze-pai-xu/"/>
+    <id>http://yoursite.com/2019/05/20/suan-fa-xuan-ze-pai-xu/</id>
+    <published>2019-05-19T21:23:31.000Z</published>
+    <updated>2019-05-21T03:12:20.883Z</updated>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;
+import pysnooper
+def sort_select(mylist):
+    for i in range(len(mylist)):
+        mix=mylist[i]
+        for j in mylist[i:]:
+            if j&amp;lt;mix:
+                mix=j
+        index=mylist.index(mix)
+        mylist[index],mylist[i]=mylist[i],mylist[index]
+    return mylist
+
+
+
+if __name__==&amp;quot;__main__&amp;quot;:
+    mylist=[4,3,2,5,6]
+    print(sort_select(mylist))
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="算法 -" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法 -" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二分查找法</title>
+    <link href="http://yoursite.com/2019/05/20/er-fen-cha-zhao-fa/"/>
+    <id>http://yoursite.com/2019/05/20/er-fen-cha-zhao-fa/</id>
+    <published>2019-05-19T21:15:17.000Z</published>
+    <updated>2019-05-20T09:23:26.056Z</updated>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def find2(mylist,item):
+    low=0
+    high=len(mylist)-1
+    while low&amp;lt;high:
+        mid=(low+high)//2
+        guess=mylist[mid]
+        if guess==item:
+            return mid
+        elif guess&amp;lt;item:
+            low=mid+1
+        else:
+            high=mid-1
+    else:
+        return None
+if __name__==&amp;#39;__main__&amp;#39;:
+    mylist=[1,2,5,3,6,7,8,10,0]
+    print(find2(mylist,22))
+
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="算法 -" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法 -" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>本地提权(一)</title>
@@ -113,78 +1554,6 @@
   </entry>
   
   <entry>
-    <title>matlab中mapminmax函数的总结</title>
-    <link href="http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/"/>
-    <id>http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-11T16:12:53.519Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;01-mapminmax-函数&quot;&gt;&lt;a href=&quot;#01-mapminmax-函数&quot; class=&quot;headerlink&quot; title=&quot;01 mapminmax()函数&quot;&gt;&lt;/a&gt;01
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqlmap工具总结</title>
-    <link href="http://yoursite.com/2019/04/12/sqlmap-gong-ju-zong-jie/"/>
-    <id>http://yoursite.com/2019/04/12/sqlmap-gong-ju-zong-jie/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:53:01.726Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-三种注入方式检测&quot;&gt;&lt;a href=&quot;#1-三种注入方式检测&quot; class=&quot;headerlink&quot; title=&quot;1. 三种注入方式检测&quot;&gt;&lt;/a&gt;1.
-        
-      
-    
-    </summary>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于python爬虫的一些学习总结</title>
-    <link href="http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/"/>
-    <id>http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:53:49.481Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>使用python爬虫爬取猫眼电影</title>
     <link href="http://yoursite.com/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/"/>
     <id>http://yoursite.com/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/</id>
@@ -205,202 +1574,6 @@
     
     
       <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Empire-powershell渗透攻击框架工具</title>
-    <link href="http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/"/>
-    <id>http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:51:41.645Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-工具简介&quot;&gt;&lt;a href=&quot;#1-工具简介&quot; class=&quot;headerlink&quot; title=&quot;1. 工具简介&quot;&gt;&lt;/a&gt;1.
-        
-      
-    
-    </summary>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>手写python爬虫下载电子书一键发送到kindle</title>
-    <link href="http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/"/>
-    <id>http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:54:52.330Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>bing批量采集URL去重复链接脚本</title>
-    <link href="http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/"/>
-    <id>http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:52:31.460Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot; spellcheck=&quot;true&quot;&gt;#!/usr/bin/env
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python批量爆破phpMyadmin</title>
-    <link href="http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/"/>
-    <id>http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/</id>
-    <published>2019-04-11T16:11:19.000Z</published>
-    <updated>2019-04-12T05:30:59.047Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;使用python实现phpMyadmin的批量爆破&quot;&gt;&lt;a href=&quot;#使用python实现phpMyadmin的批量爆破&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>机器学习之线性回归方法</title>
-    <link href="http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/"/>
-    <id>http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/</id>
-    <published>2019-04-11T16:11:19.000Z</published>
-    <updated>2019-04-11T16:11:53.362Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-多元线性回归&quot;&gt;&lt;a href=&quot;#1-多元线性回归&quot; class=&quot;headerlink&quot; title=&quot;1. 多元线性回归&quot;&gt;&lt;/a&gt;1.
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python自动登陆校园网</title>
-    <link href="http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/"/>
-    <id>http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/</id>
-    <published>2019-04-11T16:10:02.000Z</published>
-    <updated>2019-04-11T16:10:31.949Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;由于每次打开电脑都要手动的登录校园网，导致很麻烦，所以写了一个爬虫来模拟浏览器自动登录校园网的功能&lt;/p&gt;
-&lt;h2 id=&quot;1-使用Burpsuit对校园网登录界面进行抓包分析&quot;&gt;&lt;a href=&quot;#1-使用Burpsuit对校园网登录界面进行抓包分析&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安全行业小工具以及学习资源收集</title>
-    <link href="http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/"/>
-    <id>http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/</id>
-    <published>2019-04-11T16:10:02.000Z</published>
-    <updated>2019-04-12T15:29:36.761Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;安全行业小工具以及学习资源收集项目，此项目部分内容来自：&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="学习工具" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>admin提权为system</title>
-    <link href="http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/"/>
-    <id>http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/</id>
-    <published>2019-04-11T16:08:38.000Z</published>
-    <updated>2019-04-11T16:09:24.715Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;code&gt;windows&lt;/code&gt;底下设置密码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;net user username *
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;提醒输入密码，确认密码&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;net user&lt;/code&gt;查看当前系统下面的用户账号
-        
-      
-    
-    </summary>
-    
-    
-      <category term="web安全笔记" scheme="http://yoursite.com/tags/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
