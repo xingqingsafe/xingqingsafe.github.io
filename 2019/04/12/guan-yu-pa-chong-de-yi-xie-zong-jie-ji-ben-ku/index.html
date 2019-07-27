@@ -1,107 +1,48 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="关于python爬虫的一些学习总结"><meta name="keywords" content="python爬虫"><meta name="author" content="starjian"><meta name="copyright" content="starjian"><title>关于python爬虫的一些学习总结 | 星晴</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-概述"><span class="toc-number">1.</span> <span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-requests库基本用法"><span class="toc-number">2.</span> <span class="toc-text">2. requests库基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-GET请求"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 GET请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-POST请求"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 POST请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-文件上传"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 文件上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Cookies设置"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 Cookies设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-SSL证书验证"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 SSL证书验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-代理设置"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-超时设置"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 超时设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-身份认证"><span class="toc-number">3.</span> <span class="toc-text">2.8 身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-封装请求的数据结构Prepared-Request"><span class="toc-number">4.</span> <span class="toc-text">2.9 封装请求的数据结构Prepared Request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-总结"><span class="toc-number">5.</span> <span class="toc-text">3. 总结</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">starjian</div><div class="author-info__description text-center">白帽子星晴的成长记录博客</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">33</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">星晴</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">关于python爬虫的一些学习总结</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-12</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p>上一次讲了<code>urllib</code>库的使用，但是其中有很多的不方便，处理网页验证和<code>Cookie</code>时候，需要写<code>opener</code>和<code>hanler</code>出咯，为了方便实现这些操作，需要有一个更加强大库，<code>requests</code>,它在<code>COOkie</code>、登陆验证、代理设置等操作十分简洁。</p>
+<h2 id="2-requests库基本用法"><a href="#2-requests库基本用法" class="headerlink" title="2. requests库基本用法"></a>2. requests库基本用法</h2><h3 id="2-1-GET请求"><a href="#2-1-GET请求" class="headerlink" title="2.1 GET请求"></a>2.1 GET请求</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line">print(<span class="string">'type(r)\n'</span>,type(r))</span><br><span class="line">print(<span class="string">'code(r)\n'</span>,r.status_code)</span><br><span class="line">print(<span class="string">'text(r)\n'</span>,r.text)</span><br><span class="line">print(<span class="string">'cookie(r)\n'</span>,r.cookies)</span><br></pre></td></tr></table></figure>
+<p>如何添加请求的字段呢？</p>
+<p>两种方法：</p>
+<p>一种是<code>get</code>请求直接在<code>url</code>里面，但是这样很麻烦。 </p>
+<p>第二种是：设置一个字典，设置其健值对，然后使用<code>params</code>参数传给<code>requests.get(url=&#39;&#39;,params=&#39;&#39;)</code>,<code>r.text()</code>是<code>str</code>格式，如果想直接解析返回结果，得到字典的话，可以直接调用<code>json（方法）</code>，<code>r.json()</code>将<code>str</code>格式转换为字典格式。</p>
+<p>如何抓取二进制数据？</p>
+<p>页面是<code>html</code>文档，如果抓图片视频等文件，得拿到它们的二进制码。使用<code>r.content()</code>方法得到二进制码，然后将其以二进制的形式写入文档。</p>
+<p>如何添加<code>headers</code>?</p>
+<p>生成一个<code>headers</code>字典，给其键值对赋值，然后将其加入<code>get</code>方法的<code>headers</code>参数。</p>
+<h3 id="2-2-POST请求"><a href="#2-2-POST请求" class="headerlink" title="2.2 POST请求"></a>2.2 POST请求</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">requests.post(url=&apos;&apos;,data=&apos;&apos;,headers=&apos;&apos;)</span><br></pre></td></tr></table></figure>
+<p><code>data</code>是请求的表单数据，<code>haeders</code>依然是头。</p>
+<p>如何知道请求的数据是成功的？</p>
+<p>使用<code>r.status_code</code>可以获得状态码，如果得到的是<code>200</code>就是返回请求页面，其他的状态码其他部分可以查询网上参考。</p>
+<p>当然响应头也可以通过<code>r.headers</code>得到它是一个字典，然后响应的<code>cookie</code>也可以通过<code>r.cookie</code>得到。</p>
+<p><code>requests</code>还提供内置的状态码查询对象<code>erquests.codes</code>可以判断请求是否成功</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exit() if not r.status_code==requests.codes.ok else print(&apos;Requests successfully&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-文件上传"><a href="#2-3-文件上传" class="headerlink" title="2.3 文件上传"></a>2.3 文件上传</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">files=&#123;<span class="string">'file'</span>:open(<span class="string">'文件名’，‘rb'</span>)</span><br><span class="line">r=requests.post(url=<span class="string">''</span>,files=files)</span><br></pre></td></tr></table></figure>
+<p>响应体里面会包含<code>files</code>这个字段，而<code>form</code>字段是空的，文件上传会单独有一个<code>files</code>字段来标识。</p>
+<h3 id="2-4-Cookies设置"><a href="#2-4-Cookies设置" class="headerlink" title="2.4 Cookies设置"></a>2.4 Cookies设置</h3><p><code>get</code>方式获取<code>cookie</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line">print(r.cookies)    <span class="comment">#获取响应的cookie</span></span><br><span class="line"><span class="keyword">for</span> key,values <span class="keyword">in</span> r.cookies.items():</span><br><span class="line">    print(key+<span class="string">'='</span>+value)</span><br></pre></td></tr></table></figure>
+<p><code>GET</code>请求维持会话使用<code>cookie</code></p>
+<p>在<code>headers</code>里面加入<code>Cookie</code>字段，就可以维持会话。</p>
+<p>建立<code>RequestCookieJar</code>对象，使用复制下来的<code>cookies</code>利用<code>split()</code>方法分割<code>cookie</code>,然后健值对给<code>jar</code>设置<code>cookie</code>,最后加到<code>POST</code>方法里面。</p>
+<p>维持同一个会话，使用<code>session</code>对象，就相当于打开一个新的浏览器选项卡而不是新开一个浏览器，不用每次都设置<code>cookies</code>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">s=requests.Session()</span><br><span class="line">s.get(<span class="string">'url'</span>)</span><br><span class="line">r=s.get(url)</span><br></pre></td></tr></table></figure>
+<p>它经常用于模拟登陆成功之后进一步的操作。</p>
+<h3 id="2-5-SSL证书验证"><a href="#2-5-SSL证书验证" class="headerlink" title="2.5 SSL证书验证"></a>2.5 SSL证书验证</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.packages <span class="keyword">import</span> urllib3</span><br><span class="line"></span><br><span class="line">urllib3.disable_warnings()  <span class="comment">#忽略警告的方式屏蔽警告</span></span><br><span class="line">response=requests.get(<span class="string">'https://www.12306.cn'</span>,verify=<span class="literal">False</span>)  <span class="comment">#verify如果为TRUE会自动验证证书，我们忽略证书验证。</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-6-代理设置"><a href="#2-6-代理设置" class="headerlink" title="2.6 代理设置"></a>2.6 代理设置</h3><p>大规模爬取网站会弹出验证码，导致一定时间段无法访问，所以设置代理解决这个问题，需要用到<code>proxies</code>参数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">proxies=&#123;</span><br><span class="line">      <span class="string">'http'</span>:<span class="string">'http://user:password@ip地址'</span>&#125;</span><br><span class="line">requests.get(url=<span class="string">''</span>,proxies=<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-7-超时设置"><a href="#2-7-超时设置" class="headerlink" title="2.7 超时设置"></a>2.7 超时设置</h3><p>有时候由于本机网络不好，我们等待很久才收到响应。为了防止这种情况，设置一个超时时间。增加一个<code>timeout</code>字段，单位为秒。永久等待设置为<code>None</code>或者不加参数。</p>
+<h2 id="2-8-身份认证"><a href="#2-8-身份认证" class="headerlink" title="2.8 身份认证"></a>2.8 身份认证</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(url=<span class="string">''</span>,auth=(<span class="string">'username'</span>,<span class="string">'password'</span>)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+<h2 id="2-9-封装请求的数据结构Prepared-Request"><a href="#2-9-封装请求的数据结构Prepared-Request" class="headerlink" title="2.9 封装请求的数据结构Prepared Request"></a>2.9 封装请求的数据结构Prepared Request</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> requests <span class="keyword">import</span> Request,Session</span><br><span class="line"></span><br><span class="line">url=<span class="string">''</span></span><br><span class="line">data=&#123;&#125;</span><br><span class="line">headers=&#123;&#125;</span><br><span class="line"></span><br><span class="line">s=Session()</span><br><span class="line">req=Request(method=<span class="string">''</span>,url,data=data,headers=headers)</span><br><span class="line">pre=s.prepare_request(req)</span><br><span class="line">r=s.send(pre)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p><code>requests</code>库为常用库，一定得掌握，<code>urllib</code>了解就<code>ok</code></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">starjian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/">http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python爬虫/">python爬虫</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/"><i class="fa fa-chevron-left">  </i><span>使用python爬虫爬取猫眼电影</span></a></div><div class="next-post pull-right"><a href="/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/"><span>手写python爬虫下载电子书一键发送到kindle</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By starjian</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

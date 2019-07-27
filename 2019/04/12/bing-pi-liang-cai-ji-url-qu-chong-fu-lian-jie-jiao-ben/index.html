@@ -1,107 +1,18 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="bing批量采集URL去重复链接脚本"><meta name="keywords" content="python黑客编程"><meta name="author" content="starjian"><meta name="copyright" content="starjian"><title>bing批量采集URL去重复链接脚本 | 星晴</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">starjian</div><div class="author-info__description text-center">白帽子星晴的成长记录博客</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">33</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">星晴</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">bing批量采集URL去重复链接脚本</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-12</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- conding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">logo = <span class="string">'''</span></span><br><span class="line"><span class="string">  _______    ___     ___    _      </span></span><br><span class="line"><span class="string"> |__   __|  / _ \   / _ \  | |     </span></span><br><span class="line"><span class="string">    | |    | | | | | | | | | |  ___</span></span><br><span class="line"><span class="string">    | |    | | | | | | | | | | / __|</span></span><br><span class="line"><span class="string">    | |    | |_| | | |_| | | | \__ \\</span></span><br><span class="line"><span class="string">    |_|     \___/   \___/  |_| |___/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span>  </span><br><span class="line">print(logo)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Obtain_url</span><span class="params">(page_number,your_url)</span>:</span> <span class="comment">#爬抓bing获取url</span></span><br><span class="line">    browser = ChromeDriverNOBrowser()</span><br><span class="line">    browser.implicitly_wait(<span class="number">100</span>)</span><br><span class="line">    page = [<span class="string">'&amp;first='</span>+str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,page_number,<span class="number">10</span>)]</span><br><span class="line">    crux =your_url</span><br><span class="line">    crux = urllib.parse.quote(crux)   <span class="comment">#解决编码报错问题</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'url.txt'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        count_page=<span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> page:</span><br><span class="line">            print(<span class="string">'正在爬取第'</span>+str(count_page)+<span class="string">'页:'</span>)</span><br><span class="line">            count_page=count_page+<span class="number">1</span></span><br><span class="line">            current_url=<span class="string">'https://cn.bing.com/search?q='</span>+crux+i</span><br><span class="line">            print(current_url)</span><br><span class="line">            browser = webdriver.Chrome()</span><br><span class="line">            browser.get(current_url)</span><br><span class="line">            content=browser.page_source</span><br><span class="line">            res = re.compile(<span class="string">r'&lt;h2&gt;&lt;a target="_blank" href="(.*?)"'</span>)</span><br><span class="line">            data = res.findall(content)</span><br><span class="line">            print(data)</span><br><span class="line">            <span class="keyword">if</span> len(data)==<span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> data:</span><br><span class="line">                print(j)</span><br><span class="line">                f.write(j+<span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ChromeDriverNOBrowser</span><span class="params">()</span>:</span></span><br><span class="line">    chrome_options = webdriver.ChromeOptions()</span><br><span class="line">    chrome_options.add_argument(<span class="string">'--headless'</span>)</span><br><span class="line">    chrome_options.add_argument(<span class="string">'--disable-gpu'</span>)</span><br><span class="line">    driverChrome = webdriver.Chrome(chrome_options=chrome_options)</span><br><span class="line">    <span class="keyword">return</span> driverChrome</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">url</span><span class="params">()</span>:</span>  <span class="comment">#处理bing爬抓下来的链接</span></span><br><span class="line">    url = []</span><br><span class="line">    print(<span class="string">'链接处理'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'result.txt'</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:  <span class="comment">#读取文件内容到列表里</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f.readlines():</span><br><span class="line">            url.append(i)</span><br><span class="line">    data = list(set(url))  <span class="comment">#去重url列表</span></span><br><span class="line">    data = sorted(data)    <span class="comment">#排列顺序</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'new_url.txt'</span>,<span class="string">'a'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:  <span class="comment">#判断url是否有.php? .asp? .aspx?</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">            res = re.compile(<span class="string">r'\.php\?'</span>)</span><br><span class="line">            datas = res.findall(i)</span><br><span class="line">            <span class="keyword">if</span> datas != []:</span><br><span class="line">                f.write(i)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res = re.compile(<span class="string">r'\.asp\?'</span>)</span><br><span class="line">                datas = res.findall(i)</span><br><span class="line">                <span class="keyword">if</span> datas != []:</span><br><span class="line">                    f.write(i)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res = re.compile(<span class="string">r'\.aspx\?'</span>)</span><br><span class="line">                    datas = res.findall(i)</span><br><span class="line">                    <span class="keyword">if</span> datas != []:</span><br><span class="line">                        f.write(i)</span><br><span class="line"></span><br><span class="line">year = time.localtime().tm_year</span><br><span class="line">mon = time.localtime().tm_mon</span><br><span class="line">day = time.localtime().tm_mday</span><br><span class="line">hour = time.localtime().tm_hour</span><br><span class="line">min = time.localtime().tm_min</span><br><span class="line">sec = time.localtime().tm_sec</span><br><span class="line">nowtime = str(year) + str(mon) + str(day) + str(hour) + str(min) + str(sec)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">openThefile</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    1、打开要去重的文件</span></span><br><span class="line"><span class="string">    2、删除每行数据前后的无用字符</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    f=<span class="string">"new_url.txt"</span></span><br><span class="line">    ff = open(f,<span class="string">'r'</span>)</span><br><span class="line">    l = []</span><br><span class="line">    <span class="comment">#for i in ff.readline():     #readline是文件中的第一行内容</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ff.readlines():    <span class="comment">#所有内容中的每一行</span></span><br><span class="line">        <span class="keyword">if</span> i != <span class="string">'\n'</span> <span class="keyword">and</span> i != <span class="string">'\r\n'</span>:   <span class="comment">#删除空行</span></span><br><span class="line">            ii = i.replace(<span class="string">'\t'</span>,<span class="string">''</span>).strip()</span><br><span class="line">            l.append(ii)</span><br><span class="line">    ff.close()</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createNewfile</span><span class="params">(openThefile)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    去重操作</span></span><br><span class="line"><span class="string">    :param openThefile:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    l = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> openThefile:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> l:</span><br><span class="line">            l.append(i)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    创建新文件</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    f=<span class="string">"new_url.txt"</span></span><br><span class="line">    filename = f[:f.find(<span class="string">'.'</span>)]</span><br><span class="line">    postfix = f[f.find(<span class="string">'.'</span>):]</span><br><span class="line">    theNewfile = open(filename + <span class="string">'_'</span> + nowtime + postfix,<span class="string">'a'</span>)</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    写入处理过的内容</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> l:</span><br><span class="line">        theNewfile.writelines(i+<span class="string">'\n'</span>)</span><br><span class="line">    theNewfile.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    parser=argparse.ArgumentParser()</span><br><span class="line">    parser.description=<span class="string">'自动化采集bing网站的爬虫'</span></span><br><span class="line">    parser.add_argument(<span class="string">'-u'</span>,<span class="string">'--your_url'</span>,help=<span class="string">"你的hack语句"</span>,type=str)</span><br><span class="line">    parser.add_argument(<span class="string">'-p'</span>,<span class="string">'--page_number'</span>,help=<span class="string">"你要爬取的页数最大范围"</span>,type=int)</span><br><span class="line">    args=parser.parse_args()</span><br><span class="line">    Obtain_url(args.page_number,args.your_url)</span><br><span class="line">    url()</span><br><span class="line">    createNewfile(openThefile())</span><br></pre></td></tr></table></figure>
+<p>调试了半天了，提前装好<code>selenium</code>库和谷歌浏览器的驱动，使用方法例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python 1.py -u inurl:php?id -p 100</span><br></pre></td></tr></table></figure>
+<p>意思是使用谷歌关键字<code>inurl:php?id</code>然后爬取<code>100/10</code>以内的页数</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">starjian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/">http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python黑客编程/">python黑客编程</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/"><i class="fa fa-chevron-left">  </i><span>python 爬虫基本库的使用</span></a></div><div class="next-post pull-right"><a href="/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/"><span>Empire-powershell渗透攻击框架工具</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By starjian</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

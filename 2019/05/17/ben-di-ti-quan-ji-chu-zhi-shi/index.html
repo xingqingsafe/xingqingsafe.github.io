@@ -1,107 +1,113 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(page.permalink)) #[=page.permalink]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="本地提权(一)"><meta name="keywords" content="内网提权 -"><meta name="author" content="starjian"><meta name="copyright" content="starjian"><title>本地提权(一) | 星晴</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-本地提权"><span class="toc-number">1.</span> <span class="toc-text">0x01  本地提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-本地提权的基础知识"><span class="toc-number">2.</span> <span class="toc-text">0x02 本地提权的基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-windows操作系统的提权"><span class="toc-number">3.</span> <span class="toc-text">0x03 windows操作系统的提权</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">starjian</div><div class="author-info__description text-center">白帽子星晴的成长记录博客</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">33</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">13</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">3</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">星晴</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">本地提权(一)</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-17</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="0x01-本地提权"><a href="#0x01-本地提权" class="headerlink" title="0x01  本地提权"></a>0x01  本地提权</h3><p>条件：已经实现了本地低权限账号的登陆<br>        1.1 远程溢出<br>        1.2 直接获得账号密码<br>本地提权的目的就是希望获得更高的权限，对目标进一步的进行控制</p>
+<h3 id="0x02-本地提权的基础知识"><a href="#0x02-本地提权的基础知识" class="headerlink" title="0x02 本地提权的基础知识"></a>0x02 本地提权的基础知识</h3><p>系统账户之间权限隔离</p>
+<ol>
+<li>操作系统安全的基础</li>
+<li>用户空间</li>
+<li>内核空间(也划分了很多账号)</li>
+</ol>
+<hr>
+<p>系统账号：</p>
+<ul>
+<li>用户账户登陆时获取权限令牌</li>
+<li>服务账号无需用户登陆已经在后台启动服务(跟随系统启动而启动)</li>
+</ul>
+<hr>
+<p>最高管理员账号:</p>
+<ul>
+<li>windows为==admininstrator==</li>
+<li>linux为==root==<br>最高管理员可以生成很多应用账号，管理员赋给不同的权限，登陆的时候，系统赋予权限的令牌，令牌在登陆的时候绑定在用户会话上，每一次登陆的令牌不是一样的，随机.</li>
+</ul>
+<hr>
+<p>不同系统默认的用户情况：</p>
+<p>windwos:</p>
+<ul>
+<li>user</li>
+<li>Administrator==有一些控制表项不能去修改和删除==</li>
+<li>system 启动运行内核级别的权限(最高)</li>
+</ul>
+<p>administrator和system两个是相互包含的，</p>
+<p><img src="/.com//1558059310908.drawio.html" alt="Diagram"></p>
+<p>linux</p>
+<ul>
+<li>root=administrator+system</li>
+<li>user</li>
+</ul>
+<hr>
+<h3 id="0x03-windows操作系统的提权"><a href="#0x03-windows操作系统的提权" class="headerlink" title="0x03 windows操作系统的提权"></a>0x03 windows操作系统的提权</h3><ol>
+<li>首先给windwos xp增加一个用户，由于我的xp是在域环境中，所以设置密码需要一个强的密码。<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35hzd0nzkj30z20ljdmz.jpg" alt><br>其中<code>net user xingqing *</code>修改用户的密码，<code>net user xingqing password</code>是增加一个用户xingqing.</li>
+</ol>
+<hr>
+<ol start="2">
+<li><code>net user xingqing</code>查看当前xingqing ,<img src="http://ww1.sinaimg.cn/large/006d1Stply1g35ibb2xyfj30m80e4jta.jpg" alt>,可以看到它是属于当前的users组。Users是Windows中预设的一个用户组，介绍是：防止用户进行有意或无意的系统范围的更改，但是可以运行大部分应用程序。这个用户组包含了所有可登录的用户，默认权限是读取和执行（非系统分区）拒绝访问（所有System Volume Information文件夹及其子文件与子文件夹和其他用户配置文件夹）<br>读取和执行（系统分区下其他文件与文件夹）</li>
+</ol>
+<hr>
+<ol start="3">
+<li>响应的用户权限以及组说明 <ul>
+<li>Users<br>普通用户组，这个组的用户无法进行有意或无意的改动。因此，用户可以运行经过验证的应用程序，但不可以运行大多数旧版应用程序。Users 组是最安全的组，因为分配给该组的默认权限不允许成员修改操作系统的设置或用户资料。Users 组提供了一个最安全的程序运行环境。在经过 NTFS 格式化的卷上，默认安全设置旨在禁止该组的成员危及操作系统和已安装程序的完整性。用户不能修改系统注册表设置、操作系统文件或程序文件。Users 可以创建本地组，但只能修改自己创建的本地组。Users 可以关闭工作站，但不能关闭服务器。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Power Users<br>高级用户组，Power Users 可以执行除了为 Administrators 组保留的任务外的其他任何操作系统任务。分配给 Power Users 组的默认权限允许 Power Users 组的成员修改整个计算机的设置。但Power Users 不具有将自己添加到 Administrators 组的权限。在权限设置中，这个组的权限是仅次于Administrators的。</li>
+<li>Administrators<br>管理员组，默认情况下，Administrators中的用户对计算机/域有不受限制的完全访问权。分配给该组的默认权限允许对整个系统进行完全控制。一般来说，应该把系统管理员或者与其有着同样权限的用户设置为该组的成员。</li>
+<li>Guests<br>来宾组，来宾组跟普通组Users的成员有同等访问权，但来宾账户的限制更多。</li>
+<li>Everyone<br>所有的用户，这个计算机上的所有用户都属于这个组。</li>
+<li>SYSTEM组<br>这个组拥有和Administrators一样甚至更高的权限，在察看用户组的时候它不会被显示出来，也不允许任何用户的加入。这个组主要是保证了系统服务的正常运行，赋予系统及系统服务的权限。</li>
+</ul>
+<hr>
+<ol start="4">
+<li>使用命令将其加入administrators组。</li>
+</ol>
+<p><code>net localgroup Administrators xingqing /add</code>发生1317，用户不存在的系统错误，查资料得是因为你的用户和计算机名一样造成的，我们重新添加一hack的账户，然后继续使用上面的命令成功将hack添加到administrators组。</p>
+<hr>
+<ol start="5">
+<li>接下来使用命令将hack这个账户，提升为system权限</li>
+</ol>
+<p>我们打开任务管理器，查找用户为system的程序</p>
+<ul>
+<li>使用at命令提升为system</li>
+</ul>
+<p>使用范围： xp,2003使用，win7和win8，win2012,win2008已经删除。</p>
+<p>使用<code>at /?</code>查看需要的命令参数，<code>at time /interactive cmd</code>,interactive是交互式命令行参数。whoami在windows服务器程序会有，默认的xp不存在这个命令。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35k1nnkklj31bq0n2guv.jpg" alt><br>就会使用system重新启动命令行，它的权限就是system。接下使用cmd打开的所有程序都是system权限。</p>
+<p>接下来输入<code>taskmgr</code>使用system打开任务管理器，然后kill explore进程，最后再重新打开explore进程(文件，新建，explorer.exe),重新加载就是system权限。</p>
+<hr>
+<ul>
+<li>sc命令</li>
+</ul>
+<p>使用范围：win7和win8，其他未测试</p>
+<p>命令功能: 创建系统服务，SC.exe提供的功能类似于“控制面板”中“管理工具”项中的“服务”。</p>
+<p>services.msc运行都是服务。</p>
+<p><code>cmd /k start</code>打开一个新的窗口。</p>
+<p><code>sc Create systemcmd binPath=&quot;cmd /k start&quot; type= own type= interact</code> 创建一个服务名字为systemcmd ,然后服务所属我自己(own)，并且是以交互的方式(可以看见，不会出现在后台)</p>
+<p><code>sc start systemcmd</code>启动这个服务，由于所有的服务是由system启动，所以cmd会成为system权限。</p>
+<p>1060错误未知，待解决</p>
+<ul>
+<li>使用微软工具提system</li>
+</ul>
+<p><a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/sysinternals/downloads/</a>，windows sysinternals解压后将psexec.exe传至xp</p>
+<p>先打开kali ，在路径/usr/share/windows-binaries下将whoami.exe传到xp的windwos/system32文件夹中，</p>
+<p>使用<code>psExec.exe -i -s cmd</code>。目前是失败的</p>
+<hr>
+<ul>
+<li>注入进程提权</li>
+</ul>
+<p>找一个已经是system的服务，然后注入进程得到system权限，使用processinjector工具，放到c目录执行-l显示可以注入的进程。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35mol3ximj30n90fhn0o.jpg" alt><br>然后记住pid，然后</p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35msql6b1j30rh0ik44j.jpg" alt>，注入进程执行cmd程序将shell放在4444端口，等待连接。</p>
+<p>使用kali的nc进行连接：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35mx14s8fj30sr0hntb8.jpg" alt>,直接就是system权限。<br>然后使用下载的套件sysinternals里面的Procexp.exe查看注入的进程services服务，<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35n5xkvj0j31gd0n4ajt.jpg" alt><br>这种后门非常隐蔽。即使注销用户，服务进程依然在，后门依然可以连接。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">starjian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/">http://yoursite.com/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/内网提权/">内网提权 -</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/05/20/er-fen-cha-zhao-fa/"><i class="fa fa-chevron-left">  </i><span>二分查找法</span></a></div><div class="next-post pull-right"><a href="/2019/05/12/nei-wang-shen-tou-huan-jing-da-jian-xia/"><span>内网域环境的搭建 (下)</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2019 By starjian</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
