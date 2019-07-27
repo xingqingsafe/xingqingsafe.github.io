@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2019/07/27/melody/"/>
-      <url>/2019/07/27/melody/</url>
-      
-        <content type="html"><![CDATA[{"theme_color":{"enable":true,"main":"#000","paginator":"#000","button_hover":"#49B1F5","text_selection":"#000","link_color":"#000","hr_color":"#000","meta_color":"#000"},"menu":{"Home":"/","Archives":"/archives","Tags":"/tags","Categories":"/categories"},"favicon":"/melody-favicon.ico","pwa":{"enable":false,"manifest":"/manifest.json"},"highlight_theme":"default","code_word_wrap":true,"algolia_search":{"enable":false,"hits":{"per_page":10}},"local_search":{"enable":false},"mathjax":{"enable":false,"cdn":"https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"},"katex":{"enable":false,"cdn":{"css":"https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"}},"fireworks":false,"baidu_analytics":null,"google_analytics":null,"tencent_analytics":null,"stylesheets":["/css/index.css"],"scripts":["/js/utils.js","/js/fancybox.js","/js/sidebar.js","/js/copy.js","/js/fireworks.js","/js/transition.js","/js/scroll.js","/js/head.js"],"cdn":{"css":{"fontawesome":"https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"},"js":{"anime":"https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js","jquery":"https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js","fancybox":"https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js","velocity":"https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js","velocity-ui":"https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"}},"avatar":null,"top_img":true,"post_meta":{"date_type":"created","categories":true,"tags":true},"wordcount":{"enable":false},"toc":{"enable":true},"post_copyright":{"enable":true,"license":"CC BY-NC-SA 4.0","license_url":"https://creativecommons.org/licenses/by-nc-sa/4.0/"},"slide":{"separator":"---","separator_vertical":"--","charset":"utf-8","theme":"black","mouseWheel":false,"transition":"slide","transitionSpeed":"default","parallaxBackgroundImage":"","parallaxBackgroundSize":"","parallaxBackgroundHorizontal":null,"parallaxBackgroundVertical":null},"addThis":{"enable":false},"disqus":{"enable":false},"since":2013,"ICP":{"enable":false},"busuanzi":{"enable":true,"site_uv":true,"site_uv_header":"<i class="\" fa" fa-user\"></i>","site_uv_footer":null,"site_pv":true,"site_pv_header":"<i class="\" fa" fa-eye\"></i>","site_pv_footer":null,"page_pv":true,"page_pv_header":"<i class="\" fa" fa-file-o\"></i>","page_pv_footer":null},"google_adsense":{"enable":false,"js":"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js","client":"ca-pub-...........","enable_page_level_ads":true}}]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>numpy使用总结</title>
       <link href="/2019/07/27/numpy-shi-yong-zong-jie/"/>
       <url>/2019/07/27/numpy-shi-yong-zong-jie/</url>
