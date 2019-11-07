@@ -4,11 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="sqlmap工具总结, 星晴">
-    <meta name="description" content="1. 三种注入方式检测get方式注入
-python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
-post方式注入
-python2 sqlmap.py -u http://127">
+    <meta name="keywords" content="递归函数, 星晴">
+    <meta name="description" content="1. 使用递归函数实现sumdef mysum(mylist):
+    if len(mylist)==0:
+        return 0
+    else:
+        return mylist.pop()+mysum(myl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@ python2 sqlmap.py -u http://127">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>sqlmap工具总结 | 星晴</title>
+    <title>递归函数 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +261,13 @@ python2 sqlmap.py -u http://127">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        sqlmap工具总结
+                        递归函数
                     </div>
                 </div>
             </div>
@@ -377,8 +378,8 @@ python2 sqlmap.py -u http://127">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/渗透测试/" target="_blank">
-                                <span class="chip bg-color">渗透测试</span>
+                            <a href="/tags/算法/" target="_blank">
+                                <span class="chip bg-color">算法 -</span>
                             </a>
                         
                     </div>
@@ -392,7 +393,7 @@ python2 sqlmap.py -u http://127">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-12
+                    2019-05-22
                 </div>
 
                 
@@ -408,54 +409,47 @@ python2 sqlmap.py -u http://127">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-三种注入方式检测"><a href="#1-三种注入方式检测" class="headerlink" title="1. 三种注入方式检测"></a>1. 三种注入方式检测</h2><p><code>get</code>方式注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
-</code></pre><p><code>post</code>方式注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-11/ --data uname=ha
-</code></pre><p><code>cookie</code>注入</p>
-<pre><code>python2 sqlmap.py -u &#39;网址&#39; --cookie uname=aja
-</code></pre><h2 id="2-数据库信息获取"><a href="#2-数据库信息获取" class="headerlink" title="2. 数据库信息获取"></a>2. 数据库信息获取</h2><p>获取当前用户下所有数据库</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --dbs
-</code></pre><p>获取数据库的表名</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39;-D 数据库名 --tables
-</code></pre><p>获取表中的字段</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 --columns
-</code></pre><p>获取字段的内容</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 -C 列名，列名 --dump
-</code></pre><p>获取所有用户（具有一定的权限）</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --users
-</code></pre><p>获取数据库用户的密码</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --passwords
-</code></pre><p>获取当前网站数据库的名称</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --current-db
-</code></pre><p>获取当前数据库的用户名称</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --current-user
-</code></pre><p>获取数据库的数据量</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 --count
-</code></pre><p>判断用户权限：增删改查、写入读取文件、执行系统命令</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --privileges
-</code></pre><p>简单的判断：<code>MSSQL</code>最高权限是<code>Sa</code>用户 <code>Mysql</code>最高权限是<code>root</code></p>
-<p><code>sqlmap</code>不支持<code>Mongodb</code>和<code>nosql</code>所以新出来的开源<code>nosqlmap</code>支持可以去<code>github</code>上下载</p>
-<p>管理自己的数据库得先在<code>github</code>上下载<code>pymysql</code>解压切换目录然后<code>setup.py install</code></p>
-<pre><code>sqlmap.py -d mysql://用户名:密码@地址：端口/数据库 --sql-shell 进行sql语句的管理
-</code></pre><p>页面无变化，布尔无真假，从来不报错，延时注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --delay -safe-freq
-</code></pre><p>交互式命令执行和写<code>webshell</code> </p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --os-cmd &#39;net user&#39;
-</code></pre><p>使用<code>tamper</code>绕过<code>waf</code></p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --tamper=&#39;&#39;
-</code></pre><p>批量<code>sql</code>注入</p>
-<pre><code>python2 sqlmap.py -m 文件
-</code></pre><h2 id="3-使用burpsuit批量扫描sql注入"><a href="#3-使用burpsuit批量扫描sql注入" class="headerlink" title="3. 使用burpsuit批量扫描sql注入"></a>3. 使用burpsuit批量扫描sql注入</h2><p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g21bfr7oysj318t0swjtl.jpg" alt></p>
-<p>先在<code>burpsuit</code>中设置使用代理抓包并将其保存在<code>sqlmap</code>所在的目录下。然后使用</p>
-<pre><code>python2 sqlmap.py -l burp.log --batch -smart
-</code></pre><p><code>--batch</code> 就是使用默认选项，<code>smart</code>是使用智能化的注入，它会根据头的注入，<code>cookie</code>和<code>post</code>,<code>get</code>的方式进行注入</p>
-<h2 id="4-本地上传webshell"><a href="#4-本地上传webshell" class="headerlink" title="4. 本地上传webshell"></a>4. 本地上传webshell</h2><p>首先，在<code>sqlmap</code>所在的目录下创建一个目录<code>mst</code>，然后里面存放我们要上传的<code>webshell</code>,<br>其次，需要两个参数</p>
-<pre><code>--file-write &#39;./mst/mst.txt&#39;
---file-dest &#39;d:/www/1.php&#39;
--v 等级 可以显示出注入的payload
-</code></pre><p>使用<code>burpsuit</code>结合<code>sqlmap</code>学习注入：参数 <code>--proxy=http：//127.0.0.1：8080</code></p>
+                <h3 id="1-使用递归函数实现sum"><a href="#1-使用递归函数实现sum" class="headerlink" title="1. 使用递归函数实现sum"></a>1. 使用递归函数实现sum</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">mysum</span><span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> mylist<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span>mysum<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span>
 
+mylist<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>mysum<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="2-编写一个递归函数来计算列表中包含的元素数"><a href="#2-编写一个递归函数来计算列表中包含的元素数" class="headerlink" title="2. 编写一个递归函数来计算列表中包含的元素数"></a>2. 编写一个递归函数来计算列表中包含的元素数</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">mysum</span><span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        mylist<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token operator">+</span>mysum<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span>
+
+mylist<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>mysum<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre>
+<h3 id="3-找出列表中的最大数字"><a href="#3-找出列表中的最大数字" class="headerlink" title="3.找出列表中的最大数字"></a>3.找出列表中的最大数字</h3><pre class=" language-python"><code class="language-python"> <span class="token keyword">def</span> <span class="token function">max</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">if</span> list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">></span>list<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">else</span> list<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    sub_max<span class="token operator">=</span>max<span class="token punctuation">(</span>list<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">if</span> list<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">></span>sub_max <span class="token keyword">else</span> sub_max 
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>max<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><strong>通常编写涉及数组的递归函数时，基线条件就是数组为空或者只包含一个元素，陷入困境时，请检查基线条件是不是这样的。</strong></p>
+<h3 id="4-使用递归实现快排"><a href="#4-使用递归实现快排" class="headerlink" title="4. 使用递归实现快排"></a>4. 使用递归实现快排</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">sort_by_q</span><span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>mylist<span class="token punctuation">)</span><span class="token operator">&lt;</span><span class="token number">2</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> mylist
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        select<span class="token operator">=</span>mylist<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        left<span class="token operator">=</span><span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> mylist<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token keyword">if</span> i<span class="token operator">&lt;=</span>select<span class="token punctuation">]</span>
+        right<span class="token operator">=</span><span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> mylist<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token keyword">if</span> i<span class="token operator">></span>select<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> sort_by_q<span class="token punctuation">(</span>left<span class="token punctuation">)</span><span class="token operator">+</span><span class="token punctuation">[</span>select<span class="token punctuation">]</span><span class="token operator">+</span>sort_by_q<span class="token punctuation">(</span>right<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sort_by_q<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">22</span><span class="token punctuation">,</span><span class="token number">33</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre>
+<a id="more"></a>
             </div>
             <hr>
 
@@ -602,7 +596,7 @@ python2 sqlmap.py -u http://127">
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/sqlmap-gong-ju-zong-jie/" class="b-link-green">sqlmap工具总结</a>
+                    <a href="/2019/05/22/di-gui-han-shu/" class="b-link-green">递归函数</a>
                 </p>
             </div>
         </div>
@@ -627,21 +621,26 @@ python2 sqlmap.py -u http://127">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/">
+                <a href="/2019/05/23/windows-ti-quan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="matlab中mapminmax函数的总结">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="windows提权">
                         
-                        <span class="card-title">matlab中mapminmax函数的总结</span>
+                        <span class="card-title">windows提权</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi</div>
+                    <div class="summary">1. 漏洞收集 0day库
+exploit-db 
+0da’y
+https://securitytracker.com/
+https://www.rapid7.com/db/modules/
+https://cxsecurity.com/
+</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-23
                         </span>
                         <span class="publish-author">
                             
@@ -650,14 +649,6 @@ python2 sqlmap.py -u http://127">
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -669,27 +660,33 @@ python2 sqlmap.py -u http://127">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/">
+                <a href="/2019/05/21/shi-yong-lou-dong-jin-xing-ti-quan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="使用python爬虫爬取猫眼电影">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="使用漏洞进行提权">
                         
-                        <span class="card-title">使用python爬虫爬取猫眼电影</span>
+                        <span class="card-title">使用漏洞进行提权</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 环境以及工具使用我们使用的是python3的requests库，requests比urllib更加的方便，同时使用正则表达式作为解析的工具。
-在工具方便这次我们使用一个新的抓包工具用来对http协议的包进行分析
-1.1 工具介绍Fid</div>
+                    <div class="summary">1. 信息收集提权的条件: 1. 拥有普通用户的权限
+                2. 拥有网站的webshell
+                3. 存在提权的漏洞
+1.1 操作系统的信息收集
+1.2  远程桌面查看命令1.2.1 </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-21
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            starjian
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/提权/" class="post-category" target="_blank">
+                                    提权 -
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -697,8 +694,8 @@ python2 sqlmap.py -u http://127">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python爬虫/" target="_blank">
-                        <span class="chip bg-color">python爬虫</span>
+                    <a href="/tags/内网渗透/" target="_blank">
+                        <span class="chip bg-color">内网渗透 -</span>
                     </a>
                     
                 </div>

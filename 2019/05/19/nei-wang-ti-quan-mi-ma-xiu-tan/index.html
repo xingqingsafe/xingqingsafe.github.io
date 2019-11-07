@@ -4,11 +4,22 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="sqlmap工具总结, 星晴">
-    <meta name="description" content="1. 三种注入方式检测get方式注入
-python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
-post方式注入
-python2 sqlmap.py -u http://127">
+    <meta name="keywords" content="本地提权(嗅探), 星晴">
+    <meta name="description" content="0x01 windows下的嗅探工具
+sniffpass
+cain
+wireshark
+Omnipeek
+commview
+sniffpass
+
+
+0x02 linux下的嗅探工具
+Tcpdump
+wireshark
+Dsniff
+
+0x0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +27,7 @@ python2 sqlmap.py -u http://127">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>sqlmap工具总结 | 星晴</title>
+    <title>本地提权(嗅探) | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +271,13 @@ python2 sqlmap.py -u http://127">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        sqlmap工具总结
+                        本地提权(嗅探)
                     </div>
                 </div>
             </div>
@@ -377,8 +388,8 @@ python2 sqlmap.py -u http://127">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/渗透测试/" target="_blank">
-                                <span class="chip bg-color">渗透测试</span>
+                            <a href="/tags/内网渗透/" target="_blank">
+                                <span class="chip bg-color">内网渗透 -</span>
                             </a>
                         
                     </div>
@@ -392,7 +403,7 @@ python2 sqlmap.py -u http://127">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-12
+                    2019-05-19
                 </div>
 
                 
@@ -408,54 +419,43 @@ python2 sqlmap.py -u http://127">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-三种注入方式检测"><a href="#1-三种注入方式检测" class="headerlink" title="1. 三种注入方式检测"></a>1. 三种注入方式检测</h2><p><code>get</code>方式注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2
-</code></pre><p><code>post</code>方式注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-11/ --data uname=ha
-</code></pre><p><code>cookie</code>注入</p>
-<pre><code>python2 sqlmap.py -u &#39;网址&#39; --cookie uname=aja
-</code></pre><h2 id="2-数据库信息获取"><a href="#2-数据库信息获取" class="headerlink" title="2. 数据库信息获取"></a>2. 数据库信息获取</h2><p>获取当前用户下所有数据库</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --dbs
-</code></pre><p>获取数据库的表名</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39;-D 数据库名 --tables
-</code></pre><p>获取表中的字段</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 --columns
-</code></pre><p>获取字段的内容</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 -T 表名 -C 列名，列名 --dump
-</code></pre><p>获取所有用户（具有一定的权限）</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --users
-</code></pre><p>获取数据库用户的密码</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --passwords
-</code></pre><p>获取当前网站数据库的名称</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --current-db
-</code></pre><p>获取当前数据库的用户名称</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --current-user
-</code></pre><p>获取数据库的数据量</p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; -D 数据库名 --count
-</code></pre><p>判断用户权限：增删改查、写入读取文件、执行系统命令</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --privileges
-</code></pre><p>简单的判断：<code>MSSQL</code>最高权限是<code>Sa</code>用户 <code>Mysql</code>最高权限是<code>root</code></p>
-<p><code>sqlmap</code>不支持<code>Mongodb</code>和<code>nosql</code>所以新出来的开源<code>nosqlmap</code>支持可以去<code>github</code>上下载</p>
-<p>管理自己的数据库得先在<code>github</code>上下载<code>pymysql</code>解压切换目录然后<code>setup.py install</code></p>
-<pre><code>sqlmap.py -d mysql://用户名:密码@地址：端口/数据库 --sql-shell 进行sql语句的管理
-</code></pre><p>页面无变化，布尔无真假，从来不报错，延时注入</p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --delay -safe-freq
-</code></pre><p>交互式命令执行和写<code>webshell</code> </p>
-<pre><code>python2 sqlmap.py -u http://127.0.0.1/sqli-labs/Less-1/?id=2 --os-cmd &#39;net user&#39;
-</code></pre><p>使用<code>tamper</code>绕过<code>waf</code></p>
-<pre><code>python2 sqlmap.py -u &#39;&#39; --tamper=&#39;&#39;
-</code></pre><p>批量<code>sql</code>注入</p>
-<pre><code>python2 sqlmap.py -m 文件
-</code></pre><h2 id="3-使用burpsuit批量扫描sql注入"><a href="#3-使用burpsuit批量扫描sql注入" class="headerlink" title="3. 使用burpsuit批量扫描sql注入"></a>3. 使用burpsuit批量扫描sql注入</h2><p><img src="https://ww1.sinaimg.cn/large/006Fzy5igy1g21bfr7oysj318t0swjtl.jpg" alt></p>
-<p>先在<code>burpsuit</code>中设置使用代理抓包并将其保存在<code>sqlmap</code>所在的目录下。然后使用</p>
-<pre><code>python2 sqlmap.py -l burp.log --batch -smart
-</code></pre><p><code>--batch</code> 就是使用默认选项，<code>smart</code>是使用智能化的注入，它会根据头的注入，<code>cookie</code>和<code>post</code>,<code>get</code>的方式进行注入</p>
-<h2 id="4-本地上传webshell"><a href="#4-本地上传webshell" class="headerlink" title="4. 本地上传webshell"></a>4. 本地上传webshell</h2><p>首先，在<code>sqlmap</code>所在的目录下创建一个目录<code>mst</code>，然后里面存放我们要上传的<code>webshell</code>,<br>其次，需要两个参数</p>
-<pre><code>--file-write &#39;./mst/mst.txt&#39;
---file-dest &#39;d:/www/1.php&#39;
--v 等级 可以显示出注入的payload
-</code></pre><p>使用<code>burpsuit</code>结合<code>sqlmap</code>学习注入：参数 <code>--proxy=http：//127.0.0.1：8080</code></p>
-
+                <h3 id="0x01-windows下的嗅探工具"><a href="#0x01-windows下的嗅探工具" class="headerlink" title="0x01 windows下的嗅探工具"></a>0x01 windows下的嗅探工具</h3><ul>
+<li>sniffpass</li>
+<li>cain</li>
+<li>wireshark</li>
+<li>Omnipeek</li>
+<li>commview</li>
+<li>sniffpass</li>
+</ul>
+<hr>
+<h3 id="0x02-linux下的嗅探工具"><a href="#0x02-linux下的嗅探工具" class="headerlink" title="0x02 linux下的嗅探工具"></a>0x02 linux下的嗅探工具</h3><ul>
+<li>Tcpdump</li>
+<li>wireshark</li>
+<li>Dsniff</li>
+</ul>
+<h3 id="0x03-键盘记录器窃取密码"><a href="#0x03-键盘记录器窃取密码" class="headerlink" title="0x03 键盘记录器窃取密码"></a>0x03 键盘记录器窃取密码</h3><h3 id="0x04-本地缓存的密码"><a href="#0x04-本地缓存的密码" class="headerlink" title="0x04 本地缓存的密码"></a>0x04 本地缓存的密码</h3><ul>
+<li><p>浏览器缓存的密码</p>
+</li>
+<li><p>网络密码<br>控制面板—-》用户账户和家庭安全—-》凭据管理器—–》web凭据</p>
+</li>
+<li><p>无线密码</p>
+</li>
+<li><a href="http://www.nirsoft.net(集成的密码查找工具)" target="_blank" rel="noopener">http://www.nirsoft.net(集成的密码查找工具)</a></li>
+</ul>
+<p>无线密码，浏览器缓存的工具(图形化的工具)</p>
+<ul>
+<li>Dump SAM</li>
+</ul>
+<p>pwdump 可以远程执行<br>/usr/share/windows-binaries/fgdump</p>
+<p>windows下的登陆密码在C://windows//system32/config/sam</p>
+<p>所有windows里面的admin账户的sid默认是500</p>
+<p>前面的密码lmhash计算后面是NTlmhash计算的，复制下来，保存为pwdump后缀文件，使用kali里面的工具进行破解。</p>
+<h3 id="0x05-破解"><a href="#0x05-破解" class="headerlink" title="0x05 破解"></a>0x05 破解</h3><ul>
+<li>ophcrack</li>
+<li>john the ripper</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g3bg5z5kt9j31480hfe81.jpg" alt></p>
+<h3 id="0x06-psexec"><a href="#0x06-psexec" class="headerlink" title="0x06 psexec"></a>0x06 psexec</h3><h3 id="0x07-pr-exe"><a href="#0x07-pr-exe" class="headerlink" title="0x07 pr.exe"></a>0x07 pr.exe</h3><h3 id="0x08-BeRoot"><a href="#0x08-BeRoot" class="headerlink" title="0x08 BeRoot"></a>0x08 BeRoot</h3><a id="more"></a>
             </div>
             <hr>
 
@@ -602,7 +602,7 @@ python2 sqlmap.py -u http://127">
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/sqlmap-gong-ju-zong-jie/" class="b-link-green">sqlmap工具总结</a>
+                    <a href="/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/" class="b-link-green">本地提权(嗅探)</a>
                 </p>
             </div>
         </div>
@@ -627,21 +627,24 @@ python2 sqlmap.py -u http://127">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/">
+                <a href="/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="matlab中mapminmax函数的总结">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="内网渗透-密码嗅探续集">
                         
-                        <span class="card-title">matlab中mapminmax函数的总结</span>
+                        <span class="card-title">内网渗透-密码嗅探续集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi</div>
+                    <div class="summary">0x01 windows身份认证过程
+windows NT logon模块， winlogon.exe —-&gt;LSA auth api(lsasrv.dll)—》msv1.0.dll
+详细的流程：
+
+ 注意点: 如果是本地登陆是在本地</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-19
                         </span>
                         <span class="publish-author">
                             
@@ -650,14 +653,6 @@ python2 sqlmap.py -u http://127">
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -669,22 +664,22 @@ python2 sqlmap.py -u http://127">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/">
+                <a href="/2019/05/17/nei-wang-ti-quan-yi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="使用python爬虫爬取猫眼电影">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="本地提权(一)">
                         
-                        <span class="card-title">使用python爬虫爬取猫眼电影</span>
+                        <span class="card-title">本地提权(一)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 环境以及工具使用我们使用的是python3的requests库，requests比urllib更加的方便，同时使用正则表达式作为解析的工具。
-在工具方便这次我们使用一个新的抓包工具用来对http协议的包进行分析
-1.1 工具介绍Fid</div>
+                    <div class="summary">0x01  本地提权条件：已经实现了本地低权限账号的登陆        1.1 远程溢出        1.2 直接获得账号密码本地提权的目的就是希望获得更高的权限，对目标进一步的进行控制
+0x02 本地提权的基础知识系统账户之间权限隔离
+</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-17
                             </span>
                         <span class="publish-author">
                             
@@ -697,8 +692,8 @@ python2 sqlmap.py -u http://127">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python爬虫/" target="_blank">
-                        <span class="chip bg-color">python爬虫</span>
+                    <a href="/tags/内网提权/" target="_blank">
+                        <span class="chip bg-color">内网提权 -</span>
                     </a>
                     
                 </div>

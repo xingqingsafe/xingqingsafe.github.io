@@ -435,7 +435,6 @@
 <li>system 启动运行内核级别的权限(最高)</li>
 </ul>
 <p>administrator和system两个是相互包含的，</p>
-<p><img src="./attachments/1558059310908.drawio.html" alt="Diagram"></p>
 <p>linux</p>
 <ul>
 <li>root=administrator+system</li>
@@ -482,6 +481,12 @@
 <p>接下来输入<code>taskmgr</code>使用system打开任务管理器，然后kill explore进程，最后再重新打开explore进程(文件，新建，explorer.exe),重新加载就是system权限。</p>
 <hr>
 <ul>
+<li>schtasks</li>
+</ul>
+<hr>
+<p><strong>2003测试失败<br>at命令很容易将计划任务安排到第二天去,<br>schtasks虽然强大，但是命令极为复杂</strong></p>
+<hr>
+<ul>
 <li>sc命令</li>
 </ul>
 <p>使用范围：win7和win8，其他未测试</p>
@@ -506,6 +511,9 @@
 <p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35msql6b1j30rh0ik44j.jpg" alt>，注入进程执行cmd程序将shell放在4444端口，等待连接。</p>
 <p>使用kali的nc进行连接：</p>
 <p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35mx14s8fj30sr0hntb8.jpg" alt>,直接就是system权限。<br>然后使用下载的套件sysinternals里面的Procexp.exe查看注入的进程services服务，<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g35n5xkvj0j31gd0n4ajt.jpg" alt><br>这种后门非常隐蔽。即使注销用户，服务进程依然在，后门依然可以连接。</p>
+<ul>
+<li>WMI</li>
+</ul>
 
             </div>
             <hr>
@@ -676,10 +684,9 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/">
+                <a href="/2019/05/17/nei-wang-ti-quan-yi/">
                     <div class="card-image">
                         
                         
@@ -693,9 +700,9 @@
 0x02 本地提权的基础知识系统账户之间权限隔离
 </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -704,7 +711,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
