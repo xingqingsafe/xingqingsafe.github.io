@@ -108,15 +108,6 @@ python2 sqlmap.py -u http://127">
     </li>
     
     <li class="hide-on-med-and-down">
-        <a href="/archives" class="waves-effect waves-light">
-            
-            <i class="fa fa-archive"></i>
-            
-            <span>归档</span>
-        </a>
-    </li>
-    
-    <li class="hide-on-med-and-down">
         <a href="/friends" class="waves-effect waves-light">
             
             <i class="fa fa-address-book"></i>
@@ -219,15 +210,6 @@ python2 sqlmap.py -u http://127">
                 <i class="fa fa-fw fa-bookmark"></i>
                 
                 分类
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives" class="waves-effect waves-light">
-                
-                <i class="fa fa-fw fa-archive"></i>
-                
-                归档
             </a>
         </li>
         
@@ -691,20 +673,22 @@ python2 sqlmap.py -u http://127">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/04/12/guan-yu-pa-chong-de-yi-xie-zong-jie-ji-ben-ku/">
+                <a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="关于python爬虫的一些学习总结">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="python 爬虫基本库的使用">
                         
-                        <span class="card-title">关于python爬虫的一些学习总结</span>
+                        <span class="card-title">python 爬虫基本库的使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1.概述上一次讲了urllib库的使用，但是其中有很多的不方便，处理网页验证和Cookie时候，需要写opener和hanler出咯，为了方便实现这些操作，需要有一个更加强大库，requests,它在COOkie、登陆验证、代理设置等操作十</div>
+                    <div class="summary">1.urllib库python3中将python2中的urllib和urllib2两个库统一起来，统一为urllib库，它分为四个模块。
+request:发送HTTP请求的模块。
+error:异常处理模块，如果出现请求异常，可以获得异常并且</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-13
                         </span>
                         <span class="publish-author">
                             
@@ -732,19 +716,19 @@ python2 sqlmap.py -u http://127">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/shi-yong-python-pa-qu-mao-yan-dian-ying/">
+                <a href="/2019/04/12/shou-xie-python-pa-chong-xia-zai-dian-zi-shu-yi-jian-fa-song-zhi-kindle/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="使用python爬虫爬取猫眼电影">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="手写python爬虫下载电子书一键发送到kindle">
                         
-                        <span class="card-title">使用python爬虫爬取猫眼电影</span>
+                        <span class="card-title">手写python爬虫下载电子书一键发送到kindle</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 环境以及工具使用我们使用的是python3的requests库，requests比urllib更加的方便，同时使用正则表达式作为解析的工具。
-在工具方便这次我们使用一个新的抓包工具用来对http协议的包进行分析
-1.1 工具介绍Fid</div>
+                    <div class="summary">1.概述由于平时喜欢看书，但是发现一些推送的服务号没有自己想要的电子书，最近再学习爬虫，就想小试牛刀，主要用到的技术：
+使用python的requests模块进行网站信息的爬取
+解析我使用了两个方式，正则表达式和pyquery库进行html</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
