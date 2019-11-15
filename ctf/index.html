@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="matlab中mapminmax函数的总结, 星晴">
-    <meta name="description" content="01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi">
+    <meta name="keywords" content="ctf, 星晴">
+    <meta name="description" content="ctf | 星晴">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>matlab中mapminmax函数的总结 | 星晴</title>
+    <title>ctf | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -312,7 +311,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        matlab中mapminmax函数的总结
+                        ctf
                     </div>
                 </div>
             </div>
@@ -421,13 +420,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/机器学习/" target="_blank">
-                                <span class="chip bg-color">机器学习</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -438,7 +433,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-12
+                    2019-11-15
                 </div>
 
                 
@@ -454,34 +449,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="01-mapminmax-函数"><a href="#01-mapminmax-函数" class="headerlink" title="01 mapminmax()函数"></a>01 mapminmax()函数</h2><p><code>mapminmax()</code>函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为<code>(0，1)</code>之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。</p>
-<h2 id="02-函数接口"><a href="#02-函数接口" class="headerlink" title="02 函数接口"></a>02 函数接口</h2><pre><code>[Y,PS] = mapminmax(X)
-[Y,PS] = mapminmax(X,FP)
-Y = mapminmax(&#39;apply&#39;,X,PS)
-X = mapminmax(&#39;reverse&#39;,Y,PS)
-</code></pre><h3 id="02-1-函数参数说明"><a href="#02-1-函数参数说明" class="headerlink" title="02-1 函数参数说明"></a>02-1 函数参数说明</h3><p><code>Y</code>是归一化得到的数据，<code>PS</code>是一种描述数据的结构。它们的计算方式是<code>y = (ymax-ymin)*(x-xmin)/(xmax-xmin) + ymin;</code></p>
-<p>倘若这个向量里面有两个相同的数，那么上式就变成分母<code>xmax</code>-<code>xmin</code>为零，这样怎么处理？</p>
-<p><code>matlab</code>在这时会变成<code>y=ymin</code>，<code>ymax</code>和<code>ymin</code>这两个值默认为<code>-1</code>到<code>1</code>，也可以自己设置。</p>
-<p>设置举例：</p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">>></span> clear
-<span class="token operator">>></span> l<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span> l <span class="token operator">=</span> <span class="token number">1</span> <span class="token number">2</span> <span class="token number">3</span> <span class="token number">4</span> <span class="token operator">>></span> k<span class="token punctuation">.</span>ymin<span class="token operator">=</span><span class="token number">0</span> k <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> ymin<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token operator">>></span> k<span class="token punctuation">.</span>ymax<span class="token operator">=</span><span class="token number">1</span> k <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> ymin<span class="token punctuation">:</span> <span class="token number">0</span>
-ymax<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token operator">>></span> <span class="token punctuation">[</span>m<span class="token punctuation">,</span>n<span class="token punctuation">]</span><span class="token operator">=</span>mapminmax<span class="token punctuation">(</span>l<span class="token punctuation">,</span>k<span class="token punctuation">)</span> m <span class="token operator">=</span> <span class="token number">0</span> <span class="token number">0.3333</span> <span class="token number">0.6667</span> <span class="token number">1.0000</span> n <span class="token operator">=</span> 包含以下字段的 struct<span class="token punctuation">:</span> name<span class="token punctuation">:</span> <span class="token string">'mapminmax'</span>
-xrows<span class="token punctuation">:</span> <span class="token number">1</span>
-xmax<span class="token punctuation">:</span> <span class="token number">4</span>
-xmin<span class="token punctuation">:</span> <span class="token number">1</span>
-xrange<span class="token punctuation">:</span> <span class="token number">3</span>
-yrows<span class="token punctuation">:</span> <span class="token number">1</span>
-ymax<span class="token punctuation">:</span> <span class="token number">1</span>
-ymin<span class="token punctuation">:</span> <span class="token number">0</span>
-yrange<span class="token punctuation">:</span> <span class="token number">1</span>
-gain<span class="token punctuation">:</span> <span class="token number">0.3333</span>
-xoffset<span class="token punctuation">:</span> <span class="token number">1</span>
-no_change<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token operator">></span> 上面还可以这样设置：<span class="token punctuation">[</span>Y<span class="token punctuation">,</span>PS<span class="token punctuation">]</span> <span class="token operator">=</span> mapminmax<span class="token punctuation">(</span>X<span class="token punctuation">,</span>ymin<span class="token punctuation">,</span>ymax<span class="token punctuation">)</span>
-</code></pre>
-<h2 id="03-函数接口说明"><a href="#03-函数接口说明" class="headerlink" title="03 函数接口说明"></a>03 函数接口说明</h2><p>上面已经讲了，<code>1</code>和<code>2</code>函数接口，<code>3</code>函数接口<code>Y = mapminmax(&#39;apply&#39;,X,PS)</code>主要是用来对其他向量采取同样的归一化（继续采用上面向量的<code>xmax</code>和<code>xmin</code>）对其归一化。 第三种<code>X = mapminmax(&#39;reverse&#39;,Y,PS)</code>就是对数据进行反归一化，就是通过存储在<code>PS</code>的结构的值计算原来的值。</p>
-<h2 id="04-矩阵归一化"><a href="#04-矩阵归一化" class="headerlink" title="04 矩阵归一化"></a>04 矩阵归一化</h2><p>默认规范范围<code>(-1,1)</code>若想将规范范围划为<code>(-1,1)</code>，可编写<code>Y=mapminmax(A,0,1);</code></p>
-<p>此函数规整行向量中最大最小值，如果运用此函数，则<code>A</code>矩阵每一行为一个维度，每一列是一个样本，所以一般在使用这个函数对样本进行归一化的时候就要将矩阵转置。</p>
-
+                
             </div>
             <hr>
 
@@ -628,7 +596,7 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/" class="b-link-green">matlab中mapminmax函数的总结</a>
+                    <a href="/ctf/index.html" class="b-link-green">ctf</a>
                 </p>
             </div>
         </div>
@@ -651,65 +619,23 @@ no_change<span class="token punctuation">:</span> <span class="token number">0</
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/04/12/empire-powershell-shen-tou-gong-ji-kuang-jia-gong-ju/">
+                <a href="/ctf/index.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Empire-powershell渗透攻击框架工具">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="ctf">
                         
-                        <span class="card-title">Empire-powershell渗透攻击框架工具</span>
+                        <span class="card-title">ctf</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">1. 工具简介Empire是一款针对windows平台的、使用Powershell脚本作为攻击载荷的渗透攻击框架工具，具有从stager生成、提权到渗透维持的一系列功能。Empire实现不需要powershell.exe就可以运行的Powe</div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-user fa-fw"></i>
-                            starjian
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/渗透测试/" target="_blank">
-                        <span class="chip bg-color">渗透测试</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/04/12/python-pi-liang-sao-miao-phpmyadmin-ruo-kou-ling/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="python批量爆破phpMyadmin">
-                        
-                        <span class="card-title">python批量爆破phpMyadmin</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">使用python实现phpMyadmin的批量爆破0x01 脚本实现import requests
-from bs4 import BeautifulSoup as bp
-def attack(url,username,password):</div>
+                    <div class="summary"></div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-15
                             </span>
                         <span class="publish-author">
                             
@@ -719,14 +645,41 @@ def attack(url,username,password):</div>
                         </span>
                     </div>
                 </div>
+
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python黑客编程/" target="_blank">
-                        <span class="chip bg-color">python黑客编程</span>
-                    </a>
-                    
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+            </div>
+            <div class="card">
+                <a href="/ctf/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="ctf">
+                        
+                        <span class="card-title">ctf</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary"></div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            starjian
+                            
+                        </span>
+                    </div>
                 </div>
+
                 
             </div>
         </div>
