@@ -4,10 +4,17 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="python 爬虫基本库的使用, 星晴">
-    <meta name="description" content="1.urllib库python3中将python2中的urllib和urllib2两个库统一起来，统一为urllib库，它分为四个模块。
-request:发送HTTP请求的模块。
-error:异常处理模块，如果出现请求异常，可以获得异常并且">
+    <meta name="keywords" content="ctf解题思路笔记, 星晴">
+    <meta name="description" content="
+0x01  越来越难
+sql注入-》ssrf
+栈利用-》堆利用
+古典密码 -》 区块链
+容易入门，难以精通ctf-wiki:社区，新手友好
+大量WP,大量OJ
+难以提升，需要大量的精力
+今年：硬核
+内核提权，虚拟机逃逸，浏览器漏洞，1da">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +22,7 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>python 爬虫基本库的使用 | 星晴</title>
+    <title>ctf解题思路笔记 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -259,13 +266,13 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        python 爬虫基本库的使用
+                        ctf解题思路笔记
                     </div>
                 </div>
             </div>
@@ -376,8 +383,8 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python爬虫/" target="_blank">
-                                <span class="chip bg-color">python爬虫</span>
+                            <a href="/tags/ctf/" target="_blank">
+                                <span class="chip bg-color">ctf</span>
                             </a>
                         
                     </div>
@@ -391,7 +398,7 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-13
+                    2019-11-16
                 </div>
 
                 
@@ -407,75 +414,159 @@ error:异常处理模块，如果出现请求异常，可以获得异常并且">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-urllib库"><a href="#1-urllib库" class="headerlink" title="1.urllib库"></a>1.urllib库</h2><p><code>python3</code>中将<code>python2</code>中的<code>urllib</code>和<code>urllib2</code>两个库统一起来，统一为<code>urllib</code>库，它分为四个模块。</p>
-<p><code>request</code>:发送<code>HTTP</code>请求的模块。</p>
-<p><code>error</code>:异常处理模块，如果出现请求异常，可以获得异常并且进行处理</p>
-<p><code>parse</code>: 提供对<code>URL</code>处理方法，拆分、解析、合并等。</p>
-<p><code>robotparser</code>:用来识别网站的<code>robots.txt</code>文件，然后判断哪些网站可以爬，那些不可爬。</p>
-<h2 id="2-request发送请求模块"><a href="#2-request发送请求模块" class="headerlink" title="2. request发送请求模块"></a>2. request发送请求模块</h2><p><code>request</code>模块可以模拟浏览器发出<code>HTTP</code>请求，同时带有处理授权验证、重定向、<code>cookies</code>以及其他内容。</p>
-<h3 id="2-1-urlopen"><a href="#2-1-urlopen" class="headerlink" title="2.1 urlopen()"></a>2.1 urlopen()</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
-
-response<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">'http://www.baidu.com'</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>type<span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>getheaders<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>getheader<span class="token punctuation">(</span><span class="token string">'Server'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
-<p>通过上面代码可以对网站进行<code>http</code>请求，将获得的相应存储在<code>response</code>里面，<code>response</code>是一个<code>HTTPResponse</code>对象，主要包含<code>read()</code>、<code>readinto()</code>、<code>getheader(name)</code>、<code>getheaders()</code>、<code>fileno()</code>等方法，以及<code>msg</code>、<code>version</code>、<code>status</code>等属性，<code>type(response)</code>将显示出<code>response</code>的属性，</p>
-<pre><code>&lt;class &#39;http.client.HTTPResponse&#39;&gt;
-</code></pre><p><strong>注意：response.getheaders() 返回头部所有的信息，然后resopnse.gethead(‘name’)是返回指定的头部名称信息，它没有S。</strong></p>
-<p>函数的格式：</p>
-<pre><code>urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)
-</code></pre><p>参数说明：</p>
-<p><code>data</code>是<code>post</code>传值的数据，可以传递表单</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>urllib<span class="token punctuation">.</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'qin'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-</code></pre>
-<p><code>urllib.parse.urlencode</code>是将字典转换成字符串，最后变成</p>
-<pre class=" language-python"><code class="language-python">name<span class="token operator">=</span>qin<span class="token punctuation">,</span>data <span class="token operator">=</span> bytes<span class="token punctuation">(</span>urllib <span class="token punctuation">.</span> parse <span class="token punctuation">.</span> urlencode<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'word ’:’ hello'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> encoding ＝’ ut <span class="token number">8</span>'<span class="token punctuation">)</span>
-</code></pre>
-<p><code>timeout</code>参数:</p>
-<p>用来设置超时时间，单位是秒，支持<code>ftp</code>,<code>http</code>,<code>https</code>请求</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> socket
-<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
-<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>error
-
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    response<span class="token operator">=</span>urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span><span class="token string">'****'</span><span class="token punctuation">,</span>timeout<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">)</span>
-<span class="token keyword">except</span> urllib<span class="token punctuation">.</span>error<span class="token punctuation">.</span>URLError <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-    <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>e<span class="token punctuation">.</span>reason<span class="token punctuation">,</span>socket<span class="token punctuation">.</span>timeout<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'TIME OUT'</span><span class="token punctuation">)</span>
-</code></pre>
-<p>其他参数:</p>
-<p><code>context</code>是指定<code>ssl</code>设置的，<code>cafile</code>和<code>capath</code>是指定证书和路径的。</p>
-<h3 id="2-2-使用Request对象来发出请求"><a href="#2-2-使用Request对象来发出请求" class="headerlink" title="2.2. 使用Request对象来发出请求"></a>2.2. 使用Request对象来发出请求</h3><p>因为<code>urlopen()</code>可以实现最基本的请求，但是不足用来构建一个完整的请求。如果加入<code>Headers</code>等信息，需要利用更加强大的<code>Request</code>类</p>
-<p><code>Request</code>对象：</p>
-<pre><code>class urllib.request.Request(ur1,data=None,headers={},origin_req_host=None,unverifiable=False,method=None) 
-</code></pre><p><code>url</code>是必传参数，<code>data</code>可选，必须是字节流使用<code>bytes</code>类型，字典的话得用<code>urllib.parse</code>模块的<code>urlencode()</code>编码，第三个参数<code>headers</code>是字典，是请求头，<code>origin_req_host</code>是请求方的<code>ip</code>或者<code>host</code>名称，第六个是<code>method</code>,<code>get</code>、<code>post</code>等</p>
-<p>实例：</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> urllib <span class="token keyword">import</span> request<span class="token punctuation">,</span>parse
-url<span class="token operator">=</span><span class="token string">'http://httpbin.org/post'</span>
-headers<span class="token operator">=</span><span class="token punctuation">{</span>
-    <span class="token string">'User-Agent'</span><span class="token punctuation">:</span><span class="token string">'Mozilla/4.0(compatible;MSIE 5-5;Windows NT'</span><span class="token punctuation">,</span>
-    <span class="token string">'Host'</span><span class="token punctuation">:</span><span class="token string">'httpbin.org'</span>
-<span class="token punctuation">}</span>
-
-dict<span class="token operator">=</span><span class="token punctuation">{</span>
-    <span class="token string">'name'</span><span class="token punctuation">:</span><span class="token string">'qinjian'</span>
-<span class="token punctuation">}</span>
-
-data<span class="token operator">=</span>bytes<span class="token punctuation">(</span>parse<span class="token punctuation">.</span>urlencode<span class="token punctuation">(</span>dict<span class="token punctuation">)</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">)</span>
-req<span class="token operator">=</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">,</span>headers<span class="token operator">=</span>headers<span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">'POST'</span><span class="token punctuation">)</span>
-response<span class="token operator">=</span>request<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>req<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-headers也可以使用add_header<span class="token punctuation">(</span><span class="token punctuation">)</span>方法来添加：
-
-req<span class="token operator">=</span>request<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>data<span class="token operator">=</span>data<span class="token punctuation">,</span>method<span class="token operator">=</span><span class="token string">'POST'</span><span class="token punctuation">)</span>
-req<span class="token punctuation">.</span>add_header<span class="token punctuation">(</span><span class="token string">'User-Agent'</span><span class="token punctuation">,</span><span class="token string">'Mozilla/4.0(compatible;MSIE 5-5;Windows NT'</span><span class="token punctuation">)</span>
-</code></pre>
-<h3 id="2-3-高级用法"><a href="#2-3-高级用法" class="headerlink" title="2.3 高级用法"></a>2.3 高级用法</h3><p><code>handle</code>用来处理登陆验证的，可以代理设置也可以处理<code>cookie</code>。</p>
-
+                <hr>
+<h2 id="0x01-越来越难"><a href="#0x01-越来越难" class="headerlink" title="0x01  越来越难"></a>0x01  越来越难</h2><hr>
+<p>sql注入-》ssrf</p>
+<p>栈利用-》堆利用</p>
+<p>古典密码 -》 区块链</p>
+<h3 id="容易入门，难以精通"><a href="#容易入门，难以精通" class="headerlink" title="容易入门，难以精通"></a>容易入门，难以精通</h3><p>ctf-wiki:社区，新手友好</p>
+<p>大量WP,大量OJ</p>
+<p>难以提升，需要大量的精力</p>
+<p>今年：硬核</p>
+<p>内核提权，虚拟机逃逸，浏览器漏洞，1day-oday。。。。。</p>
+<hr>
+<h2 id="oxo2-学习方法"><a href="#oxo2-学习方法" class="headerlink" title="oxo2 学习方法"></a>oxo2 学习方法</h2><hr>
+<p>学好自己确定方向的基础知识：</p>
+<p>web: w3cshool,各类脚本语言</p>
+<p>二进制：汇编语言，计组，操作系统，c/c++</p>
+<p>密码学：高数，近代，数论，信息安全数学基础</p>
+<p>跟进每一周的竞赛：以赛代练</p>
+<p>不会做的题目看wp很重要：这是精进的最好方法</p>
+<p>当能够做一定的赛题，并且能够做所有的简单题目的时候，考虑进阶</p>
+<p>阅读论文，跟进最新的git项目，了解各类开源技术，去进行一定的创新型的思考尝试</p>
+<p>去尝试去进行真实的软件的漏洞挖掘工作</p>
+<hr>
+<h2 id="oxo3-方法和套路"><a href="#oxo3-方法和套路" class="headerlink" title="oxo3 方法和套路"></a>oxo3 方法和套路</h2><hr>
+<p>所有的竞赛模式都有一定的规则</p>
+<p>合理利用规则，最大化的获取得分技巧metagame</p>
+<ul>
+<li>解题模式</li>
+<li>战争和分享机制</li>
+<li>攻防模式</li>
+</ul>
+<p>要有一定的队员进度分享机制：</p>
+<ul>
+<li>共享文档</li>
+<li>CTFPAD  共享</li>
+</ul>
+<p>AD模式：</p>
+<p>赛前准备：提交flag的接口</p>
+<p>提交fllag的接口：</p>
+<p>赛前准备：流量分析</p>
+<p>赛前准备:快速利用框架</p>
+<p>从简单题开始，不能死钻一个题目</p>
+<p>队伍的水平差距会很大，patch或者exp的对应策略</p>
+<p>NPC的妙用，往死里打拿分数，拿到提示流量</p>
+<p>使用共享文档、ctfpad</p>
+<h2 id="oxo4-web题目初级"><a href="#oxo4-web题目初级" class="headerlink" title="oxo4 web题目初级"></a>oxo4 web题目初级</h2><p>四个基本方向： web服务器，web语言以及数据库，操作系统</p>
+<p>两种获取flag的方式，信息获取和权限获取</p>
+<h3 id="1-web解题的大概框架以及分析思路"><a href="#1-web解题的大概框架以及分析思路" class="headerlink" title="1.web解题的大概框架以及分析思路"></a>1.web解题的大概框架以及分析思路</h3><p>LAMP系统：</p>
+<h3 id="web系统到底哪一块出了问题："><a href="#web系统到底哪一块出了问题：" class="headerlink" title="web系统到底哪一块出了问题："></a>web系统到底哪一块出了问题：</h3><ul>
+<li>探明web系统的语言、框架，首先满足能访问其正常的功能</li>
+<li>查看有没用数据库功能，存在数据库一般会有数据库的考点，登陆注册</li>
+<li>扫描目录，查看有没有源码或者其他提示性文件</li>
+<li>寻找输入点（包括输入框，文件上传点，xss点等),根据语言特性，进行payload测试，挖掘语言上的漏洞</li>
+<li>最后在考虑是否是操作系统或者web服务器的漏洞，这块基本都会涉及到webpwn方面的知识</li>
+</ul>
+<h4 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h4><p> 前端语言：</p>
+<ul>
+<li><p>html和css一般不会单独作为考点，但是依然要掌握快速读懂他们的技巧</p>
+</li>
+<li><p>js考点：</p>
+<p>信息获取：js加解密，xss攻击，csp防御机制绕过，csrf等</p>
+<p>权限获取：nodejs代码审计，前端vue,跨域</p>
+</li>
+<li><p>关于每个方向的主要解题方法：</p>
+</li>
+</ul>
+<ol>
+<li><p>js加解密主要靠积累，对于JJENCODE,AAECODE等方法至少要了解</p>
+</li>
+<li><p>xss攻击主要思路为寻找题目中BOT访问外界的点，查看有无CSP防御，并且根据题意构造payload。（例子：请输入一个url管理员会进行访问，这种一般flag在管理员的cookie中）</p>
+</li>
+<li><p>NodeJS审计需要一定的代码审计功底，题目纷繁复杂出题点各异，但是目前的主要形式都是做成游戏的形式然后给出源码对其进行审计</p>
+<p>   <strong>解题思路</strong>： 源码审计</p>
+</li>
+<li><p>找到可以利用的eval函数，构造语句使得eval函数可控；</p>
+</li>
+<li>远程安装npm包实现命令执行</li>
+</ol>
+<p>后端语言（主要作用就是和服务端进行交互的语言）</p>
+<ol>
+<li>php、python两种语言。 </li>
+<li>python同样也可以搭建web服务，但是本身作为一门纯粹的编程语言，是可以独立于apache和nginx等服务器软件存在的，使用自身搭建简易服务器。</li>
+<li>java在实际生活中的使用要比php更加广泛的，但是在ctf-web题目并不常见，直到2019年，各大ctf赛事主攻java框架，目前已经逐渐开始取代php的霸主地位。</li>
+</ol>
+<p>php的主要考点：</p>
+<ol>
+<li>Bypass:最常用的考点，主要源于php语言本身书写时的一个漏洞，大家可以搜索php黑魔法，有很多人总结的技巧，这块内容主要依靠同学们自己去积累。</li>
+<li>竞争条件：多个客户端同时访问一个服务器的功能所带来的非预期结果。</li>
+<li>反序列化：只要题目给了源码大概是反序列化漏洞，解题思路为寻找起点和终点。</li>
+<li>文件包含：大部分考点在于LFI，本地文件包含，在实战中，这个也是可以直接getshell的利用点</li>
+<li>SSRF：服务端请求伪造，可以结合其他协议进行利用，达到攻击内网的目的。</li>
+<li>phar利用：经常和LFI结合，同时也经常结合反序列化等考点 ，文件包含 <strong>太多协议泛解析</strong></li>
+<li>文件上传绕过</li>
+<li>框架考点：著名的框架一定要了解，例如：thinkphp等框架</li>
+</ol>
+<p>python的主要考点如下:</p>
+<ul>
+<li>ssti服务端模板注入，这是python在CTF中最重要的考点之一，flask,jianja2模板，可以达到代码执行的</li>
+<li>yml反序列化，pyYAML在解析数据的时候遇到特定格式的时间数据会将其自动转化为python时间对象，类似于反序列化漏洞</li>
+<li>JWT认证绕过，伪造token</li>
+<li>secret key泄露导致命令执行 django框架，一般secret key在源码中</li>
+<li>django,flask,tornado等框架的漏洞</li>
+</ul>
+<p>java 的主要考点如下：</p>
+<ul>
+<li>spring框架漏洞，这个是今年比较火的考点，未来只要涉及java就逃不开这个考点</li>
+<li>java反序列化漏洞</li>
+<li>代码审计</li>
+</ul>
+<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><p>当前CTF-web题目的另一个考点，数据库软件比较多，有很多包括mysql，sql server,redis,oracle等在内的软件，</p>
+<ol>
+<li><h5 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h5></li>
+</ol>
+<p>这个很多题目都将其作为第一关的考点，flag就在数据库中很常见，注入的方法有以下方式：</p>
+<ul>
+<li>union select正常注入：这种方法可以直接带着数据库查询语句</li>
+<li>bool型盲注：这个注入方式主要在于输入的语句可以从页面中看出结果为True还是False,因此可以使用substr(),length(),ascii(),extractvalue(),updatexml()等函数进行暴力猜接</li>
+<li>时间盲注：这个方式是针对当页面没有回显的时候，可以使用sql语句中的延迟函数和条件判断来制造页面的延迟响应，来判断sql语句执行的结果，进行暴力猜解</li>
+</ul>
+<p>特殊的sql注入：</p>
+<ol>
+<li>堆叠注入：是专门针对预处理防御以及select等关键字被过滤后的注入方法</li>
+<li><p>宽字节注入：（%df\’)</p>
+</li>
+<li><h5 id="权限获取"><a href="#权限获取" class="headerlink" title="权限获取"></a>权限获取</h5><p>  redis 4.0 rce</p>
+</li>
+</ol>
+<h4 id="web服务器"><a href="#web服务器" class="headerlink" title="web服务器"></a>web服务器</h4><ul>
+<li>linux服务器：apache,nginx服务器，具有完整的web服务能力，同时支持多种语言</li>
+</ul>
+<p>考点：服务器解析漏洞（文件上传），LD_PRELOAD（禁很多敏感函数，使用自己编译的文件），nginx漏洞（目录泄露） apache栈溢出漏洞</p>
+<ul>
+<li>windows上服务器：IIS</li>
+</ul>
+<p>考点为：put发包上传漏洞，IIS远程溢出漏洞等</p>
+<ul>
+<li>服务器组件漏洞</li>
+</ul>
+<p>考点：apache组件提权漏洞，CGI漏洞（公共的网关接口，配合nginx解析漏洞）</p>
+<ul>
+<li>操作系统的目录遍历</li>
+<li>.so文件逆向分析</li>
+<li>结合tensorflow进行机器学习考</li>
+<li>区块链考点</li>
+<li>结合密码学：CBC翻转攻击，哈希扩展攻击，padding oracle填充攻击</li>
+</ul>
+<p>未来的ctf-web展望：</p>
+<p>ctf重点还是在PHP，sql注入，前端xss三大项</p>
+<p>语言主要是php和python，西南地区的省赛可能多为JS方向</p>
+<p>数据库主要为Mysql，重点多盲注，以及延迟注入</p>
+<p>国赛多元化，结合密码学以及pwn知识甚至机器学习，语言多为<strong>java</strong>，go，ruby,python前端考点为nodejs</p>
+<p>数据库多为Redis</p>
+<p>框架多为spring</p>
+<h3 id="2-完整的web系统"><a href="#2-完整的web系统" class="headerlink" title="2.完整的web系统"></a>2.完整的web系统</h3><h3 id="3-ctf中web出题的基本知识点"><a href="#3-ctf中web出题的基本知识点" class="headerlink" title="3.ctf中web出题的基本知识点"></a>3.ctf中web出题的基本知识点</h3><h3 id="4-熟悉web体系架构"><a href="#4-熟悉web体系架构" class="headerlink" title="4.熟悉web体系架构"></a>4.熟悉web体系架构</h3><h3 id="5-了解自己未来适合的研究方向"><a href="#5-了解自己未来适合的研究方向" class="headerlink" title="5.了解自己未来适合的研究方向"></a>5.了解自己未来适合的研究方向</h3>
             </div>
             <hr>
 
@@ -622,7 +713,7 @@ req<span class="token punctuation">.</span>add_header<span class="token punctuat
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/13/python-pa-chong-ji-ben-ku-de-shi-yong/" class="b-link-green">python 爬虫基本库的使用</a>
+                    <a href="/2019/11/16/ctf-jie-ti-si-lu-bi-ji/" class="b-link-green">ctf解题思路笔记</a>
                 </p>
             </div>
         </div>
@@ -647,24 +738,23 @@ req<span class="token punctuation">.</span>add_header<span class="token punctuat
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/12/nei-wang-yu-huan-jing-da-jian-shang/">
+                <a href="/2019/11/16/ctf-kuan-zi-jie-zhu-ru/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="内网域环境搭建(上)">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="CTF宽字节注入">
                         
-                        <span class="card-title">内网域环境搭建(上)</span>
+                        <span class="card-title">CTF宽字节注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">0x01 域环境背景知识1. 域将网络中多台计算机逻辑上组织到一起，进行集中管理，这种区别于工作组的逻辑环境叫做域。域是组织与存储资源的核心管理单元。在域中，至少存在一个域控制器，它保存着整个域中的用户账号和安全数据。
+                    <div class="summary">CTF宽字节注入
+oxo1 宽字节注入的原理addslashes`函数，会在 单引号 ，双引号，反斜线，NULL字符前面加上一个转义字符反斜杠，那么如何逃逸这个过滤呢？
 
-
-2. 域控制器
-</div>
+前面再加一个\，变成 \\&#39;,这样的\就会被转义了，’逃出了</div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-12
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
                         </span>
                         <span class="publish-author">
                             
@@ -677,8 +767,8 @@ req<span class="token punctuation">.</span>add_header<span class="token punctuat
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/内网渗透/" target="_blank">
-                        <span class="chip bg-color">内网渗透 -</span>
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
                     </a>
                     
                 </div>
@@ -692,21 +782,24 @@ req<span class="token punctuation">.</span>add_header<span class="token punctuat
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/12/matlab-zhong-mapminmax-han-shu-de-zong-jie/">
+                <a href="/2019/11/16/ctf-ji-yu-yue-shu-de-sql-gong-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="matlab中mapminmax函数的总结">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="CTF-基于约束的sql攻击">
                         
-                        <span class="card-title">matlab中mapminmax函数的总结</span>
+                        <span class="card-title">CTF-基于约束的sql攻击</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">01 mapminmax()函数mapminmax()函数主要是用来对数据进行归一化处理的函数，它把所有的数据都转换为(0，1)之间的数，目的就是取消各维数据间的数量别差别，防止大数吃小数的现象。
-02 函数接口[Y,PS] = mapmi</div>
+                    <div class="summary">CTF-基于约束的sql攻击
+用空格代替空位置，表的字段约束为30个字符，如果插入admin null*30，那么就会重新插入新的记录，此时如果在select就会含有好几个admin用户
+报错注入
+floor报错简单的一个公式：
+and (</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
                             </span>
                         <span class="publish-author">
                             
@@ -719,8 +812,8 @@ req<span class="token punctuation">.</span>add_header<span class="token punctuat
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
                     </a>
                     
                 </div>
