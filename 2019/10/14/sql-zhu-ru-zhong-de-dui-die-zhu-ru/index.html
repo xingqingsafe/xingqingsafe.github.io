@@ -1,0 +1,944 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="sql注入中的堆叠注入以及MISC隐写, 星晴">
+    <meta name="description" content="sql注入中的堆叠注入
+堆叠注入：一堆sql语句一起执行，mysql中语句结尾添加；表示结束，多句一起使用，代码中和一般查询不同
+的是使用了muiti_query函数
+oxo1 判断堆叠注入存储过程：是一种在数据库中存储复杂程序，以便在外部">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>sql注入中的堆叠注入以及MISC隐写 | 星晴</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">星晴</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">星晴</div>
+        <div class="logo-desc">
+            
+            白帽子星晴的成长记录博客
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        sql注入中的堆叠注入以及MISC隐写
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CTF/" target="_blank">
+                                <span class="chip bg-color">CTF</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-10-14
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="sql注入中的堆叠注入"><a href="#sql注入中的堆叠注入" class="headerlink" title="sql注入中的堆叠注入"></a>sql注入中的堆叠注入</h1><hr>
+<p>堆叠注入：一堆sql语句一起执行，mysql中语句结尾添加；表示结束，多句一起使用，代码中和一般查询不同</p>
+<p>的是使用了<code>muiti_query</code>函数</p>
+<h2 id="oxo1-判断堆叠注入"><a href="#oxo1-判断堆叠注入" class="headerlink" title="oxo1 判断堆叠注入"></a>oxo1 判断堆叠注入</h2><p>存储过程：是一种在数据库中存储复杂程序，以便在外部程序调用的一种数据库对象。为了完成特定功能的sql语句集合，经过编译创建并保存在数据库中，用户可以通过指定存储过程中的名字并且给定参数来调用执行。</p>
+<p>存储过程思想上很简单，就是sql语言的代码封装与重用。</p>
+<hr>
+<h1 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><hr>
+<p>我期望的Misc不是脑洞的题，至少要让人知道做什么</p>
+<p>细心 50%</p>
+<p>套路：40%</p>
+<p>散发思维：解谜能力</p>
+<h2 id="oxo1-encode编码转换"><a href="#oxo1-encode编码转换" class="headerlink" title="oxo1  encode编码转换"></a>oxo1  encode编码转换</h2><p>常见的编码解码相互间的转换：<br>Bin(二进制)：预先规定的方法将文字，数字或者其他对象编成二进制的数码，或者将信息、数据转换成规定的二进制电脉冲信号。</p>
+<p>JPocketKnife ；二进制转换为十进制，禁止转换</p>
+<p>LCtf  NTFS数据流隐写+二进制的转换</p>
+<p>二进制转化—》二维码</p>
+<p>Dec(十进制)</p>
+<p>Hex(十六进制)</p>
+<p>​        条形码： <a href="https://online-barcode-reader.inlitersearch.com/,宽度不等的多个黑条和空白，按照一定的编码规则排列，用来表示一组信息的图形标识符。国际标准13位，39字符的code，code_128:128字符。" target="_blank" rel="noopener">https://online-barcode-reader.inlitersearch.com/,宽度不等的多个黑条和空白，按照一定的编码规则排列，用来表示一组信息的图形标识符。国际标准13位，39字符的code，code_128:128字符。</a></p>
+<p>​        二维码：用某种特定几何图形按照一定的规律在平面(二维方向上)分布的黑白相间的图形，记录数据符号信息。</p>
+<p>堆叠式/行排式二维条码：Code 16K code 49 pdf417 </p>
+<p><img src="https://ae01.alicdn.com/kf/Hd89945ddef1447a3b4e1ca00804fcd64Q.png" alt="1571022809742"></p>
+<p>Base全家桶：</p>
+<p>​    base64—&gt;base64编码图片  一种索引的形式</p>
+<p>   base32</p>
+<p>   base16</p>
+<p>Url编码</p>
+<p>ASCII编码</p>
+<p>摩尔斯编码：    base64 open-ssl 解码 音频文件</p>
+<p>音频用au分析</p>
+<p>曼彻斯特编码/差分曼彻斯特</p>
+<ol start="6">
+<li>敲击码 X—-&gt;。。。。 棋盘加密，ADFGX和ADFGVX密码</li>
+<li>两个FUck编码</li>
+<li><img src="https://ae01.alicdn.com/kf/Hc1beba680f2b45c694628155081197a6Z.png" alt="1571023237109"></li>
+</ol>
+<p>工具：</p>
+<p><img src="https://ae01.alicdn.com/kf/Hea8f3455abe9412cb9d051323ad06035G.png" alt="1571023284960"></p>
+<h2 id="oxo2-steg隐写分析"><a href="#oxo2-steg隐写分析" class="headerlink" title="oxo2 steg隐写分析"></a>oxo2 steg隐写分析</h2><p><img src="https://ae01.alicdn.com/kf/H2bd7dfee2eed4dc7a1bc835609768aa58.png" alt="1571023333237">数据隐写大揭秘</p>
+<p>工具：</p>
+<p><img src="https://ae01.alicdn.com/kf/H5bdb83a4115a45b28dba4499db09a938e.png" alt="1571023393189"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hab717a52382c4db485165b080e761c8cm.png" alt="1571023469288"></p>
+<p><img src="https://ae01.alicdn.com/kf/H813d9ffd854144eb8dbe950ebfbff3adH.png" alt="1571023558983"></p>
+<p><img src="https://ae01.alicdn.com/kf/H9270d2554e564e24913fe2037df66020b.png" alt="1571023576834"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hed75b1260d5d4b248a7533fbefaeb39bv.png" alt="1571023625917"></p>
+<p><img src="https://ae01.alicdn.com/kf/H436032f18efe4ff5a64434040b1dc4c0e.png" alt="1571023662092"></p>
+<p><img src="https://ae01.alicdn.com/kf/H13dcf99cdb754171b1aacac2e15e9611A.png" alt="1571023698756"></p>
+<p><img src="https://ae01.alicdn.com/kf/Ha49f542b8d2d4cb19c44cd6c06aedd48z.png" alt="1571023784544"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hbf700066088e4ce6a39a9be803b4b217d.png" alt="1571145124301"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hfcac105964554af18b0c930795557f122.png" alt="1571023848893"></p>
+<p><img src="https://ae01.alicdn.com/kf/H44a30375f49c4fbf8f6746a004785726c.png" alt="1571023869020"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hd03f1ef594fb4cfba17431de8272a019Y.png" alt="1571023945047"></p>
+<p><img src="https://ae01.alicdn.com/kf/H40b153cf0ade4766b4b0800eae932a91Z.png" alt="1571145426784"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hcfe94f14f65b4536a1fbf4cb0b53ec05a.png" alt="1571145561313"></p>
+<p><img src="https://ae01.alicdn.com/kf/H4eae7d5ab5d1484f9a3f378d27c7a092E.png" alt="1571145763416"></p>
+<p><img src="https://ae01.alicdn.com/kf/H62f734e02f55414382b59f6cec43777cD.png" alt="1571147233361"></p>
+<p><img src="https://ae01.alicdn.com/kf/H810e20999ed5472d9c8761d2bad88914i.png" alt="1571147884493"></p>
+<p><img src="https://ae01.alicdn.com/kf/H70c46aab64de4b148f209e8eedec173dz.png" alt="1571148074684"></p>
+<p><img src="https://ae01.alicdn.com/kf/H2b20fb78bcc947d9b336943094df781cq.png" alt="1571148106764"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hf675355053a7454c8d8af6fd8cf5f4e8r.png" alt="1571148122658"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hef519e175391466d9dd38d3fdc425bf6A.png" alt="1571148179188"></p>
+<p><img src="https://ae01.alicdn.com/kf/H0dcf300cf09f4355aa6a9dca8ed53a88v.png" alt="1571148197387"></p>
+<p><img src="https://ae01.alicdn.com/kf/H7404ff26ebac48ba8f4bf02a751d56afv.png" alt="1571148216023"></p>
+<p><img src="https://ae01.alicdn.com/kf/H27b3bf775e5c45feb5ab8aaf08bc90e6d.png" alt="1571148274159"></p>
+<p><img src="https://ae01.alicdn.com/kf/H6534471088494ec3aafa8162e6db91e97.png" alt="1571148297766"></p>
+<p><img src="https://ae01.alicdn.com/kf/H09ade3ed986846539e15f67d5216084dk.png" alt="1571148324247"></p>
+<p><img src="https://ae01.alicdn.com/kf/H3314110a7d1f463e82d7eddc82185027W.png" alt="1571148343152"></p>
+<p>HTML隐写：</p>
+<p><img src="https://ae01.alicdn.com/kf/H3d95e93c758b453e88ffb256f2f3a9147.png" alt="1571321576255"></p>
+<p><img src="https://ae01.alicdn.com/kf/H13aa8d668c454d46811c34ae0f881624Z.png" alt="1571321630193"></p>
+<p><img src="https://ae01.alicdn.com/kf/H74e5298864c142bca4efe590b1a22101w.png" alt="1571321642313"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hfb9e31d9488a4871b45154aa9e45691d2.png" alt="1571321658243"></p>
+<p>Binwalk，foremost查看存在的其他文件</p>
+<p>stegsolve  LSB隐写 其他的都是隐写的方式</p>
+<p>第三行是pdf隐写</p>
+<p>第四行是MP3隐写的</p>
+<p>Ffmpeg是将视频切成一帧一帧的图片</p>
+<p>snow对HTML进行隐写</p>
+<h2 id="oxo3-Forensic-数字取证"><a href="#oxo3-Forensic-数字取证" class="headerlink" title="oxo3 Forensic 数字取证"></a>oxo3 Forensic 数字取证</h2><p>Pcap文件头<img src="https://ae01.alicdn.com/kf/Hb5ef0d7d86374f2285a3180c21269e873.png" alt="1571321828484"></p>
+<p><img src="https://ae01.alicdn.com/kf/H08a2c532d2f1441a8d7b6ff35ddb0b81t.png" alt="1571321839490"></p>
+<p><img src="https://ae01.alicdn.com/kf/H054e7cf4f599453297ee6b840ff5e0c8Y.png" alt="1571321855343"></p>
+<h2 id="oxo4-other其他"><a href="#oxo4-other其他" class="headerlink" title="oxo4 other其他"></a>oxo4 other其他</h2><p><img src="https://ae01.alicdn.com/kf/H9b0c0b0dc01e48c69e14b2ea2b0e50a8J.png" alt="1571321962709"></p>
+<p><img src="https://ae01.alicdn.com/kf/H99a705b7469e4d308db9eb372309d30bM.png" alt="1571321973136"></p>
+<p><img src="https://ae01.alicdn.com/kf/Hade8a9267d5d4eaea061cc60223c49b3n.png" alt="1571321992932"></p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://yoursite.com" class="b-link-green">星晴</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/10/14/sql-zhu-ru-zhong-de-dui-die-zhu-ru/" class="b-link-green">sql注入中的堆叠注入以及MISC隐写</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/10/14/ctf-kuan-zi-jie-zhu-ru/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="CTF宽字节注入">
+                        
+                        <span class="card-title">CTF宽字节注入</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">CTF宽字节注入
+oxo1 宽字节注入的原理addslashes`函数，会在 单引号 ，双引号，反斜线，NULL字符前面加上一个转义字符反斜杠，那么如何逃逸这个过滤呢？
+
+前面再加一个\，变成 \\&#39;,这样的\就会被转义了，’逃出了</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            starjian
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/" target="_blank">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/14/order-by-zhu-ru/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="order by 注入">
+                        
+                        <span class="card-title">order by 注入</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">order by 注入
+order by 在不知道列名的情况下，可以通过列的序号来代替相应的列。但是经过测试这里无法做运算，如order by 3-1和order by 2是不一样的。
+当desc参数可控的时候，使用if(exp,desc,</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            starjian
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CTF/" target="_blank">
+                        <span class="chip bg-color">CTF</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:xxx@xx.xx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=123123123" class="tooltipped" data-tooltip="QQ联系我: 123123123" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
