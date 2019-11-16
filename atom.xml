@@ -70,8 +70,8 @@
     <title>sql注入中的堆叠注入以及MISC隐写</title>
     <link href="http://yoursite.com/2019/10/14/sql-zhu-ru-zhong-de-dui-die-zhu-ru/"/>
     <id>http://yoursite.com/2019/10/14/sql-zhu-ru-zhong-de-dui-die-zhu-ru/</id>
-    <published>2019-10-14T00:56:08.000Z</published>
-    <updated>2019-11-16T12:54:30.765Z</updated>
+    <published>2019-10-14T00:56:43.000Z</published>
+    <updated>2019-11-16T13:21:47.631Z</updated>
     
     <summary type="html">
     
@@ -86,31 +86,7 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于时间盲注的部分相关函数</title>
-    <link href="http://yoursite.com/2019/10/14/ji-yu-shi-jian-mang-zhu-de-bu-fen-xiang-guan-han-shu/"/>
-    <id>http://yoursite.com/2019/10/14/ji-yu-shi-jian-mang-zhu-de-bu-fen-xiang-guan-han-shu/</id>
-    <published>2019-10-14T00:56:08.000Z</published>
-    <updated>2019-11-16T13:08:38.559Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;基于时间盲注的部分相关函数&quot;&gt;&lt;a href=&quot;#基于时间盲注的部分相关函数&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
     
   </entry>
   
@@ -119,7 +95,7 @@
     <link href="http://yoursite.com/2019/10/14/order-by-zhu-ru/"/>
     <id>http://yoursite.com/2019/10/14/order-by-zhu-ru/</id>
     <published>2019-10-14T00:56:08.000Z</published>
-    <updated>2019-11-16T13:09:21.339Z</updated>
+    <updated>2019-11-16T13:20:52.748Z</updated>
     
     <summary type="html">
     
@@ -135,7 +111,7 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
     
   </entry>
   
@@ -144,7 +120,7 @@
     <link href="http://yoursite.com/2019/10/14/ctf-ji-yu-yue-shu-de-sql-gong-ji/"/>
     <id>http://yoursite.com/2019/10/14/ctf-ji-yu-yue-shu-de-sql-gong-ji/</id>
     <published>2019-10-14T00:56:08.000Z</published>
-    <updated>2019-11-16T13:06:38.458Z</updated>
+    <updated>2019-11-16T13:21:20.227Z</updated>
     
     <summary type="html">
     
@@ -159,7 +135,7 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
     
   </entry>
   
@@ -168,7 +144,7 @@
     <link href="http://yoursite.com/2019/10/14/ctf-kuan-zi-jie-zhu-ru/"/>
     <id>http://yoursite.com/2019/10/14/ctf-kuan-zi-jie-zhu-ru/</id>
     <published>2019-10-14T00:56:08.000Z</published>
-    <updated>2019-11-16T12:55:50.004Z</updated>
+    <updated>2019-11-16T13:21:57.664Z</updated>
     
     <summary type="html">
     
@@ -184,7 +160,31 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于时间盲注的部分相关函数</title>
+    <link href="http://yoursite.com/2019/10/14/ji-yu-shi-jian-mang-zhu-de-bu-fen-xiang-guan-han-shu/"/>
+    <id>http://yoursite.com/2019/10/14/ji-yu-shi-jian-mang-zhu-de-bu-fen-xiang-guan-han-shu/</id>
+    <published>2019-10-14T00:56:08.000Z</published>
+    <updated>2019-11-16T13:21:07.791Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;基于时间盲注的部分相关函数&quot;&gt;&lt;a href=&quot;#基于时间盲注的部分相关函数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="ctf" scheme="http://yoursite.com/tags/ctf/"/>
     
   </entry>
   
@@ -832,7 +832,7 @@ copyright@xingqign
     <link href="http://yoursite.com/2019/05/28/html5-xue-xi-table-bu-ju-bi-ji/"/>
     <id>http://yoursite.com/2019/05/28/html5-xue-xi-table-bu-ju-bi-ji/</id>
     <published>2019-05-28T01:59:55.000Z</published>
-    <updated>2019-05-30T03:26:35.971Z</updated>
+    <updated>2019-11-16T13:20:33.014Z</updated>
     
     <summary type="html">
     
@@ -1381,7 +1381,7 @@ copyright@xingqign
     </summary>
     
     
-      <category term="web前端学习 -" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+      <category term="web前端学习" scheme="http://yoursite.com/tags/web%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
