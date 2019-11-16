@@ -4,22 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="本地提权(嗅探), 星晴">
-    <meta name="description" content="0x01 windows下的嗅探工具
-sniffpass
-cain
-wireshark
-Omnipeek
-commview
-sniffpass
+    <meta name="keywords" content="内网渗透-密码嗅探续集, 星晴">
+    <meta name="description" content="0x01 windows身份认证过程
+windows NT logon模块， winlogon.exe —-&amp;gt;LSA auth api(lsasrv.dll)—》msv1.0.dll
+详细的流程：
 
-
-0x02 linux下的嗅探工具
-Tcpdump
-wireshark
-Dsniff
-
-0x0">
+ 注意点: 如果是本地登陆是在本地">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -27,7 +17,7 @@ Dsniff
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>本地提权(嗅探) | 星晴</title>
+    <title>内网渗透-密码嗅探续集 | 星晴</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -271,13 +261,13 @@ Dsniff
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        本地提权(嗅探)
+                        内网渗透-密码嗅探续集
                     </div>
                 </div>
             </div>
@@ -386,13 +376,9 @@ Dsniff
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/内网渗透/" target="_blank">
-                                <span class="chip bg-color">内网渗透</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -419,43 +405,44 @@ Dsniff
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="0x01-windows下的嗅探工具"><a href="#0x01-windows下的嗅探工具" class="headerlink" title="0x01 windows下的嗅探工具"></a>0x01 windows下的嗅探工具</h3><ul>
-<li>sniffpass</li>
-<li>cain</li>
-<li>wireshark</li>
-<li>Omnipeek</li>
-<li>commview</li>
-<li>sniffpass</li>
-</ul>
-<hr>
-<h3 id="0x02-linux下的嗅探工具"><a href="#0x02-linux下的嗅探工具" class="headerlink" title="0x02 linux下的嗅探工具"></a>0x02 linux下的嗅探工具</h3><ul>
-<li>Tcpdump</li>
-<li>wireshark</li>
-<li>Dsniff</li>
-</ul>
-<h3 id="0x03-键盘记录器窃取密码"><a href="#0x03-键盘记录器窃取密码" class="headerlink" title="0x03 键盘记录器窃取密码"></a>0x03 键盘记录器窃取密码</h3><h3 id="0x04-本地缓存的密码"><a href="#0x04-本地缓存的密码" class="headerlink" title="0x04 本地缓存的密码"></a>0x04 本地缓存的密码</h3><ul>
-<li><p>浏览器缓存的密码</p>
-</li>
-<li><p>网络密码<br>控制面板—-》用户账户和家庭安全—-》凭据管理器—–》web凭据</p>
-</li>
-<li><p>无线密码</p>
-</li>
-<li><a href="http://www.nirsoft.net(集成的密码查找工具)" target="_blank" rel="noopener">http://www.nirsoft.net(集成的密码查找工具)</a></li>
-</ul>
-<p>无线密码，浏览器缓存的工具(图形化的工具)</p>
+                <h3 id="0x01-windows身份认证过程"><a href="#0x01-windows身份认证过程" class="headerlink" title="0x01 windows身份认证过程"></a>0x01 windows身份认证过程</h3><p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g36qxqslnnj30oc0hn7bl.jpg" alt></p>
+<p>windows NT logon模块， winlogon.exe —-&gt;LSA auth api(lsasrv.dll)—》msv1.0.dll</p>
+<p>详细的流程：</p>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g36r1b9db7j30oc0hn7bl.jpg" alt="enter description here"></p>
+<p> 注意点: 如果是本地登陆是在本地的组件之间ntlsm安全包接收进行处理，如果是域网络中,那么会跑到域控制器进行验证，会用kerbos协议进行响应。如果是远程登陆那么组件也不一样</p>
+<p> 目标服务器的一个工具包会维护一个内存里面的明文密码。</p>
+<h3 id="0x02-从内存读取windows登陆密码-WCE"><a href="#0x02-从内存读取windows登陆密码-WCE" class="headerlink" title="0x02 从内存读取windows登陆密码(WCE)"></a>0x02 从内存读取windows登陆密码(WCE)</h3><p> <img src="http://ww1.sinaimg.cn/large/006d1Stply1g3bdz71ieoj30vo0gokeq.jpg" alt></p>
+<ol>
+<li>具有管理员权限</li>
+<li>/usr/share/wce  kali里面，复制到win7，</li>
+<li>输入wce  -lv</li>
+</ol>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g36s8hp602j30r20a6dhk.jpg" alt="enter description here"></p>
+<ol start="4">
+<li>wce -w 直接会显示内存里面的密码</li>
+</ol>
+<p><img src="https://ws3.sinaimg.cn/large/005BYqpggy1g36sm9quxvj30tj0eggno.jpg" alt="enter description here"></p>
+<ol start="5">
+<li>wce -i sid -s 用户名:hash  直接修改对应sid的密码</li>
+</ol>
+<p>在win8之后，增加安全机制 ，wce需要绕过。</p>
+<p>扩展：如何防止wce读取密码<br>HKEY-LOCAL-MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\SecurityPackages</p>
 <ul>
-<li>Dump SAM</li>
+<li>kerberos</li>
+<li>msv1_0</li>
+<li>schannel</li>
+<li>wdigest  存储在内存</li>
+<li>tspkg 远程</li>
+<li>pku2u</li>
 </ul>
-<p>pwdump 可以远程执行<br>/usr/share/windows-binaries/fgdump</p>
-<p>windows下的登陆密码在C://windows//system32/config/sam</p>
-<p>所有windows里面的admin账户的sid默认是500</p>
-<p>前面的密码lmhash计算后面是NTlmhash计算的，复制下来，保存为pwdump后缀文件，使用kali里面的工具进行破解。</p>
-<h3 id="0x05-破解"><a href="#0x05-破解" class="headerlink" title="0x05 破解"></a>0x05 破解</h3><ul>
-<li>ophcrack</li>
-<li>john the ripper</li>
-</ul>
-<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g3bg5z5kt9j31480hfe81.jpg" alt></p>
-<h3 id="0x06-psexec"><a href="#0x06-psexec" class="headerlink" title="0x06 psexec"></a>0x06 psexec</h3><h3 id="0x07-pr-exe"><a href="#0x07-pr-exe" class="headerlink" title="0x07 pr.exe"></a>0x07 pr.exe</h3><h3 id="0x08-BeRoot"><a href="#0x08-BeRoot" class="headerlink" title="0x08 BeRoot"></a>0x08 BeRoot</h3><a id="more"></a>
+<p>删除wdigest值</p>
+<h3 id="fgdump"><a href="#fgdump" class="headerlink" title="fgdump"></a>fgdump</h3><h3 id="Gethash"><a href="#Gethash" class="headerlink" title="Gethash"></a>Gethash</h3><h3 id="gsecdump"><a href="#gsecdump" class="headerlink" title="gsecdump"></a>gsecdump</h3><h3 id="SamInside"><a href="#SamInside" class="headerlink" title="SamInside"></a>SamInside</h3><h3 id="mimikatz更加强大"><a href="#mimikatz更加强大" class="headerlink" title="mimikatz更加强大"></a>mimikatz更加强大</h3><p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g3bdo5xxvyj30ta0el4qp.jpg" alt></p>
+<h4 id="1-使用mimikatz获取hash和明文密码"><a href="#1-使用mimikatz获取hash和明文密码" class="headerlink" title="1. 使用mimikatz获取hash和明文密码:"></a>1. 使用mimikatz获取hash和明文密码:</h4><p>输入<code>::</code>就会进行命令提示，类似help，然后使用<code>privilige::</code>可以查看debug下面的命令，然后通过<code>privilige::debug</code>进行一个提权，<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g399wfd3wsj30vg0k8q8b.jpg" alt></p>
+<p>接下来使用<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g399xdxbwlj30st0ffq6u.jpg" alt>,这个模块主要是读取hash的，其中前面的可以用logonPasswords代替，<br><img src="http://ww1.sinaimg.cn/large/006d1Stply1g39a025c2tj30xi0iyq8o.jpg" alt></p>
+<p>这个可以读取存储在sam里面的hash同时也可以直接从内存中读取明文密码。</p>
+<h4 id="2-使得xp可以多用户同时存在"><a href="#2-使得xp可以多用户同时存在" class="headerlink" title="2.  使得xp可以多用户同时存在"></a>2.  使得xp可以多用户同时存在</h4><p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g39a2jcm27j30jy0963za.jpg" alt>，使用<strong>ts::multirdp</strong>.</p>
+<h4 id="3-使用event-drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录"><a href="#3-使用event-drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录" class="headerlink" title="3. 使用event::drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录"></a>3. 使用event::drop可以丢弃安全日志，之后再操作系统进行的操作都不会被记录</h4><p><code>event::clear</code>就会清除日志信息</p>
+<h4 id="4-token-whoami获得当前用户的信息以及权限"><a href="#4-token-whoami获得当前用户的信息以及权限" class="headerlink" title="4.  token::whoami获得当前用户的信息以及权限"></a>4.  token::whoami获得当前用户的信息以及权限</h4><h4 id="5-misc杂项"><a href="#5-misc杂项" class="headerlink" title="5. misc杂项"></a>5. misc杂项</h4><a id="more"></a>
             </div>
             <hr>
 
@@ -602,7 +589,7 @@ Dsniff
                     </span>
                     <a href="http://yoursite.com" class="b-link-green">星晴</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/" class="b-link-green">本地提权(嗅探)</a>
+                    <a href="/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/" class="b-link-green">内网渗透-密码嗅探续集</a>
                 </p>
             </div>
         </div>
@@ -627,32 +614,44 @@ Dsniff
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/19/nei-wang-ti-quan-mi-ma-xiu-tan/">
+                <a href="/2019/05/21/shi-yong-lou-dong-jin-xing-ti-quan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="内网渗透-密码嗅探续集">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="使用漏洞进行提权">
                         
-                        <span class="card-title">内网渗透-密码嗅探续集</span>
+                        <span class="card-title">使用漏洞进行提权</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">0x01 windows身份认证过程
-windows NT logon模块， winlogon.exe —-&gt;LSA auth api(lsasrv.dll)—》msv1.0.dll
-详细的流程：
-
- 注意点: 如果是本地登陆是在本地</div>
+                    <div class="summary">1. 信息收集提权的条件: 1. 拥有普通用户的权限
+                2. 拥有网站的webshell
+                3. 存在提权的漏洞
+1.1 操作系统的信息收集
+1.2  远程桌面查看命令1.2.1 </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-19
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-21
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            starjian
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/提权/" class="post-category" target="_blank">
+                                    提权 -
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/内网渗透/" target="_blank">
+                        <span class="chip bg-color">内网渗透 -</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -664,7 +663,7 @@ windows NT logon模块， winlogon.exe —-&gt;LSA auth api(lsasrv.dll)—》msv
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/05/17/nei-wang-ti-quan-yi/">
+                <a href="/2019/05/17/ben-di-ti-quan-ji-chu-zhi-shi/">
                     <div class="card-image">
                         
                         
@@ -693,7 +692,7 @@ windows NT logon模块， winlogon.exe —-&gt;LSA auth api(lsasrv.dll)—》msv
                 <div class="card-action article-tags">
                     
                     <a href="/tags/内网提权/" target="_blank">
-                        <span class="chip bg-color">内网提权</span>
+                        <span class="chip bg-color">内网提权 -</span>
                     </a>
                     
                 </div>

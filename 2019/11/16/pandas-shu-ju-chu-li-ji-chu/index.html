@@ -1,0 +1,5207 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Pandas数据处理基础, 星晴">
+    <meta name="description" content="Pandas数据处理基础
+介绍Pandas 是非常著名的开源数据处理库，我们可以通过它完成对数据集进行快速读取、转换、过滤、分析等一系列操作。除此之外，Pandas 拥有强大的缺失数据处理与数据透视功能，可谓是数据预处理中的必备利器。
+知识">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Pandas数据处理基础 | 星晴</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">星晴</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">星晴</div>
+        <div class="logo-desc">
+            
+            白帽子星晴的成长记录博客
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Pandas数据处理基础
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/机器学习/" target="_blank">
+                                <span class="chip bg-color">机器学习</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-16
+                </div>
+
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Pandas数据处理基础"><a href="#Pandas数据处理基础" class="headerlink" title="Pandas数据处理基础"></a>Pandas数据处理基础</h1><hr>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Pandas 是非常著名的开源数据处理库，我们可以通过它完成对数据集进行快速读取、转换、过滤、分析等一系列操作。除此之外，Pandas 拥有强大的缺失数据处理与数据透视功能，可谓是数据预处理中的必备利器。</p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ul>
+<li>数据类型</li>
+<li>数据读取</li>
+<li>数据选择</li>
+<li>数据删减</li>
+<li>数据填充</li>
+</ul>
+<hr>
+<p>Pandas 是非常著名的开源数据处理库，其基于 NumPy 开发，该工具是 Scipy 生态中为了解决数据分析任务而设计。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的函数和方法。</p>
+<p>特有的数据结构是 Pandas 的优势和核心。简单来讲，我们可以将任意格式的数据转换为 Pandas 的数据类型，并使用 Pandas 提供的一系列方法进行转换、操作，最终得到我们期望的结果。</p>
+<p>所以，我们首先需要了解并熟悉 Pandas 支持的数据类型。</p>
+<h2 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1. 数据类型"></a>1. 数据类型</h2><p>Pandas 的数据类型主要有以下几种，它们分别是：Series（一维数组），DataFrame（二维数组），Panel（三维数组），Panel4D（四维数组），PanelND（更多维数组）。其中 Series 和 DataFrame 应用的最为广泛，几乎占据了使用频率 90% 以上。</p>
+<h4 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h4><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html" target="_blank" rel="noopener"> <em>Series</em></a> 是 Pandas 中最基本的一维数组形式。其可以储存整数、浮点数、字符串等类型的数据。Series 基本结构如下：</p>
+<pre class=" language-python"><code class="language-python">pandas<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>data<span class="token operator">=</span>None<span class="token punctuation">,</span> index<span class="token operator">=</span>None<span class="token punctuation">)</span>
+</code></pre>
+<p>其中，<code>data</code> 可以是字典，或者NumPy 里的 ndarray 对象等。<code>index</code> 是数据索引，索引是 Pandas 数据结构中的一大特性，它主要的功能是帮助我们更快速地定位数据。</p>
+<p>下面，我们基于 Python 字典新建一个示例 Series。</p>
+<p> <em>教学代码：</em></p>
+<p>In [3]:</p>
+<pre class=" language-python"><code class="language-python"><span class="token operator">%</span>matplotlib inline
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+s
+</code></pre>
+<p>Out[3]:</p>
+<pre class=" language-python"><code class="language-python">a    <span class="token number">10</span>
+b    <span class="token number">20</span>
+c    <span class="token number">30</span>
+dtype<span class="token punctuation">:</span> int64
+</code></pre>
+<p> <em>动手练习</em>｜如果你对课程所使用的实验楼 Notebook 在线环境并不熟悉，可以先学习 <a href="https://www.shiyanlou.com/courses/1322" target="_blank" rel="noopener"> <em>使用指南课程</em></a>。</p>
+<p>如上所示，该 Series 的数据值是 10, 20, 30，索引为 a, b, c，数据值的类型默认识别为 <code>int64</code>。你可以通过 <code>type</code>来确认 <code>s</code> 的类型。</p>
+<p>In [4]:</p>
+<pre class=" language-python"><code class="language-python">type<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</code></pre>
+<p>Out[4]:</p>
+<pre><code>pandas.core.series.Series
+</code></pre><p>由于 Pandas 基于 NumPy 开发。那么 NumPy 的数据类型 <code>ndarray</code> 多维数组自然就可以转换为 Pandas 中的数据。而 Series 则可以基于 NumPy 中的一维数据转换。</p>
+<p>In [9]:</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+p<span class="token operator">=</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+p
+</code></pre>
+<p>Out[9]:</p>
+<pre class=" language-python"><code class="language-python">array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1.55099824</span><span class="token punctuation">,</span>  <span class="token number">0.51972587</span><span class="token punctuation">,</span>  <span class="token number">0.24039776</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.23161355</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1.01931331</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>In [10]:</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+s <span class="token operator">=</span> pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+s
+</code></pre>
+<p>Out[10]:</p>
+<pre class=" language-python"><code class="language-python"><span class="token number">0</span>   <span class="token operator">-</span><span class="token number">0.917019</span>
+<span class="token number">1</span>    <span class="token number">0.279278</span>
+<span class="token number">2</span>   <span class="token operator">-</span><span class="token number">0.705634</span>
+<span class="token number">3</span>   <span class="token operator">-</span><span class="token number">0.177250</span>
+<span class="token number">4</span>    <span class="token number">0.235960</span>
+dtype<span class="token punctuation">:</span> float64
+
+</code></pre>
+<h4 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h4><p>DataFrame 是 Pandas 中最为常见、最重要且使用频率最高的数据结构。DataFrame 和平常的电子表格或 SQL 表结构相似。你可以把 DataFrame 看成是 Series 的扩展类型，它仿佛是由多个 Series 拼合而成。它和 Series 的直观区别在于，数据不但具有行索引，且具有列索引。</p>
+<p><img src="https://doc.shiyanlou.com/courses/uid214893-20190531-1559284057250" alt="img"></p>
+<p><a href="https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/" target="_blank" rel="noopener"> <em>来源</em></a></p>
+<p>DataFrame 基本结构如下：</p>
+<pre class=" language-python"><code class="language-python">pandas<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token operator">=</span>None<span class="token punctuation">,</span> index<span class="token operator">=</span>None<span class="token punctuation">,</span> columns<span class="token operator">=</span>None<span class="token punctuation">)</span>
+
+</code></pre>
+<p>区别于 Series，其增加了 <code>columns</code> 列索引。DataFrame 可以由以下多个类型的数据构建：</p>
+<ul>
+<li>一维数组、列表、字典或者 Series 字典。</li>
+<li>二维或者结构化的 <code>numpy.ndarray</code>。</li>
+<li>一个 Series 或者另一个 DataFrame。</li>
+</ul>
+<p>例如，我们首先使用一个由 Series 组成的字典来构建 DataFrame。</p>
+<p>df = pd.DataFrame({‘one’: pd.Series([1, 2, 3]), ‘two’: pd.Series([4, 5, 6])}) df</p>
+<p>当不指定索引时，DataFrame 的索引同样是从 0 开始。我们也可以直接通过一个列表构成的字典来生成 DataFrame。</p>
+<p>In [13]:</p>
+<pre class=" language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                   <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+df
+
+</code></pre>
+<p>Out[13]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">one</th>
+<th style="text-align:right">two</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">6</td>
+</tr>
+</tbody>
+</table>
+<p>或者反过来，由带字典的列表生成 DataFrame。</p>
+<p>In [14]:</p>
+<pre class=" language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span><span class="token string">'one'</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+df
+
+</code></pre>
+<p>Out[14]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">one</th>
+<th style="text-align:right">two</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">4</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">5</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">6</td>
+</tr>
+</tbody>
+</table>
+<p>NumPy 的多维数组非常常用，同样可以基于二维数值来构建一个 DataFrame。</p>
+<p>In [19]:</p>
+<pre class=" language-python"><code class="language-python">temp<span class="token operator">=</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+temp
+
+</code></pre>
+<p>Out[19]:</p>
+<pre class=" language-python"><code class="language-python">array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+</code></pre>
+<p>In [20]:</p>
+<pre><code>pd.DataFrame(temp)
+
+</code></pre><p>Out[20]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">0</th>
+<th style="text-align:right">1</th>
+<th style="text-align:right">2</th>
+<th style="text-align:right">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">3</td>
+</tr>
+</tbody>
+</table>
+<p>至此，你应该已经清楚了 Pandas 常用的 Series 和 DataFrame 数据类型。Series 实际上可以被初略看出是只有 1 列数据的 DataFrame。当然，这个说法不严谨，二者的核心区别仍然是 Series 没有列索引。你可以观察如下所示由 NumPy 一维随机数组生成的 Series 和 DataFrame。</p>
+<p>In [21]:</p>
+<pre class=" language-python"><code class="language-python">pd<span class="token punctuation">.</span>Series<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre>
+<p>Out[21]:</p>
+<pre><code>0    3
+1    2
+2    4
+3    4
+4    4
+dtype: int64
+
+</code></pre><p>In [22]:</p>
+<pre><code>pd.DataFrame(np.random.randint(5, size=(5,)))
+
+</code></pre><p>Out[22]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">1</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2</td>
+</tr>
+</tbody>
+</table>
+<p>关于 Pandas 中的 Panel 等数据类型我们就不再介绍。首先是这些数据类型用的很少，其次就算你用到了，也可以通过从 DataFrame 等学到的技巧进行迁移应用，万变不离其宗。</p>
+<h2 id="2-数据读取"><a href="#2-数据读取" class="headerlink" title="2.数据读取"></a>2.数据读取</h2><p>我们想要使用 Pandas 来分析数据，那么首先需要读取数据。大多数情况下，数据都来源于外部的数据文件或者数据库。Pandas 提供了一系列的方法来读取外部数据，非常全面。下面，我们以最常用的 CSV 数据文件为例进行介绍。</p>
+<p>读取数据 CSV 文件的方法是 <code>pandas.read_csv()</code>，你可以直接传入一个相对路径，或者是网络 URL。</p>
+<p>In [23]:</p>
+<pre class=" language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"https://labfile.oss.aliyuncs.com/courses/906/los_census.csv"</span><span class="token punctuation">)</span>
+df
+
+</code></pre>
+<p>由于 CSV 存储时是一个二维的表格，那么 Pandas 会自动将其读取为 DataFrame 类型。</p>
+<p>现在你应该就明白了，DataFrame 是 Pandas 构成的核心。一切的数据，无论是外部读取还是自行生成，我们都需要先将其转换为 Pandas 的 DataFrame 或者 Series 数据类型。实际上，大多数情况下，这一切都是设计好的，无需执行额外的转换工作。</p>
+<p><code>pd.read_</code> 前缀开始的方法还可以读取各式各样的数据文件，且支持连接数据库。这里，我们不再依次赘述，你可以阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/io.html" target="_blank" rel="noopener"> <em>官方文档相应章节</em></a> 熟悉这些方法以及搞清楚这些方法包含的参数。</p>
+<p>你可能又一个疑问：为什么要将数据转换为 Series 或者 DataFrame 结构？</p>
+<p>实际上，我现在就可以先回答这个问题。因为 Pandas 针对数据操作的全部方法都是基于 Pandas 支持的数据结构设计的。也就是说，只有 Series 或者 DataFrame 才能使用 Pandas 提供的方法和函数进行处理。所以，学习真正数据处理方法之前，我们需要将数据转换生成为 Series 或 DataFrame 类型。</p>
+<hr>
+<h2 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3.基本操作"></a>3.基本操作</h2><hr>
+<p>通过上面的内容，我们已经知道一个 DataFrame 结构大致由 3 部分组成，它们分别是列名称、索引和数据。</p>
+<p><img src="https://doc.shiyanlou.com/courses/uid214893-20190531-1559286555222" alt="img"></p>
+<p><a href="https://medium.com/epfl-extension-school/selecting-data-from-a-pandas-dataframe-53917dc39953" target="_blank" rel="noopener"> <em>来源</em></a></p>
+<p> 接下来，我们就学习针对 DataFrame 的基本操作。本次课程中，我们不会刻意强调 Series，因为你在 DataFrame 上学习的大多数方法和技巧都适用于对 Series 进行处理，二者同根同源。</p>
+<p>上面，我们已经读取了一个外部数据，这是洛杉矶的人口普查数据。有些时候，我们读取的文件很大。如果全部输出预览这些文件，既不美观，又很耗时。还好，Pandas 提供了 <code>head()</code> 和 <code>tail()</code> 方法，它可以帮助我们只预览一小块数据。</p>
+<p>小块数据。</p>
+<p>  In [26]:</p>
+<pre><code>df.head()  # 默认显示前 5 条
+
+</code></pre><p>Out[26]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">90003</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+<td style="text-align:right">33635</td>
+<td style="text-align:right">15642</td>
+<td style="text-align:right">4.22</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">90004</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+<td style="text-align:right">30878</td>
+<td style="text-align:right">22547</td>
+<td style="text-align:right">2.73</td>
+</tr>
+</tbody>
+</table>
+<p>In [27]:</p>
+<pre><code>df.tail(7)  # 指定显示后 7 条
+
+</code></pre><p>Out[27]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">93550</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">27.5</td>
+<td style="text-align:right">36414</td>
+<td style="text-align:right">38515</td>
+<td style="text-align:right">20864</td>
+<td style="text-align:right">3.58</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">93551</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:right">25056</td>
+<td style="text-align:right">25742</td>
+<td style="text-align:right">15963</td>
+<td style="text-align:right">3.18</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">93552</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">18711</td>
+<td style="text-align:right">19447</td>
+<td style="text-align:right">9690</td>
+<td style="text-align:right">3.93</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">93553</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">43.3</td>
+<td style="text-align:right">1121</td>
+<td style="text-align:right">1017</td>
+<td style="text-align:right">816</td>
+<td style="text-align:right">2.62</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">93560</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">9491</td>
+<td style="text-align:right">9419</td>
+<td style="text-align:right">6469</td>
+<td style="text-align:right">2.92</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">93563</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">44.5</td>
+<td style="text-align:right">263</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">103</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">93591</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">30.9</td>
+<td style="text-align:right">3653</td>
+<td style="text-align:right">3632</td>
+<td style="text-align:right">1982</td>
+<td style="text-align:right">3.67</td>
+</tr>
+</tbody>
+</table>
+<p>Pandas 还提供了统计和描述性方法，方便你从宏观的角度去了解数据集。<code>describe()</code> 相当于对数据集进行概览，会输出该数据集每一列数据的计数、最大值、最小值等。</p>
+<p>In [28]:</p>
+<pre><code>df.describe()
+
+</code></pre><p>Out[28]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">count</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+<td style="text-align:right">319.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">mean</td>
+<td style="text-align:right">91000.673981</td>
+<td style="text-align:right">33241.341693</td>
+<td style="text-align:right">36.527586</td>
+<td style="text-align:right">16391.564263</td>
+<td style="text-align:right">16849.777429</td>
+<td style="text-align:right">10964.570533</td>
+<td style="text-align:right">2.828119</td>
+</tr>
+<tr>
+<td style="text-align:right">std</td>
+<td style="text-align:right">908.360203</td>
+<td style="text-align:right">21644.417455</td>
+<td style="text-align:right">8.692999</td>
+<td style="text-align:right">10747.495566</td>
+<td style="text-align:right">10934.986468</td>
+<td style="text-align:right">6270.646400</td>
+<td style="text-align:right">0.835658</td>
+</tr>
+<tr>
+<td style="text-align:right">min</td>
+<td style="text-align:right">90001.000000</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">25%</td>
+<td style="text-align:right">90243.500000</td>
+<td style="text-align:right">19318.500000</td>
+<td style="text-align:right">32.400000</td>
+<td style="text-align:right">9763.500000</td>
+<td style="text-align:right">9633.500000</td>
+<td style="text-align:right">6765.500000</td>
+<td style="text-align:right">2.435000</td>
+</tr>
+<tr>
+<td style="text-align:right">50%</td>
+<td style="text-align:right">90807.000000</td>
+<td style="text-align:right">31481.000000</td>
+<td style="text-align:right">37.100000</td>
+<td style="text-align:right">15283.000000</td>
+<td style="text-align:right">16202.000000</td>
+<td style="text-align:right">10968.000000</td>
+<td style="text-align:right">2.830000</td>
+</tr>
+<tr>
+<td style="text-align:right">75%</td>
+<td style="text-align:right">91417.000000</td>
+<td style="text-align:right">44978.000000</td>
+<td style="text-align:right">41.000000</td>
+<td style="text-align:right">22219.500000</td>
+<td style="text-align:right">22690.500000</td>
+<td style="text-align:right">14889.500000</td>
+<td style="text-align:right">3.320000</td>
+</tr>
+<tr>
+<td style="text-align:right">max</td>
+<td style="text-align:right">93591.000000</td>
+<td style="text-align:right">105549.000000</td>
+<td style="text-align:right">74.000000</td>
+<td style="text-align:right">52794.000000</td>
+<td style="text-align:right">53185.000000</td>
+<td style="text-align:right">31087.000000</td>
+<td style="text-align:right">4.670000</td>
+</tr>
+</tbody>
+</table>
+<p>Pandas 基于 NumPy 开发，所以任何时候你都可以通过 <code>.values</code> 将 DataFrame 转换为 NumPy 数组。</p>
+<p>In [29]:</p>
+<pre><code>df.values
+
+</code></pre><p>Out[29]:</p>
+<pre><code>array([[9.1371e+04, 1.0000e+00, 7.3500e+01, ..., 1.0000e+00, 1.0000e+00,
+        1.0000e+00],
+       [9.0001e+04, 5.7110e+04, 2.6600e+01, ..., 2.8642e+04, 1.2971e+04,
+        4.4000e+00],
+       [9.0002e+04, 5.1223e+04, 2.5500e+01, ..., 2.6347e+04, 1.1731e+04,
+        4.3600e+00],
+       ...,
+       [9.3560e+04, 1.8910e+04, 3.2400e+01, ..., 9.4190e+03, 6.4690e+03,
+        2.9200e+00],
+       [9.3563e+04, 3.8800e+02, 4.4500e+01, ..., 1.2500e+02, 1.0300e+02,
+        2.5300e+00],
+       [9.3591e+04, 7.2850e+03, 3.0900e+01, ..., 3.6320e+03, 1.9820e+03,
+        3.6700e+00]])
+
+</code></pre><p>这也就说明了，你可以同时使用 Pandas 和 NumPy 提供的 API 对同一数据进行操作，并在二者之间进行随意转换。这就是一个非常灵活的工具生态圈。</p>
+<p>除了 <code>.values</code>，DataFrame 支持的常见属性可以通过 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#attributes-and-underlying-data" target="_blank" rel="noopener"> <em>官方文档相应章节</em></a> 查看。其中常用的有：</p>
+<p>In [30]:</p>
+<pre><code>df.index  # 查看索引
+
+</code></pre><p>Out[30]:</p>
+<pre><code>RangeIndex(start=0, stop=319, step=1)
+
+</code></pre><p>In [31]:</p>
+<pre><code>df.columns  # 查看列名
+
+</code></pre><p>Out[31]:</p>
+<pre><code>Index([&#39;Zip Code&#39;, &#39;Total Population&#39;, &#39;Median Age&#39;, &#39;Total Males&#39;,
+       &#39;Total Females&#39;, &#39;Total Households&#39;, &#39;Average Household Size&#39;],
+      dtype=&#39;object&#39;)
+
+</code></pre><p>In [32]:</p>
+<pre><code>df.shape  # 查看形状
+
+</code></pre><p>Out[32]:</p>
+<pre><code>(319, 7)
+
+</code></pre><hr>
+<h2 id="4-数据选择"><a href="#4-数据选择" class="headerlink" title="4.数据选择"></a>4.数据选择</h2><hr>
+<p>在数据预处理过程中，我们往往会对数据集进行切分，只将需要的某些行、列，或者数据块保留下来，输出到下一个流程中去。这也就是所谓的数据选择，或者数据索引。</p>
+<p>由于 Pandas 的数据结构中存在索引、标签，所以我们可以 通过多轴索引完成对数据的选择。</p>
+<h3 id="4-1-基于索引数字选择"><a href="#4-1-基于索引数字选择" class="headerlink" title="4.1 基于索引数字选择"></a>4.1 基于索引数字选择</h3><p>当我们新建一个 DataFrame 之后，如果未自己指定行索引或者列对应的标签，那么 Pandas 会默认从 0 开始以数字的形式作为行索引，并以数据集的第一行作为列对应的标签。其实，这里的「列」也有数字索引，默认也是从 0 开始，只是未显示出来。</p>
+<p>所以，我们首先可以基于数字索引对数据集进行选择。这里用到的 Pandas 中的 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" target="_blank" rel="noopener"><code>.iloc</code></a> 方法。该方法可以接受的类型有：</p>
+<ol>
+<li>整数。例如：<code>5</code></li>
+<li>整数构成的列表或数组。例如：<code>[1, 2, 3]</code></li>
+<li>布尔数组。</li>
+<li>可返回索引值的函数或参数</li>
+</ol>
+<p>下面，我们使用上方的示例数据进行演示。</p>
+<p>首先，我们可以选择前 3 行数据。这和 Python 或者 NumPy 里面的切片很相似。</p>
+<p>In [4]:</p>
+<pre><code>df.iloc[:3]
+
+</code></pre><p>Out[4]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+</tbody>
+</table>
+<p>我们还可以选择特定的一行。</p>
+<p>In [6]:</p>
+<pre><code>df.iloc[1]
+
+</code></pre><p>Out[6]:</p>
+<pre><code>Zip Code                  90001.0
+Total Population          57110.0
+Median Age                   26.6
+Total Males               28468.0
+Total Females             28642.0
+Total Households          12971.0
+Average Household Size        4.4
+Name: 1, dtype: float64
+
+</code></pre><p>那么选择多行，是不是 <code>df.iloc[1, 3, 5]</code> 这样呢？</p>
+<p>答案是错误的。<code>df.iloc[]</code> 的 <code>[[行]，[列]]</code> 里面可以同时接受行和列的位置，如果你直接键入 <code>df.iloc[1, 3, 5]</code>就会报错。</p>
+<p>所以，很简单。如果你想要选择 1，3，5 行，可以这样做。</p>
+<p>In [7]:</p>
+<pre><code>df.iloc[[1, 3, 5]]
+
+</code></pre><p>Out[7]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">90003</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+<td style="text-align:right">33635</td>
+<td style="text-align:right">15642</td>
+<td style="text-align:right">4.22</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">90005</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">19299</td>
+<td style="text-align:right">18382</td>
+<td style="text-align:right">15044</td>
+<td style="text-align:right">2.50</td>
+</tr>
+</tbody>
+</table>
+<p>选择行学会以后，选择列就应该能想到怎么办了。例如，我们要选择第 2-4 列。</p>
+<p>In [8]:</p>
+<pre><code>df.iloc[:, 1:4]
+
+</code></pre><p>Out[8]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">19299</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">59185</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">30254</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">40920</td>
+<td style="text-align:right">24.0</td>
+<td style="text-align:right">20915</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">32327</td>
+<td style="text-align:right">39.7</td>
+<td style="text-align:right">14477</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:right">3800</td>
+<td style="text-align:right">37.8</td>
+<td style="text-align:right">1874</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">103892</td>
+<td style="text-align:right">26.2</td>
+<td style="text-align:right">52794</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:right">31103</td>
+<td style="text-align:right">36.3</td>
+<td style="text-align:right">19493</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:right">11772</td>
+<td style="text-align:right">44.6</td>
+<td style="text-align:right">7629</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">7005</td>
+<td style="text-align:right">44.8</td>
+<td style="text-align:right">4471</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">18986</td>
+<td style="text-align:right">31.3</td>
+<td style="text-align:right">9833</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:right">47596</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">22778</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td style="text-align:right">23768</td>
+<td style="text-align:right">29.4</td>
+<td style="text-align:right">12818</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td style="text-align:right">49310</td>
+<td style="text-align:right">33.2</td>
+<td style="text-align:right">23770</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">64458</td>
+<td style="text-align:right">35.8</td>
+<td style="text-align:right">31442</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td style="text-align:right">38967</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19381</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">3951</td>
+<td style="text-align:right">44.3</td>
+<td style="text-align:right">2790</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td style="text-align:right">67179</td>
+<td style="text-align:right">29.8</td>
+<td style="text-align:right">33216</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:right">45903</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">23037</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td style="text-align:right">47452</td>
+<td style="text-align:right">23.6</td>
+<td style="text-align:right">22248</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td style="text-align:right">42147</td>
+<td style="text-align:right">34.7</td>
+<td style="text-align:right">20859</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td style="text-align:right">67869</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">34515</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td style="text-align:right">45151</td>
+<td style="text-align:right">38.3</td>
+<td style="text-align:right">22362</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:right">28714</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">16056</td>
+</tr>
+<tr>
+<td style="text-align:right">28</td>
+<td style="text-align:right">38617</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19575</td>
+</tr>
+<tr>
+<td style="text-align:right">29</td>
+<td style="text-align:right">39316</td>
+<td style="text-align:right">33.5</td>
+<td style="text-align:right">19546</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">289</td>
+<td style="text-align:right">30854</td>
+<td style="text-align:right">35.3</td>
+<td style="text-align:right">14950</td>
+</tr>
+<tr>
+<td style="text-align:right">290</td>
+<td style="text-align:right">52735</td>
+<td style="text-align:right">39.1</td>
+<td style="text-align:right">24833</td>
+</tr>
+<tr>
+<td style="text-align:right">291</td>
+<td style="text-align:right">30322</td>
+<td style="text-align:right">39.6</td>
+<td style="text-align:right">14486</td>
+</tr>
+<tr>
+<td style="text-align:right">292</td>
+<td style="text-align:right">32725</td>
+<td style="text-align:right">25.6</td>
+<td style="text-align:right">16857</td>
+</tr>
+<tr>
+<td style="text-align:right">293</td>
+<td style="text-align:right">16763</td>
+<td style="text-align:right">37.9</td>
+<td style="text-align:right">8565</td>
+</tr>
+<tr>
+<td style="text-align:right">294</td>
+<td style="text-align:right">6220</td>
+<td style="text-align:right">41.8</td>
+<td style="text-align:right">3136</td>
+</tr>
+<tr>
+<td style="text-align:right">295</td>
+<td style="text-align:right">4894</td>
+<td style="text-align:right">44.1</td>
+<td style="text-align:right">2522</td>
+</tr>
+<tr>
+<td style="text-align:right">296</td>
+<td style="text-align:right">35533</td>
+<td style="text-align:right">38.7</td>
+<td style="text-align:right">17338</td>
+</tr>
+<tr>
+<td style="text-align:right">297</td>
+<td style="text-align:right">3613</td>
+<td style="text-align:right">38.6</td>
+<td style="text-align:right">1757</td>
+</tr>
+<tr>
+<td style="text-align:right">298</td>
+<td style="text-align:right">51767</td>
+<td style="text-align:right">36.0</td>
+<td style="text-align:right">25643</td>
+</tr>
+<tr>
+<td style="text-align:right">299</td>
+<td style="text-align:right">2031</td>
+<td style="text-align:right">29.3</td>
+<td style="text-align:right">1052</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">54366</td>
+<td style="text-align:right">39.0</td>
+<td style="text-align:right">26592</td>
+</tr>
+<tr>
+<td style="text-align:right">301</td>
+<td style="text-align:right">5077</td>
+<td style="text-align:right">44.0</td>
+<td style="text-align:right">2585</td>
+</tr>
+<tr>
+<td style="text-align:right">302</td>
+<td style="text-align:right">1699</td>
+<td style="text-align:right">40.9</td>
+<td style="text-align:right">884</td>
+</tr>
+<tr>
+<td style="text-align:right">303</td>
+<td style="text-align:right">4176</td>
+<td style="text-align:right">38.4</td>
+<td style="text-align:right">3301</td>
+</tr>
+<tr>
+<td style="text-align:right">304</td>
+<td style="text-align:right">7993</td>
+<td style="text-align:right">45.2</td>
+<td style="text-align:right">4086</td>
+</tr>
+<tr>
+<td style="text-align:right">305</td>
+<td style="text-align:right">3074</td>
+<td style="text-align:right">27.0</td>
+<td style="text-align:right">1531</td>
+</tr>
+<tr>
+<td style="text-align:right">306</td>
+<td style="text-align:right">2932</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:right">1642</td>
+</tr>
+<tr>
+<td style="text-align:right">307</td>
+<td style="text-align:right">39341</td>
+<td style="text-align:right">31.1</td>
+<td style="text-align:right">18601</td>
+</tr>
+<tr>
+<td style="text-align:right">308</td>
+<td style="text-align:right">72046</td>
+<td style="text-align:right">28.3</td>
+<td style="text-align:right">34879</td>
+</tr>
+<tr>
+<td style="text-align:right">309</td>
+<td style="text-align:right">70918</td>
+<td style="text-align:right">34.4</td>
+<td style="text-align:right">37804</td>
+</tr>
+<tr>
+<td style="text-align:right">310</td>
+<td style="text-align:right">13033</td>
+<td style="text-align:right">32.9</td>
+<td style="text-align:right">6695</td>
+</tr>
+<tr>
+<td style="text-align:right">311</td>
+<td style="text-align:right">1259</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">689</td>
+</tr>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">27.5</td>
+<td style="text-align:right">36414</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:right">25056</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">18711</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">43.3</td>
+<td style="text-align:right">1121</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">9491</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">44.5</td>
+<td style="text-align:right">263</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">30.9</td>
+<td style="text-align:right">3653</td>
+</tr>
+</tbody>
+</table>
+<p>319 rows × 3 columns</p>
+<p>这里选择 2-4 列，输入的却是 <code>1:4</code>。这和 Python 或者 NumPy 里面的切片操作非常相似。既然我们能定位行和列，那么只需要组合起来，我们就可以选择数据集中的任何数据了。</p>
+<h3 id="4-2-基于标签名称选择"><a href="#4-2-基于标签名称选择" class="headerlink" title="4.2 基于标签名称选择"></a>4.2 基于标签名称选择</h3><p>除了根据数字索引选择，还可以直接根据标签对应的名称选择。这里用到的方法和上面的 <code>iloc</code> 很相似，少了个 <code>i</code>为 df.loc[].</p>
+<p><code>df.loc[]</code> 可以接受的类型有：</p>
+<ol>
+<li>单个标签。例如：<code>2</code> 或 <code>&#39;a&#39;</code>，这里的 <code>2</code> 指的是标签而不是索引位置。</li>
+<li>列表或数组包含的标签。例如：<code>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</code>。</li>
+<li>切片对象。例如：<code>&#39;A&#39;:&#39;E&#39;</code>，注意这里和上面切片的不同支持，首位都包含在内。</li>
+<li>布尔数组。</li>
+<li>可返回标签的函数或参数。</li>
+</ol>
+<p>下面，我们来演示 <code>df.loc[]</code> 的用法。先选择前 3 行：</p>
+<p>下面，我们来演示 <code>df.loc[]</code> 的用法。先选择前 3 行：</p>
+<p>In [10]:</p>
+<pre><code>df.loc[0:2]
+
+</code></pre><p>Out[10]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+</tbody>
+</table>
+<p>再选择 1，3，5 行：</p>
+<p>In [11]:</p>
+<pre><code>df.loc[[0, 2, 4]]
+
+</code></pre><p>Out[11]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">90004</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+<td style="text-align:right">30878</td>
+<td style="text-align:right">22547</td>
+<td style="text-align:right">2.73</td>
+</tr>
+</tbody>
+</table>
+<p>然后，选择 2-4 列：</p>
+<p>In [14]:</p>
+<pre><code>df.loc[:, &#39;Total Population&#39;:&#39;Total Males&#39;]
+
+</code></pre><p>Out[14]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">19299</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">59185</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">30254</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">40920</td>
+<td style="text-align:right">24.0</td>
+<td style="text-align:right">20915</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">32327</td>
+<td style="text-align:right">39.7</td>
+<td style="text-align:right">14477</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:right">3800</td>
+<td style="text-align:right">37.8</td>
+<td style="text-align:right">1874</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">103892</td>
+<td style="text-align:right">26.2</td>
+<td style="text-align:right">52794</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:right">31103</td>
+<td style="text-align:right">36.3</td>
+<td style="text-align:right">19493</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:right">11772</td>
+<td style="text-align:right">44.6</td>
+<td style="text-align:right">7629</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">7005</td>
+<td style="text-align:right">44.8</td>
+<td style="text-align:right">4471</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">18986</td>
+<td style="text-align:right">31.3</td>
+<td style="text-align:right">9833</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:right">47596</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">22778</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td style="text-align:right">23768</td>
+<td style="text-align:right">29.4</td>
+<td style="text-align:right">12818</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td style="text-align:right">49310</td>
+<td style="text-align:right">33.2</td>
+<td style="text-align:right">23770</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">64458</td>
+<td style="text-align:right">35.8</td>
+<td style="text-align:right">31442</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td style="text-align:right">38967</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19381</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">3951</td>
+<td style="text-align:right">44.3</td>
+<td style="text-align:right">2790</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td style="text-align:right">67179</td>
+<td style="text-align:right">29.8</td>
+<td style="text-align:right">33216</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:right">45903</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">23037</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td style="text-align:right">47452</td>
+<td style="text-align:right">23.6</td>
+<td style="text-align:right">22248</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td style="text-align:right">42147</td>
+<td style="text-align:right">34.7</td>
+<td style="text-align:right">20859</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td style="text-align:right">67869</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">34515</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td style="text-align:right">45151</td>
+<td style="text-align:right">38.3</td>
+<td style="text-align:right">22362</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:right">28714</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">16056</td>
+</tr>
+<tr>
+<td style="text-align:right">28</td>
+<td style="text-align:right">38617</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19575</td>
+</tr>
+<tr>
+<td style="text-align:right">29</td>
+<td style="text-align:right">39316</td>
+<td style="text-align:right">33.5</td>
+<td style="text-align:right">19546</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">289</td>
+<td style="text-align:right">30854</td>
+<td style="text-align:right">35.3</td>
+<td style="text-align:right">14950</td>
+</tr>
+<tr>
+<td style="text-align:right">290</td>
+<td style="text-align:right">52735</td>
+<td style="text-align:right">39.1</td>
+<td style="text-align:right">24833</td>
+</tr>
+<tr>
+<td style="text-align:right">291</td>
+<td style="text-align:right">30322</td>
+<td style="text-align:right">39.6</td>
+<td style="text-align:right">14486</td>
+</tr>
+<tr>
+<td style="text-align:right">292</td>
+<td style="text-align:right">32725</td>
+<td style="text-align:right">25.6</td>
+<td style="text-align:right">16857</td>
+</tr>
+<tr>
+<td style="text-align:right">293</td>
+<td style="text-align:right">16763</td>
+<td style="text-align:right">37.9</td>
+<td style="text-align:right">8565</td>
+</tr>
+<tr>
+<td style="text-align:right">294</td>
+<td style="text-align:right">6220</td>
+<td style="text-align:right">41.8</td>
+<td style="text-align:right">3136</td>
+</tr>
+<tr>
+<td style="text-align:right">295</td>
+<td style="text-align:right">4894</td>
+<td style="text-align:right">44.1</td>
+<td style="text-align:right">2522</td>
+</tr>
+<tr>
+<td style="text-align:right">296</td>
+<td style="text-align:right">35533</td>
+<td style="text-align:right">38.7</td>
+<td style="text-align:right">17338</td>
+</tr>
+<tr>
+<td style="text-align:right">297</td>
+<td style="text-align:right">3613</td>
+<td style="text-align:right">38.6</td>
+<td style="text-align:right">1757</td>
+</tr>
+<tr>
+<td style="text-align:right">298</td>
+<td style="text-align:right">51767</td>
+<td style="text-align:right">36.0</td>
+<td style="text-align:right">25643</td>
+</tr>
+<tr>
+<td style="text-align:right">299</td>
+<td style="text-align:right">2031</td>
+<td style="text-align:right">29.3</td>
+<td style="text-align:right">1052</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">54366</td>
+<td style="text-align:right">39.0</td>
+<td style="text-align:right">26592</td>
+</tr>
+<tr>
+<td style="text-align:right">301</td>
+<td style="text-align:right">5077</td>
+<td style="text-align:right">44.0</td>
+<td style="text-align:right">2585</td>
+</tr>
+<tr>
+<td style="text-align:right">302</td>
+<td style="text-align:right">1699</td>
+<td style="text-align:right">40.9</td>
+<td style="text-align:right">884</td>
+</tr>
+<tr>
+<td style="text-align:right">303</td>
+<td style="text-align:right">4176</td>
+<td style="text-align:right">38.4</td>
+<td style="text-align:right">3301</td>
+</tr>
+<tr>
+<td style="text-align:right">304</td>
+<td style="text-align:right">7993</td>
+<td style="text-align:right">45.2</td>
+<td style="text-align:right">4086</td>
+</tr>
+<tr>
+<td style="text-align:right">305</td>
+<td style="text-align:right">3074</td>
+<td style="text-align:right">27.0</td>
+<td style="text-align:right">1531</td>
+</tr>
+<tr>
+<td style="text-align:right">306</td>
+<td style="text-align:right">2932</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:right">1642</td>
+</tr>
+<tr>
+<td style="text-align:right">307</td>
+<td style="text-align:right">39341</td>
+<td style="text-align:right">31.1</td>
+<td style="text-align:right">18601</td>
+</tr>
+<tr>
+<td style="text-align:right">308</td>
+<td style="text-align:right">72046</td>
+<td style="text-align:right">28.3</td>
+<td style="text-align:right">34879</td>
+</tr>
+<tr>
+<td style="text-align:right">309</td>
+<td style="text-align:right">70918</td>
+<td style="text-align:right">34.4</td>
+<td style="text-align:right">37804</td>
+</tr>
+<tr>
+<td style="text-align:right">310</td>
+<td style="text-align:right">13033</td>
+<td style="text-align:right">32.9</td>
+<td style="text-align:right">6695</td>
+</tr>
+<tr>
+<td style="text-align:right">311</td>
+<td style="text-align:right">1259</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">689</td>
+</tr>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">27.5</td>
+<td style="text-align:right">36414</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:right">25056</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">18711</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">43.3</td>
+<td style="text-align:right">1121</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">9491</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">44.5</td>
+<td style="text-align:right">263</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">30.9</td>
+<td style="text-align:right">3653</td>
+</tr>
+</tbody>
+</table>
+<p>319 rows × 3 columns</p>
+<p>最后，选择 1，3 行和 Median Age 后面的列：</p>
+<p>In [15]:</p>
+<pre><code>df.loc[[0, 2], &#39;Median Age&#39;:]
+
+</code></pre><p>Out[15]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-数据删减"><a href="#5-数据删减" class="headerlink" title="5.数据删减"></a>5.数据删减</h2><hr>
+<p>虽然我们可以通过数据选择方法从一个完整的数据集中拿到我们需要的数据，但有的时候直接删除不需要的数据更加简单直接。Pandas 中，以 <code>.drop</code> 开头的方法都与数据删减有关。</p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html#pandas.DataFrame.drop" target="_blank" rel="noopener"><code>DataFrame.drop</code></a> 可以直接去掉数据集中指定的列和行。一般在使用时，我们指定 <code>labels</code> 标签参数，然后再通过 <code>axis</code> 指定按列或按行删除即可。当然，你也可以通过索引参数删除数据，具体查看官方文档。</p>
+<pre class=" language-python"><code class="language-python">df<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>labels<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'Median Age'</span><span class="token punctuation">,</span> <span class="token string">'Total Males'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+</code></pre>
+<p>Out[16]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">90003</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">33635</td>
+<td style="text-align:right">15642</td>
+<td style="text-align:right">4.22</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">90004</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">30878</td>
+<td style="text-align:right">22547</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">90005</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">18382</td>
+<td style="text-align:right">15044</td>
+<td style="text-align:right">2.50</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">90006</td>
+<td style="text-align:right">59185</td>
+<td style="text-align:right">28931</td>
+<td style="text-align:right">18617</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">90007</td>
+<td style="text-align:right">40920</td>
+<td style="text-align:right">20005</td>
+<td style="text-align:right">11944</td>
+<td style="text-align:right">3.00</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">90008</td>
+<td style="text-align:right">32327</td>
+<td style="text-align:right">17850</td>
+<td style="text-align:right">13841</td>
+<td style="text-align:right">2.33</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:right">90010</td>
+<td style="text-align:right">3800</td>
+<td style="text-align:right">1926</td>
+<td style="text-align:right">2014</td>
+<td style="text-align:right">1.87</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">90011</td>
+<td style="text-align:right">103892</td>
+<td style="text-align:right">51098</td>
+<td style="text-align:right">22168</td>
+<td style="text-align:right">4.67</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:right">90012</td>
+<td style="text-align:right">31103</td>
+<td style="text-align:right">11610</td>
+<td style="text-align:right">10327</td>
+<td style="text-align:right">2.12</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:right">90013</td>
+<td style="text-align:right">11772</td>
+<td style="text-align:right">4143</td>
+<td style="text-align:right">6416</td>
+<td style="text-align:right">1.26</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">90014</td>
+<td style="text-align:right">7005</td>
+<td style="text-align:right">2534</td>
+<td style="text-align:right">4109</td>
+<td style="text-align:right">1.34</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">90015</td>
+<td style="text-align:right">18986</td>
+<td style="text-align:right">9153</td>
+<td style="text-align:right">7420</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:right">90016</td>
+<td style="text-align:right">47596</td>
+<td style="text-align:right">24818</td>
+<td style="text-align:right">16145</td>
+<td style="text-align:right">2.93</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td style="text-align:right">90017</td>
+<td style="text-align:right">23768</td>
+<td style="text-align:right">10950</td>
+<td style="text-align:right">9338</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td style="text-align:right">90018</td>
+<td style="text-align:right">49310</td>
+<td style="text-align:right">25540</td>
+<td style="text-align:right">15493</td>
+<td style="text-align:right">3.12</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">90019</td>
+<td style="text-align:right">64458</td>
+<td style="text-align:right">33016</td>
+<td style="text-align:right">23344</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td style="text-align:right">90020</td>
+<td style="text-align:right">38967</td>
+<td style="text-align:right">19586</td>
+<td style="text-align:right">16514</td>
+<td style="text-align:right">2.35</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">90021</td>
+<td style="text-align:right">3951</td>
+<td style="text-align:right">1161</td>
+<td style="text-align:right">1561</td>
+<td style="text-align:right">1.57</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td style="text-align:right">90022</td>
+<td style="text-align:right">67179</td>
+<td style="text-align:right">33963</td>
+<td style="text-align:right">17023</td>
+<td style="text-align:right">3.94</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:right">90023</td>
+<td style="text-align:right">45903</td>
+<td style="text-align:right">22866</td>
+<td style="text-align:right">10727</td>
+<td style="text-align:right">4.26</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td style="text-align:right">90024</td>
+<td style="text-align:right">47452</td>
+<td style="text-align:right">25204</td>
+<td style="text-align:right">17903</td>
+<td style="text-align:right">2.03</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td style="text-align:right">90025</td>
+<td style="text-align:right">42147</td>
+<td style="text-align:right">21288</td>
+<td style="text-align:right">21228</td>
+<td style="text-align:right">1.97</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td style="text-align:right">90026</td>
+<td style="text-align:right">67869</td>
+<td style="text-align:right">33354</td>
+<td style="text-align:right">24956</td>
+<td style="text-align:right">2.68</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td style="text-align:right">90027</td>
+<td style="text-align:right">45151</td>
+<td style="text-align:right">22789</td>
+<td style="text-align:right">21929</td>
+<td style="text-align:right">1.99</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:right">90028</td>
+<td style="text-align:right">28714</td>
+<td style="text-align:right">12658</td>
+<td style="text-align:right">14964</td>
+<td style="text-align:right">1.78</td>
+</tr>
+<tr>
+<td style="text-align:right">28</td>
+<td style="text-align:right">90029</td>
+<td style="text-align:right">38617</td>
+<td style="text-align:right">19042</td>
+<td style="text-align:right">13883</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">29</td>
+<td style="text-align:right">90031</td>
+<td style="text-align:right">39316</td>
+<td style="text-align:right">19770</td>
+<td style="text-align:right">11156</td>
+<td style="text-align:right">3.49</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">289</td>
+<td style="text-align:right">91792</td>
+<td style="text-align:right">30854</td>
+<td style="text-align:right">15904</td>
+<td style="text-align:right">9154</td>
+<td style="text-align:right">3.35</td>
+</tr>
+<tr>
+<td style="text-align:right">290</td>
+<td style="text-align:right">91801</td>
+<td style="text-align:right">52735</td>
+<td style="text-align:right">27902</td>
+<td style="text-align:right">19315</td>
+<td style="text-align:right">2.71</td>
+</tr>
+<tr>
+<td style="text-align:right">291</td>
+<td style="text-align:right">91803</td>
+<td style="text-align:right">30322</td>
+<td style="text-align:right">15836</td>
+<td style="text-align:right">9894</td>
+<td style="text-align:right">3.04</td>
+</tr>
+<tr>
+<td style="text-align:right">292</td>
+<td style="text-align:right">92301</td>
+<td style="text-align:right">32725</td>
+<td style="text-align:right">15868</td>
+<td style="text-align:right">8132</td>
+<td style="text-align:right">3.81</td>
+</tr>
+<tr>
+<td style="text-align:right">293</td>
+<td style="text-align:right">92371</td>
+<td style="text-align:right">16763</td>
+<td style="text-align:right">8198</td>
+<td style="text-align:right">5370</td>
+<td style="text-align:right">3.11</td>
+</tr>
+<tr>
+<td style="text-align:right">294</td>
+<td style="text-align:right">92372</td>
+<td style="text-align:right">6220</td>
+<td style="text-align:right">3084</td>
+<td style="text-align:right">2198</td>
+<td style="text-align:right">2.83</td>
+</tr>
+<tr>
+<td style="text-align:right">295</td>
+<td style="text-align:right">92397</td>
+<td style="text-align:right">4894</td>
+<td style="text-align:right">2372</td>
+<td style="text-align:right">1998</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">296</td>
+<td style="text-align:right">92821</td>
+<td style="text-align:right">35533</td>
+<td style="text-align:right">18195</td>
+<td style="text-align:right">13062</td>
+<td style="text-align:right">2.72</td>
+</tr>
+<tr>
+<td style="text-align:right">297</td>
+<td style="text-align:right">92823</td>
+<td style="text-align:right">3613</td>
+<td style="text-align:right">1856</td>
+<td style="text-align:right">1154</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">298</td>
+<td style="text-align:right">92833</td>
+<td style="text-align:right">51767</td>
+<td style="text-align:right">26124</td>
+<td style="text-align:right">15849</td>
+<td style="text-align:right">3.23</td>
+</tr>
+<tr>
+<td style="text-align:right">299</td>
+<td style="text-align:right">93040</td>
+<td style="text-align:right">2031</td>
+<td style="text-align:right">979</td>
+<td style="text-align:right">522</td>
+<td style="text-align:right">3.89</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">93063</td>
+<td style="text-align:right">54366</td>
+<td style="text-align:right">27774</td>
+<td style="text-align:right">18650</td>
+<td style="text-align:right">2.90</td>
+</tr>
+<tr>
+<td style="text-align:right">301</td>
+<td style="text-align:right">93225</td>
+<td style="text-align:right">5077</td>
+<td style="text-align:right">2492</td>
+<td style="text-align:right">2080</td>
+<td style="text-align:right">2.44</td>
+</tr>
+<tr>
+<td style="text-align:right">302</td>
+<td style="text-align:right">93243</td>
+<td style="text-align:right">1699</td>
+<td style="text-align:right">815</td>
+<td style="text-align:right">623</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">303</td>
+<td style="text-align:right">93252</td>
+<td style="text-align:right">4176</td>
+<td style="text-align:right">875</td>
+<td style="text-align:right">647</td>
+<td style="text-align:right">2.81</td>
+</tr>
+<tr>
+<td style="text-align:right">304</td>
+<td style="text-align:right">93510</td>
+<td style="text-align:right">7993</td>
+<td style="text-align:right">3907</td>
+<td style="text-align:right">2729</td>
+<td style="text-align:right">2.86</td>
+</tr>
+<tr>
+<td style="text-align:right">305</td>
+<td style="text-align:right">93523</td>
+<td style="text-align:right">3074</td>
+<td style="text-align:right">1543</td>
+<td style="text-align:right">1056</td>
+<td style="text-align:right">2.91</td>
+</tr>
+<tr>
+<td style="text-align:right">306</td>
+<td style="text-align:right">93532</td>
+<td style="text-align:right">2932</td>
+<td style="text-align:right">1290</td>
+<td style="text-align:right">1079</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">307</td>
+<td style="text-align:right">93534</td>
+<td style="text-align:right">39341</td>
+<td style="text-align:right">20740</td>
+<td style="text-align:right">14038</td>
+<td style="text-align:right">2.74</td>
+</tr>
+<tr>
+<td style="text-align:right">308</td>
+<td style="text-align:right">93535</td>
+<td style="text-align:right">72046</td>
+<td style="text-align:right">37167</td>
+<td style="text-align:right">20672</td>
+<td style="text-align:right">3.44</td>
+</tr>
+<tr>
+<td style="text-align:right">309</td>
+<td style="text-align:right">93536</td>
+<td style="text-align:right">70918</td>
+<td style="text-align:right">33114</td>
+<td style="text-align:right">20964</td>
+<td style="text-align:right">3.07</td>
+</tr>
+<tr>
+<td style="text-align:right">310</td>
+<td style="text-align:right">93543</td>
+<td style="text-align:right">13033</td>
+<td style="text-align:right">6338</td>
+<td style="text-align:right">3560</td>
+<td style="text-align:right">3.66</td>
+</tr>
+<tr>
+<td style="text-align:right">311</td>
+<td style="text-align:right">93544</td>
+<td style="text-align:right">1259</td>
+<td style="text-align:right">570</td>
+<td style="text-align:right">569</td>
+<td style="text-align:right">2.20</td>
+</tr>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">93550</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">38515</td>
+<td style="text-align:right">20864</td>
+<td style="text-align:right">3.58</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">93551</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">25742</td>
+<td style="text-align:right">15963</td>
+<td style="text-align:right">3.18</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">93552</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">19447</td>
+<td style="text-align:right">9690</td>
+<td style="text-align:right">3.93</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">93553</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">1017</td>
+<td style="text-align:right">816</td>
+<td style="text-align:right">2.62</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">93560</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">9419</td>
+<td style="text-align:right">6469</td>
+<td style="text-align:right">2.92</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">93563</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">103</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">93591</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">3632</td>
+<td style="text-align:right">1982</td>
+<td style="text-align:right">3.67</td>
+</tr>
+</tbody>
+</table>
+<p>319 rows × 5 columns</p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop_duplicates.html#pandas.DataFrame.drop_duplicates" target="_blank" rel="noopener"><code>DataFrame.drop_duplicates</code></a> 则通常用于数据去重，即剔除数据集中的重复值。使用方法非常简单，指定去除重复值规则，以及 <code>axis</code> 按列还是按行去除即可。</p>
+<p>In [17]:</p>
+<pre><code>df.drop_duplicates()
+
+</code></pre><p>Out[17]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">90003</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+<td style="text-align:right">33635</td>
+<td style="text-align:right">15642</td>
+<td style="text-align:right">4.22</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">90004</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+<td style="text-align:right">30878</td>
+<td style="text-align:right">22547</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">90005</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">19299</td>
+<td style="text-align:right">18382</td>
+<td style="text-align:right">15044</td>
+<td style="text-align:right">2.50</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">90006</td>
+<td style="text-align:right">59185</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">30254</td>
+<td style="text-align:right">28931</td>
+<td style="text-align:right">18617</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">90007</td>
+<td style="text-align:right">40920</td>
+<td style="text-align:right">24.0</td>
+<td style="text-align:right">20915</td>
+<td style="text-align:right">20005</td>
+<td style="text-align:right">11944</td>
+<td style="text-align:right">3.00</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">90008</td>
+<td style="text-align:right">32327</td>
+<td style="text-align:right">39.7</td>
+<td style="text-align:right">14477</td>
+<td style="text-align:right">17850</td>
+<td style="text-align:right">13841</td>
+<td style="text-align:right">2.33</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:right">90010</td>
+<td style="text-align:right">3800</td>
+<td style="text-align:right">37.8</td>
+<td style="text-align:right">1874</td>
+<td style="text-align:right">1926</td>
+<td style="text-align:right">2014</td>
+<td style="text-align:right">1.87</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">90011</td>
+<td style="text-align:right">103892</td>
+<td style="text-align:right">26.2</td>
+<td style="text-align:right">52794</td>
+<td style="text-align:right">51098</td>
+<td style="text-align:right">22168</td>
+<td style="text-align:right">4.67</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:right">90012</td>
+<td style="text-align:right">31103</td>
+<td style="text-align:right">36.3</td>
+<td style="text-align:right">19493</td>
+<td style="text-align:right">11610</td>
+<td style="text-align:right">10327</td>
+<td style="text-align:right">2.12</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:right">90013</td>
+<td style="text-align:right">11772</td>
+<td style="text-align:right">44.6</td>
+<td style="text-align:right">7629</td>
+<td style="text-align:right">4143</td>
+<td style="text-align:right">6416</td>
+<td style="text-align:right">1.26</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">90014</td>
+<td style="text-align:right">7005</td>
+<td style="text-align:right">44.8</td>
+<td style="text-align:right">4471</td>
+<td style="text-align:right">2534</td>
+<td style="text-align:right">4109</td>
+<td style="text-align:right">1.34</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">90015</td>
+<td style="text-align:right">18986</td>
+<td style="text-align:right">31.3</td>
+<td style="text-align:right">9833</td>
+<td style="text-align:right">9153</td>
+<td style="text-align:right">7420</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:right">90016</td>
+<td style="text-align:right">47596</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">22778</td>
+<td style="text-align:right">24818</td>
+<td style="text-align:right">16145</td>
+<td style="text-align:right">2.93</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td style="text-align:right">90017</td>
+<td style="text-align:right">23768</td>
+<td style="text-align:right">29.4</td>
+<td style="text-align:right">12818</td>
+<td style="text-align:right">10950</td>
+<td style="text-align:right">9338</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td style="text-align:right">90018</td>
+<td style="text-align:right">49310</td>
+<td style="text-align:right">33.2</td>
+<td style="text-align:right">23770</td>
+<td style="text-align:right">25540</td>
+<td style="text-align:right">15493</td>
+<td style="text-align:right">3.12</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">90019</td>
+<td style="text-align:right">64458</td>
+<td style="text-align:right">35.8</td>
+<td style="text-align:right">31442</td>
+<td style="text-align:right">33016</td>
+<td style="text-align:right">23344</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td style="text-align:right">90020</td>
+<td style="text-align:right">38967</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19381</td>
+<td style="text-align:right">19586</td>
+<td style="text-align:right">16514</td>
+<td style="text-align:right">2.35</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">90021</td>
+<td style="text-align:right">3951</td>
+<td style="text-align:right">44.3</td>
+<td style="text-align:right">2790</td>
+<td style="text-align:right">1161</td>
+<td style="text-align:right">1561</td>
+<td style="text-align:right">1.57</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td style="text-align:right">90022</td>
+<td style="text-align:right">67179</td>
+<td style="text-align:right">29.8</td>
+<td style="text-align:right">33216</td>
+<td style="text-align:right">33963</td>
+<td style="text-align:right">17023</td>
+<td style="text-align:right">3.94</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:right">90023</td>
+<td style="text-align:right">45903</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">23037</td>
+<td style="text-align:right">22866</td>
+<td style="text-align:right">10727</td>
+<td style="text-align:right">4.26</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td style="text-align:right">90024</td>
+<td style="text-align:right">47452</td>
+<td style="text-align:right">23.6</td>
+<td style="text-align:right">22248</td>
+<td style="text-align:right">25204</td>
+<td style="text-align:right">17903</td>
+<td style="text-align:right">2.03</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td style="text-align:right">90025</td>
+<td style="text-align:right">42147</td>
+<td style="text-align:right">34.7</td>
+<td style="text-align:right">20859</td>
+<td style="text-align:right">21288</td>
+<td style="text-align:right">21228</td>
+<td style="text-align:right">1.97</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td style="text-align:right">90026</td>
+<td style="text-align:right">67869</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">34515</td>
+<td style="text-align:right">33354</td>
+<td style="text-align:right">24956</td>
+<td style="text-align:right">2.68</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td style="text-align:right">90027</td>
+<td style="text-align:right">45151</td>
+<td style="text-align:right">38.3</td>
+<td style="text-align:right">22362</td>
+<td style="text-align:right">22789</td>
+<td style="text-align:right">21929</td>
+<td style="text-align:right">1.99</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:right">90028</td>
+<td style="text-align:right">28714</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">16056</td>
+<td style="text-align:right">12658</td>
+<td style="text-align:right">14964</td>
+<td style="text-align:right">1.78</td>
+</tr>
+<tr>
+<td style="text-align:right">28</td>
+<td style="text-align:right">90029</td>
+<td style="text-align:right">38617</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19575</td>
+<td style="text-align:right">19042</td>
+<td style="text-align:right">13883</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">29</td>
+<td style="text-align:right">90031</td>
+<td style="text-align:right">39316</td>
+<td style="text-align:right">33.5</td>
+<td style="text-align:right">19546</td>
+<td style="text-align:right">19770</td>
+<td style="text-align:right">11156</td>
+<td style="text-align:right">3.49</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">289</td>
+<td style="text-align:right">91792</td>
+<td style="text-align:right">30854</td>
+<td style="text-align:right">35.3</td>
+<td style="text-align:right">14950</td>
+<td style="text-align:right">15904</td>
+<td style="text-align:right">9154</td>
+<td style="text-align:right">3.35</td>
+</tr>
+<tr>
+<td style="text-align:right">290</td>
+<td style="text-align:right">91801</td>
+<td style="text-align:right">52735</td>
+<td style="text-align:right">39.1</td>
+<td style="text-align:right">24833</td>
+<td style="text-align:right">27902</td>
+<td style="text-align:right">19315</td>
+<td style="text-align:right">2.71</td>
+</tr>
+<tr>
+<td style="text-align:right">291</td>
+<td style="text-align:right">91803</td>
+<td style="text-align:right">30322</td>
+<td style="text-align:right">39.6</td>
+<td style="text-align:right">14486</td>
+<td style="text-align:right">15836</td>
+<td style="text-align:right">9894</td>
+<td style="text-align:right">3.04</td>
+</tr>
+<tr>
+<td style="text-align:right">292</td>
+<td style="text-align:right">92301</td>
+<td style="text-align:right">32725</td>
+<td style="text-align:right">25.6</td>
+<td style="text-align:right">16857</td>
+<td style="text-align:right">15868</td>
+<td style="text-align:right">8132</td>
+<td style="text-align:right">3.81</td>
+</tr>
+<tr>
+<td style="text-align:right">293</td>
+<td style="text-align:right">92371</td>
+<td style="text-align:right">16763</td>
+<td style="text-align:right">37.9</td>
+<td style="text-align:right">8565</td>
+<td style="text-align:right">8198</td>
+<td style="text-align:right">5370</td>
+<td style="text-align:right">3.11</td>
+</tr>
+<tr>
+<td style="text-align:right">294</td>
+<td style="text-align:right">92372</td>
+<td style="text-align:right">6220</td>
+<td style="text-align:right">41.8</td>
+<td style="text-align:right">3136</td>
+<td style="text-align:right">3084</td>
+<td style="text-align:right">2198</td>
+<td style="text-align:right">2.83</td>
+</tr>
+<tr>
+<td style="text-align:right">295</td>
+<td style="text-align:right">92397</td>
+<td style="text-align:right">4894</td>
+<td style="text-align:right">44.1</td>
+<td style="text-align:right">2522</td>
+<td style="text-align:right">2372</td>
+<td style="text-align:right">1998</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">296</td>
+<td style="text-align:right">92821</td>
+<td style="text-align:right">35533</td>
+<td style="text-align:right">38.7</td>
+<td style="text-align:right">17338</td>
+<td style="text-align:right">18195</td>
+<td style="text-align:right">13062</td>
+<td style="text-align:right">2.72</td>
+</tr>
+<tr>
+<td style="text-align:right">297</td>
+<td style="text-align:right">92823</td>
+<td style="text-align:right">3613</td>
+<td style="text-align:right">38.6</td>
+<td style="text-align:right">1757</td>
+<td style="text-align:right">1856</td>
+<td style="text-align:right">1154</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">298</td>
+<td style="text-align:right">92833</td>
+<td style="text-align:right">51767</td>
+<td style="text-align:right">36.0</td>
+<td style="text-align:right">25643</td>
+<td style="text-align:right">26124</td>
+<td style="text-align:right">15849</td>
+<td style="text-align:right">3.23</td>
+</tr>
+<tr>
+<td style="text-align:right">299</td>
+<td style="text-align:right">93040</td>
+<td style="text-align:right">2031</td>
+<td style="text-align:right">29.3</td>
+<td style="text-align:right">1052</td>
+<td style="text-align:right">979</td>
+<td style="text-align:right">522</td>
+<td style="text-align:right">3.89</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">93063</td>
+<td style="text-align:right">54366</td>
+<td style="text-align:right">39.0</td>
+<td style="text-align:right">26592</td>
+<td style="text-align:right">27774</td>
+<td style="text-align:right">18650</td>
+<td style="text-align:right">2.90</td>
+</tr>
+<tr>
+<td style="text-align:right">301</td>
+<td style="text-align:right">93225</td>
+<td style="text-align:right">5077</td>
+<td style="text-align:right">44.0</td>
+<td style="text-align:right">2585</td>
+<td style="text-align:right">2492</td>
+<td style="text-align:right">2080</td>
+<td style="text-align:right">2.44</td>
+</tr>
+<tr>
+<td style="text-align:right">302</td>
+<td style="text-align:right">93243</td>
+<td style="text-align:right">1699</td>
+<td style="text-align:right">40.9</td>
+<td style="text-align:right">884</td>
+<td style="text-align:right">815</td>
+<td style="text-align:right">623</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">303</td>
+<td style="text-align:right">93252</td>
+<td style="text-align:right">4176</td>
+<td style="text-align:right">38.4</td>
+<td style="text-align:right">3301</td>
+<td style="text-align:right">875</td>
+<td style="text-align:right">647</td>
+<td style="text-align:right">2.81</td>
+</tr>
+<tr>
+<td style="text-align:right">304</td>
+<td style="text-align:right">93510</td>
+<td style="text-align:right">7993</td>
+<td style="text-align:right">45.2</td>
+<td style="text-align:right">4086</td>
+<td style="text-align:right">3907</td>
+<td style="text-align:right">2729</td>
+<td style="text-align:right">2.86</td>
+</tr>
+<tr>
+<td style="text-align:right">305</td>
+<td style="text-align:right">93523</td>
+<td style="text-align:right">3074</td>
+<td style="text-align:right">27.0</td>
+<td style="text-align:right">1531</td>
+<td style="text-align:right">1543</td>
+<td style="text-align:right">1056</td>
+<td style="text-align:right">2.91</td>
+</tr>
+<tr>
+<td style="text-align:right">306</td>
+<td style="text-align:right">93532</td>
+<td style="text-align:right">2932</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:right">1642</td>
+<td style="text-align:right">1290</td>
+<td style="text-align:right">1079</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">307</td>
+<td style="text-align:right">93534</td>
+<td style="text-align:right">39341</td>
+<td style="text-align:right">31.1</td>
+<td style="text-align:right">18601</td>
+<td style="text-align:right">20740</td>
+<td style="text-align:right">14038</td>
+<td style="text-align:right">2.74</td>
+</tr>
+<tr>
+<td style="text-align:right">308</td>
+<td style="text-align:right">93535</td>
+<td style="text-align:right">72046</td>
+<td style="text-align:right">28.3</td>
+<td style="text-align:right">34879</td>
+<td style="text-align:right">37167</td>
+<td style="text-align:right">20672</td>
+<td style="text-align:right">3.44</td>
+</tr>
+<tr>
+<td style="text-align:right">309</td>
+<td style="text-align:right">93536</td>
+<td style="text-align:right">70918</td>
+<td style="text-align:right">34.4</td>
+<td style="text-align:right">37804</td>
+<td style="text-align:right">33114</td>
+<td style="text-align:right">20964</td>
+<td style="text-align:right">3.07</td>
+</tr>
+<tr>
+<td style="text-align:right">310</td>
+<td style="text-align:right">93543</td>
+<td style="text-align:right">13033</td>
+<td style="text-align:right">32.9</td>
+<td style="text-align:right">6695</td>
+<td style="text-align:right">6338</td>
+<td style="text-align:right">3560</td>
+<td style="text-align:right">3.66</td>
+</tr>
+<tr>
+<td style="text-align:right">311</td>
+<td style="text-align:right">93544</td>
+<td style="text-align:right">1259</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">689</td>
+<td style="text-align:right">570</td>
+<td style="text-align:right">569</td>
+<td style="text-align:right">2.20</td>
+</tr>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">93550</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">27.5</td>
+<td style="text-align:right">36414</td>
+<td style="text-align:right">38515</td>
+<td style="text-align:right">20864</td>
+<td style="text-align:right">3.58</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">93551</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:right">25056</td>
+<td style="text-align:right">25742</td>
+<td style="text-align:right">15963</td>
+<td style="text-align:right">3.18</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">93552</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">18711</td>
+<td style="text-align:right">19447</td>
+<td style="text-align:right">9690</td>
+<td style="text-align:right">3.93</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">93553</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">43.3</td>
+<td style="text-align:right">1121</td>
+<td style="text-align:right">1017</td>
+<td style="text-align:right">816</td>
+<td style="text-align:right">2.62</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">93560</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">9491</td>
+<td style="text-align:right">9419</td>
+<td style="text-align:right">6469</td>
+<td style="text-align:right">2.92</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">93563</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">44.5</td>
+<td style="text-align:right">263</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">103</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">93591</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">30.9</td>
+<td style="text-align:right">3653</td>
+<td style="text-align:right">3632</td>
+<td style="text-align:right">1982</td>
+<td style="text-align:right">3.67</td>
+</tr>
+</tbody>
+</table>
+<p>319 rows × 7 columns</p>
+<p>除此之外，另一个用于数据删减的方法 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna" target="_blank" rel="noopener"><code>DataFrame.dropna</code></a> 也十分常用，其主要的用途是删除缺少值，即数据集中空缺的数据列或行。</p>
+<p>In [18]:</p>
+<pre><code>df.dropna()
+
+</code></pre><p>Out[18]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Zip Code</th>
+<th style="text-align:right">Total Population</th>
+<th style="text-align:right">Median Age</th>
+<th style="text-align:right">Total Males</th>
+<th style="text-align:right">Total Females</th>
+<th style="text-align:right">Total Households</th>
+<th style="text-align:right">Average Household Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">91371</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">73.5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1.00</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">90001</td>
+<td style="text-align:right">57110</td>
+<td style="text-align:right">26.6</td>
+<td style="text-align:right">28468</td>
+<td style="text-align:right">28642</td>
+<td style="text-align:right">12971</td>
+<td style="text-align:right">4.40</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">90002</td>
+<td style="text-align:right">51223</td>
+<td style="text-align:right">25.5</td>
+<td style="text-align:right">24876</td>
+<td style="text-align:right">26347</td>
+<td style="text-align:right">11731</td>
+<td style="text-align:right">4.36</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">90003</td>
+<td style="text-align:right">66266</td>
+<td style="text-align:right">26.3</td>
+<td style="text-align:right">32631</td>
+<td style="text-align:right">33635</td>
+<td style="text-align:right">15642</td>
+<td style="text-align:right">4.22</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">90004</td>
+<td style="text-align:right">62180</td>
+<td style="text-align:right">34.8</td>
+<td style="text-align:right">31302</td>
+<td style="text-align:right">30878</td>
+<td style="text-align:right">22547</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">90005</td>
+<td style="text-align:right">37681</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">19299</td>
+<td style="text-align:right">18382</td>
+<td style="text-align:right">15044</td>
+<td style="text-align:right">2.50</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">90006</td>
+<td style="text-align:right">59185</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">30254</td>
+<td style="text-align:right">28931</td>
+<td style="text-align:right">18617</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">90007</td>
+<td style="text-align:right">40920</td>
+<td style="text-align:right">24.0</td>
+<td style="text-align:right">20915</td>
+<td style="text-align:right">20005</td>
+<td style="text-align:right">11944</td>
+<td style="text-align:right">3.00</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">90008</td>
+<td style="text-align:right">32327</td>
+<td style="text-align:right">39.7</td>
+<td style="text-align:right">14477</td>
+<td style="text-align:right">17850</td>
+<td style="text-align:right">13841</td>
+<td style="text-align:right">2.33</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td style="text-align:right">90010</td>
+<td style="text-align:right">3800</td>
+<td style="text-align:right">37.8</td>
+<td style="text-align:right">1874</td>
+<td style="text-align:right">1926</td>
+<td style="text-align:right">2014</td>
+<td style="text-align:right">1.87</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td style="text-align:right">90011</td>
+<td style="text-align:right">103892</td>
+<td style="text-align:right">26.2</td>
+<td style="text-align:right">52794</td>
+<td style="text-align:right">51098</td>
+<td style="text-align:right">22168</td>
+<td style="text-align:right">4.67</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td style="text-align:right">90012</td>
+<td style="text-align:right">31103</td>
+<td style="text-align:right">36.3</td>
+<td style="text-align:right">19493</td>
+<td style="text-align:right">11610</td>
+<td style="text-align:right">10327</td>
+<td style="text-align:right">2.12</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td style="text-align:right">90013</td>
+<td style="text-align:right">11772</td>
+<td style="text-align:right">44.6</td>
+<td style="text-align:right">7629</td>
+<td style="text-align:right">4143</td>
+<td style="text-align:right">6416</td>
+<td style="text-align:right">1.26</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td style="text-align:right">90014</td>
+<td style="text-align:right">7005</td>
+<td style="text-align:right">44.8</td>
+<td style="text-align:right">4471</td>
+<td style="text-align:right">2534</td>
+<td style="text-align:right">4109</td>
+<td style="text-align:right">1.34</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td style="text-align:right">90015</td>
+<td style="text-align:right">18986</td>
+<td style="text-align:right">31.3</td>
+<td style="text-align:right">9833</td>
+<td style="text-align:right">9153</td>
+<td style="text-align:right">7420</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td style="text-align:right">90016</td>
+<td style="text-align:right">47596</td>
+<td style="text-align:right">33.9</td>
+<td style="text-align:right">22778</td>
+<td style="text-align:right">24818</td>
+<td style="text-align:right">16145</td>
+<td style="text-align:right">2.93</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td style="text-align:right">90017</td>
+<td style="text-align:right">23768</td>
+<td style="text-align:right">29.4</td>
+<td style="text-align:right">12818</td>
+<td style="text-align:right">10950</td>
+<td style="text-align:right">9338</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td style="text-align:right">90018</td>
+<td style="text-align:right">49310</td>
+<td style="text-align:right">33.2</td>
+<td style="text-align:right">23770</td>
+<td style="text-align:right">25540</td>
+<td style="text-align:right">15493</td>
+<td style="text-align:right">3.12</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td style="text-align:right">90019</td>
+<td style="text-align:right">64458</td>
+<td style="text-align:right">35.8</td>
+<td style="text-align:right">31442</td>
+<td style="text-align:right">33016</td>
+<td style="text-align:right">23344</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td style="text-align:right">90020</td>
+<td style="text-align:right">38967</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19381</td>
+<td style="text-align:right">19586</td>
+<td style="text-align:right">16514</td>
+<td style="text-align:right">2.35</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td style="text-align:right">90021</td>
+<td style="text-align:right">3951</td>
+<td style="text-align:right">44.3</td>
+<td style="text-align:right">2790</td>
+<td style="text-align:right">1161</td>
+<td style="text-align:right">1561</td>
+<td style="text-align:right">1.57</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td style="text-align:right">90022</td>
+<td style="text-align:right">67179</td>
+<td style="text-align:right">29.8</td>
+<td style="text-align:right">33216</td>
+<td style="text-align:right">33963</td>
+<td style="text-align:right">17023</td>
+<td style="text-align:right">3.94</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td style="text-align:right">90023</td>
+<td style="text-align:right">45903</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">23037</td>
+<td style="text-align:right">22866</td>
+<td style="text-align:right">10727</td>
+<td style="text-align:right">4.26</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td style="text-align:right">90024</td>
+<td style="text-align:right">47452</td>
+<td style="text-align:right">23.6</td>
+<td style="text-align:right">22248</td>
+<td style="text-align:right">25204</td>
+<td style="text-align:right">17903</td>
+<td style="text-align:right">2.03</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td style="text-align:right">90025</td>
+<td style="text-align:right">42147</td>
+<td style="text-align:right">34.7</td>
+<td style="text-align:right">20859</td>
+<td style="text-align:right">21288</td>
+<td style="text-align:right">21228</td>
+<td style="text-align:right">1.97</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td style="text-align:right">90026</td>
+<td style="text-align:right">67869</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">34515</td>
+<td style="text-align:right">33354</td>
+<td style="text-align:right">24956</td>
+<td style="text-align:right">2.68</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td style="text-align:right">90027</td>
+<td style="text-align:right">45151</td>
+<td style="text-align:right">38.3</td>
+<td style="text-align:right">22362</td>
+<td style="text-align:right">22789</td>
+<td style="text-align:right">21929</td>
+<td style="text-align:right">1.99</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td style="text-align:right">90028</td>
+<td style="text-align:right">28714</td>
+<td style="text-align:right">34.0</td>
+<td style="text-align:right">16056</td>
+<td style="text-align:right">12658</td>
+<td style="text-align:right">14964</td>
+<td style="text-align:right">1.78</td>
+</tr>
+<tr>
+<td style="text-align:right">28</td>
+<td style="text-align:right">90029</td>
+<td style="text-align:right">38617</td>
+<td style="text-align:right">34.6</td>
+<td style="text-align:right">19575</td>
+<td style="text-align:right">19042</td>
+<td style="text-align:right">13883</td>
+<td style="text-align:right">2.70</td>
+</tr>
+<tr>
+<td style="text-align:right">29</td>
+<td style="text-align:right">90031</td>
+<td style="text-align:right">39316</td>
+<td style="text-align:right">33.5</td>
+<td style="text-align:right">19546</td>
+<td style="text-align:right">19770</td>
+<td style="text-align:right">11156</td>
+<td style="text-align:right">3.49</td>
+</tr>
+<tr>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+<td style="text-align:right">…</td>
+</tr>
+<tr>
+<td style="text-align:right">289</td>
+<td style="text-align:right">91792</td>
+<td style="text-align:right">30854</td>
+<td style="text-align:right">35.3</td>
+<td style="text-align:right">14950</td>
+<td style="text-align:right">15904</td>
+<td style="text-align:right">9154</td>
+<td style="text-align:right">3.35</td>
+</tr>
+<tr>
+<td style="text-align:right">290</td>
+<td style="text-align:right">91801</td>
+<td style="text-align:right">52735</td>
+<td style="text-align:right">39.1</td>
+<td style="text-align:right">24833</td>
+<td style="text-align:right">27902</td>
+<td style="text-align:right">19315</td>
+<td style="text-align:right">2.71</td>
+</tr>
+<tr>
+<td style="text-align:right">291</td>
+<td style="text-align:right">91803</td>
+<td style="text-align:right">30322</td>
+<td style="text-align:right">39.6</td>
+<td style="text-align:right">14486</td>
+<td style="text-align:right">15836</td>
+<td style="text-align:right">9894</td>
+<td style="text-align:right">3.04</td>
+</tr>
+<tr>
+<td style="text-align:right">292</td>
+<td style="text-align:right">92301</td>
+<td style="text-align:right">32725</td>
+<td style="text-align:right">25.6</td>
+<td style="text-align:right">16857</td>
+<td style="text-align:right">15868</td>
+<td style="text-align:right">8132</td>
+<td style="text-align:right">3.81</td>
+</tr>
+<tr>
+<td style="text-align:right">293</td>
+<td style="text-align:right">92371</td>
+<td style="text-align:right">16763</td>
+<td style="text-align:right">37.9</td>
+<td style="text-align:right">8565</td>
+<td style="text-align:right">8198</td>
+<td style="text-align:right">5370</td>
+<td style="text-align:right">3.11</td>
+</tr>
+<tr>
+<td style="text-align:right">294</td>
+<td style="text-align:right">92372</td>
+<td style="text-align:right">6220</td>
+<td style="text-align:right">41.8</td>
+<td style="text-align:right">3136</td>
+<td style="text-align:right">3084</td>
+<td style="text-align:right">2198</td>
+<td style="text-align:right">2.83</td>
+</tr>
+<tr>
+<td style="text-align:right">295</td>
+<td style="text-align:right">92397</td>
+<td style="text-align:right">4894</td>
+<td style="text-align:right">44.1</td>
+<td style="text-align:right">2522</td>
+<td style="text-align:right">2372</td>
+<td style="text-align:right">1998</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">296</td>
+<td style="text-align:right">92821</td>
+<td style="text-align:right">35533</td>
+<td style="text-align:right">38.7</td>
+<td style="text-align:right">17338</td>
+<td style="text-align:right">18195</td>
+<td style="text-align:right">13062</td>
+<td style="text-align:right">2.72</td>
+</tr>
+<tr>
+<td style="text-align:right">297</td>
+<td style="text-align:right">92823</td>
+<td style="text-align:right">3613</td>
+<td style="text-align:right">38.6</td>
+<td style="text-align:right">1757</td>
+<td style="text-align:right">1856</td>
+<td style="text-align:right">1154</td>
+<td style="text-align:right">3.13</td>
+</tr>
+<tr>
+<td style="text-align:right">298</td>
+<td style="text-align:right">92833</td>
+<td style="text-align:right">51767</td>
+<td style="text-align:right">36.0</td>
+<td style="text-align:right">25643</td>
+<td style="text-align:right">26124</td>
+<td style="text-align:right">15849</td>
+<td style="text-align:right">3.23</td>
+</tr>
+<tr>
+<td style="text-align:right">299</td>
+<td style="text-align:right">93040</td>
+<td style="text-align:right">2031</td>
+<td style="text-align:right">29.3</td>
+<td style="text-align:right">1052</td>
+<td style="text-align:right">979</td>
+<td style="text-align:right">522</td>
+<td style="text-align:right">3.89</td>
+</tr>
+<tr>
+<td style="text-align:right">300</td>
+<td style="text-align:right">93063</td>
+<td style="text-align:right">54366</td>
+<td style="text-align:right">39.0</td>
+<td style="text-align:right">26592</td>
+<td style="text-align:right">27774</td>
+<td style="text-align:right">18650</td>
+<td style="text-align:right">2.90</td>
+</tr>
+<tr>
+<td style="text-align:right">301</td>
+<td style="text-align:right">93225</td>
+<td style="text-align:right">5077</td>
+<td style="text-align:right">44.0</td>
+<td style="text-align:right">2585</td>
+<td style="text-align:right">2492</td>
+<td style="text-align:right">2080</td>
+<td style="text-align:right">2.44</td>
+</tr>
+<tr>
+<td style="text-align:right">302</td>
+<td style="text-align:right">93243</td>
+<td style="text-align:right">1699</td>
+<td style="text-align:right">40.9</td>
+<td style="text-align:right">884</td>
+<td style="text-align:right">815</td>
+<td style="text-align:right">623</td>
+<td style="text-align:right">2.73</td>
+</tr>
+<tr>
+<td style="text-align:right">303</td>
+<td style="text-align:right">93252</td>
+<td style="text-align:right">4176</td>
+<td style="text-align:right">38.4</td>
+<td style="text-align:right">3301</td>
+<td style="text-align:right">875</td>
+<td style="text-align:right">647</td>
+<td style="text-align:right">2.81</td>
+</tr>
+<tr>
+<td style="text-align:right">304</td>
+<td style="text-align:right">93510</td>
+<td style="text-align:right">7993</td>
+<td style="text-align:right">45.2</td>
+<td style="text-align:right">4086</td>
+<td style="text-align:right">3907</td>
+<td style="text-align:right">2729</td>
+<td style="text-align:right">2.86</td>
+</tr>
+<tr>
+<td style="text-align:right">305</td>
+<td style="text-align:right">93523</td>
+<td style="text-align:right">3074</td>
+<td style="text-align:right">27.0</td>
+<td style="text-align:right">1531</td>
+<td style="text-align:right">1543</td>
+<td style="text-align:right">1056</td>
+<td style="text-align:right">2.91</td>
+</tr>
+<tr>
+<td style="text-align:right">306</td>
+<td style="text-align:right">93532</td>
+<td style="text-align:right">2932</td>
+<td style="text-align:right">41.7</td>
+<td style="text-align:right">1642</td>
+<td style="text-align:right">1290</td>
+<td style="text-align:right">1079</td>
+<td style="text-align:right">2.45</td>
+</tr>
+<tr>
+<td style="text-align:right">307</td>
+<td style="text-align:right">93534</td>
+<td style="text-align:right">39341</td>
+<td style="text-align:right">31.1</td>
+<td style="text-align:right">18601</td>
+<td style="text-align:right">20740</td>
+<td style="text-align:right">14038</td>
+<td style="text-align:right">2.74</td>
+</tr>
+<tr>
+<td style="text-align:right">308</td>
+<td style="text-align:right">93535</td>
+<td style="text-align:right">72046</td>
+<td style="text-align:right">28.3</td>
+<td style="text-align:right">34879</td>
+<td style="text-align:right">37167</td>
+<td style="text-align:right">20672</td>
+<td style="text-align:right">3.44</td>
+</tr>
+<tr>
+<td style="text-align:right">309</td>
+<td style="text-align:right">93536</td>
+<td style="text-align:right">70918</td>
+<td style="text-align:right">34.4</td>
+<td style="text-align:right">37804</td>
+<td style="text-align:right">33114</td>
+<td style="text-align:right">20964</td>
+<td style="text-align:right">3.07</td>
+</tr>
+<tr>
+<td style="text-align:right">310</td>
+<td style="text-align:right">93543</td>
+<td style="text-align:right">13033</td>
+<td style="text-align:right">32.9</td>
+<td style="text-align:right">6695</td>
+<td style="text-align:right">6338</td>
+<td style="text-align:right">3560</td>
+<td style="text-align:right">3.66</td>
+</tr>
+<tr>
+<td style="text-align:right">311</td>
+<td style="text-align:right">93544</td>
+<td style="text-align:right">1259</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">689</td>
+<td style="text-align:right">570</td>
+<td style="text-align:right">569</td>
+<td style="text-align:right">2.20</td>
+</tr>
+<tr>
+<td style="text-align:right">312</td>
+<td style="text-align:right">93550</td>
+<td style="text-align:right">74929</td>
+<td style="text-align:right">27.5</td>
+<td style="text-align:right">36414</td>
+<td style="text-align:right">38515</td>
+<td style="text-align:right">20864</td>
+<td style="text-align:right">3.58</td>
+</tr>
+<tr>
+<td style="text-align:right">313</td>
+<td style="text-align:right">93551</td>
+<td style="text-align:right">50798</td>
+<td style="text-align:right">37.0</td>
+<td style="text-align:right">25056</td>
+<td style="text-align:right">25742</td>
+<td style="text-align:right">15963</td>
+<td style="text-align:right">3.18</td>
+</tr>
+<tr>
+<td style="text-align:right">314</td>
+<td style="text-align:right">93552</td>
+<td style="text-align:right">38158</td>
+<td style="text-align:right">28.4</td>
+<td style="text-align:right">18711</td>
+<td style="text-align:right">19447</td>
+<td style="text-align:right">9690</td>
+<td style="text-align:right">3.93</td>
+</tr>
+<tr>
+<td style="text-align:right">315</td>
+<td style="text-align:right">93553</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">43.3</td>
+<td style="text-align:right">1121</td>
+<td style="text-align:right">1017</td>
+<td style="text-align:right">816</td>
+<td style="text-align:right">2.62</td>
+</tr>
+<tr>
+<td style="text-align:right">316</td>
+<td style="text-align:right">93560</td>
+<td style="text-align:right">18910</td>
+<td style="text-align:right">32.4</td>
+<td style="text-align:right">9491</td>
+<td style="text-align:right">9419</td>
+<td style="text-align:right">6469</td>
+<td style="text-align:right">2.92</td>
+</tr>
+<tr>
+<td style="text-align:right">317</td>
+<td style="text-align:right">93563</td>
+<td style="text-align:right">388</td>
+<td style="text-align:right">44.5</td>
+<td style="text-align:right">263</td>
+<td style="text-align:right">125</td>
+<td style="text-align:right">103</td>
+<td style="text-align:right">2.53</td>
+</tr>
+<tr>
+<td style="text-align:right">318</td>
+<td style="text-align:right">93591</td>
+<td style="text-align:right">7285</td>
+<td style="text-align:right">30.9</td>
+<td style="text-align:right">3653</td>
+<td style="text-align:right">3632</td>
+<td style="text-align:right">1982</td>
+<td style="text-align:right">3.67</td>
+</tr>
+</tbody>
+</table>
+<p>319 rows × 7 columns</p>
+<p>对于提到的这 3 个常用的数据删减方法，大家一定要通过给出的链接去阅读官方文档。这些常用方法没有太多需要注意的地方，通过文档了解其用法即可，所以我们也不会化简为繁地进行介绍。</p>
+<hr>
+<h2 id="6-数据填充"><a href="#6-数据填充" class="headerlink" title="6.数据填充"></a>6.数据填充</h2><hr>
+<p>既然提到了数据删减，反之则可能会遇到数据填充的情况。而对于一个给定的数据集而言，我们一般不会乱填数据，而更多的是对缺失值进行填充。</p>
+<p>在真实的生产环境中，我们需要处理的数据文件往往没有想象中的那么美好。其中，很大几率会遇到的情况就是缺失值。缺失值主要是指数据丢失的现象，也就是数据集中的某一块数据不存在。除此之外、存在但明显不正确的数据也被归为缺失值一类。例如，在一个时间序列数据集中，某一段数据突然发生了时间流错乱，那么这一小块数据就是毫无意义的，可以被归为缺失值。</p>
+<h4 id="6-1-检测缺失值"><a href="#6-1-检测缺失值" class="headerlink" title="6.1 检测缺失值"></a>6.1 检测缺失值</h4><p>Pandas 为了更方便地检测缺失值，将不同类型数据的缺失均采用 <code>NaN</code> 标记。这里的 NaN 代表 Not a Number，它仅仅是作为一个标记。例外是，在时间序列里，时间戳的丢失采用 <code>NaT</code> 标记。</p>
+<p>Pandas 中用于检测缺失值主要用到两个方法，分别是：<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isna.html#pandas.DataFrame.isna" target="_blank" rel="noopener"><code>isna()</code></a> 和 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.notna.html#pandas.DataFrame.notna" target="_blank" rel="noopener"><code>notna()</code></a>，故名思意就是「是缺失值」和「不是缺失值」。默认会返回布尔值用于判断。</p>
+<p>接下来，我们生成一组包含确实值的示例数据。</p>
+<p>In [19]:</p>
+<pre class=" language-python"><code class="language-python">df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> columns<span class="token operator">=</span>list<span class="token punctuation">(</span><span class="token string">'ABCDE'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 插入 T 列，并打上时间戳</span>
+df<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>value<span class="token operator">=</span>pd<span class="token punctuation">.</span>Timestamp<span class="token punctuation">(</span><span class="token string">'2017-10-1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> column<span class="token operator">=</span><span class="token string">'Time'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 将 1, 3, 5 列的 1，3，5 行置为缺失值</span>
+df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>nan
+<span class="token comment" spellcheck="true"># 将 2, 4, 6 列的 2，4，6 行置为缺失值</span>
+df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>nan
+df
+
+</code></pre>
+<p>Out[19]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">NaN</td>
+</tr>
+</tbody>
+</table>
+<p>然后通过 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isna.html#pandas.DataFrame.isna" target="_blank" rel="noopener"><code>isna()</code></a> 或 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.notna.html#pandas.DataFrame.notna" target="_blank" rel="noopener"><code>notna()</code></a> 中的一个即可确定数据集中的缺失值。</p>
+<p>In [20]:</p>
+<pre><code>df.isna()
+
+</code></pre><p>Out[20]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">False</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+<td style="text-align:right">False</td>
+<td style="text-align:right">True</td>
+</tr>
+</tbody>
+</table>
+<p>上面已经对缺省值的产生、检测进行了介绍。实际上，面对缺失值一般就是填充和剔除两项操作。填充和清除都是两个极端。如果你感觉有必要保留缺失值所在的列或行，那么就需要对缺失值进行填充。如果没有必要保留，就可以选择清除缺失值。</p>
+<p>其中，缺失值剔除的方法 <code>dropna()</code> 已经在上面介绍过了。下面来看一看填充缺失值 <code>fillna()</code> 方法。</p>
+<p>首先，我们可以用相同的标量值替换 <code>NaN</code>，比如用 <code>0</code>。</p>
+<p>In [21]:</p>
+<pre><code>df.fillna(0)
+
+</code></pre><p>Out[21]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01 00:00:00</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01 00:00:00</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01 00:00:00</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01 00:00:00</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01 00:00:00</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.000000</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.000000</td>
+</tr>
+</tbody>
+</table>
+<p>除了直接填充值，我们还可以通过参数，将缺失值前面或者后面的值填充给相应的缺失值。例如使用缺失值前面的值进行填充：</p>
+<p>In [22]:</p>
+<pre><code>df.fillna(method=&#39;pad&#39;)
+
+</code></pre><p>Out[22]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+</tbody>
+</table>
+<p>或者是后面的值：</p>
+<p>In [23]:</p>
+<pre><code>df.fillna(method=&#39;bfill&#39;)
+
+</code></pre><p>Out[23]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.160625</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.148134</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.318072</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.476130</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.163439</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.475636</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">NaN</td>
+</tr>
+</tbody>
+</table>
+<p>最后一行由于没有对于的后序值，自然继续存在缺失值。</p>
+<p>上面的例子中，我们的缺失值是间隔存在的。那么，如果存在连续的缺失值是怎样的情况呢？试一试。首先，我们将数据集的第 2，4 ，6 列的第 3，5 行也置为缺失值。</p>
+<p>In [25]:</p>
+<pre><code>df.iloc[[3, 5], [1, 3, 5]] = np.nan
+
+</code></pre><p>然后来正向填充：</p>
+<p>In [26]:</p>
+<pre><code>df.fillna(method=&#39;pad&#39;)
+
+</code></pre><p>Out[26]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到，连续缺失值也是按照前序数值进行填充的，并且完全填充。这里，我们可以通过 <code>limit=</code> 参数设置连续填充的限制数量。</p>
+<p>In [27]:</p>
+<pre><code>df.fillna(method=&#39;pad&#39;, limit=1)  # 最多填充一项
+
+</code></pre><p>Out[27]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+</tbody>
+</table>
+<p>除了上面的填充方式，还可以通过 Pandas 自带的求平均值方法等来填充特定列或行。举个例子：</p>
+<p>In [28]:</p>
+<pre><code>df.fillna(df.mean()[&#39;C&#39;:&#39;E&#39;])
+
+</code></pre><p>Out[28]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">Time</th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+<th style="text-align:right">C</th>
+<th style="text-align:right">D</th>
+<th style="text-align:right">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">0.384107</td>
+<td style="text-align:right">0.369019</td>
+<td style="text-align:right">0.946057</td>
+<td style="text-align:right">0.002882</td>
+<td style="text-align:right">0.457957</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.467254</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.137828</td>
+<td style="text-align:right">0.202853</td>
+<td style="text-align:right">0.422128</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.142547</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.056028</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.202853</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.428653</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.807985</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.202853</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.933430</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.005619</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td style="text-align:right">NaT</td>
+<td style="text-align:right">0.643077</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.123588</td>
+<td style="text-align:right">0.202853</td>
+<td style="text-align:right">0.520710</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td style="text-align:right">2017-10-01</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">0.161175</td>
+<td style="text-align:right">0.402491</td>
+<td style="text-align:right">0.141751</td>
+<td style="text-align:right">0.466932</td>
+</tr>
+</tbody>
+</table>
+<p>对 C 列和 E 列用平均值填充。</p>
+<h4 id="6-2-插值填充"><a href="#6-2-插值填充" class="headerlink" title="6.2 插值填充"></a>6.2 插值填充</h4><p>插值是数值分析中一种方法。简而言之，就是借助于一个函数（线性或非线性），再根据已知数据去求解未知数据的值。插值在数据领域非常常见，它的好处在于，可以尽量去还原数据本身的样子。</p>
+<p>我们可以通过 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate" target="_blank" rel="noopener"><code>interpolate()</code></a> 方法完成线性插值。当然，其他一些插值算法可以阅读官方文档了解。</p>
+<p>   In [29]:</p>
+<pre><code># 生成一个 DataFrame
+df = pd.DataFrame({&#39;A&#39;: [1.1, 2.2, np.nan, 4.5, 5.7, 6.9],
+                   &#39;B&#39;: [.21, np.nan, np.nan, 3.1, 11.7, 13.2]})
+df
+
+</code></pre><p>Out[29]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1.1</td>
+<td style="text-align:right">0.21</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2.2</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">NaN</td>
+<td style="text-align:right">NaN</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">4.5</td>
+<td style="text-align:right">3.10</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">5.7</td>
+<td style="text-align:right">11.70</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">6.9</td>
+<td style="text-align:right">13.20</td>
+</tr>
+</tbody>
+</table>
+<p>对于上面存在的缺失值，如果通过前后值，或者平均值来填充是不太能反映出趋势的。这时候，插值最好使。我们用默认的线性插值试一试。</p>
+<p>In [30]:</p>
+<pre><code>df_interpolate = df.interpolate()
+df_interpolate
+
+</code></pre><p>Out[30]:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:right">A</th>
+<th style="text-align:right">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1.10</td>
+<td style="text-align:right">0.210000</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2.20</td>
+<td style="text-align:right">1.173333</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td style="text-align:right">3.35</td>
+<td style="text-align:right">2.136667</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td style="text-align:right">4.50</td>
+<td style="text-align:right">3.100000</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td style="text-align:right">5.70</td>
+<td style="text-align:right">11.700000</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td style="text-align:right">6.90</td>
+<td style="text-align:right">13.200000</td>
+</tr>
+</tbody>
+</table>
+<p>下图展示了插值后的数据，明显看出插值结果符合数据的变化趋势。如果按照前后数据顺序填充，则无法做到这一点。</p>
+<p><img src="https://doc.shiyanlou.com/document-uid214893labid3378timestamp1501655359105.png" alt="image"></p>
+<p>对于 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate" target="_blank" rel="noopener"><code>interpolate()</code></a> 支持的插值算法，也就是 <code>method=</code>。下面给出几条选择的建议：</p>
+<ol>
+<li>如果你的数据增长速率越来越快，可以选择 <code>method=&#39;quadratic&#39;</code>二次插值。</li>
+<li>如果数据集呈现出累计分布的样子，推荐选择 <code>method=&#39;pchip&#39;</code>。</li>
+<li>如果需要填补缺省值，以平滑绘图为目标，推荐选择 <code>method=&#39;akima&#39;</code>。</li>
+</ol>
+<p>当然，最后提到的 <code>method=&#39;akima&#39;</code>，需要你的环境中安装了 Scipy 库。除此之外，<code>method=&#39;barycentric&#39;</code> 和 <code>method=&#39;pchip&#39;</code> 同样也需要 Scipy 才能使用。</p>
+<hr>
+<h2 id="7-数据可视化"><a href="#7-数据可视化" class="headerlink" title="7.数据可视化"></a>7.数据可视化</h2><hr>
+<p>  NumPy，Pandas，Matplotlib 构成了一个完善的数据分析生态圈，所以 3 个工具的兼容性也非常好，甚至共享了大量的接口。当我们的数据是以 DataFrame 格式呈现时，可以直接使用 Pandas 提供的 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#plotting" target="_blank" rel="noopener"><code>DataFrame.plot</code></a> 方法调用 Matplotlib 接口绘制常见的图形.</p>
+<hr>
+<p>例如，我们使用上面插值后的数据 <code>df_interpolate</code> 绘制线形图。 </p>
+<p>   In [33]:</p>
+<pre><code>df_interpolate.plot()
+
+</code></pre><p>Out[33]:</p>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2842ef9b70&gt;
+
+</code></pre><p><img src="data:image/png;base64,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" alt="img"></p>
+<p>其他样式的图形也很简单，指定 <code>kind=</code> 参数即可。</p>
+<p>In [34]:</p>
+<pre><code>df_interpolate.plot(kind=&#39;bar&#39;)
+
+</code></pre><p>Out[34]:</p>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2842e66e80&gt;
+
+</code></pre><p><img src="data:image/png;base64,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" alt="img"></p>
+<p>更多的图形样式和参数，阅读官方文档中的详细说明。Pandas 绘图虽然不可能做到 Matplotlib 的灵活性，但是其简单易用，适合于数据的快速呈现和预览。</p>
+<p>除了上面提到的一些方法和技巧，实际上 Pandas 常用的还有：</p>
+<ul>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#binary-operator-functions" target="_blank" rel="noopener"> <em>数据计算</em></a>，例如：<code>DataFrame.add</code> 等。</li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#function-application-groupby-window" target="_blank" rel="noopener"> <em>数据聚合</em></a>，例如：<code>DataFrame.groupby</code> 等。</li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#computations-descriptive-stats" target="_blank" rel="noopener"> <em>统计分析</em></a>，例如：<code>DataFrame.abs</code> 等。</li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html#time-series-related" target="_blank" rel="noopener"> <em>时间序列</em></a>，例如：<code>DataFrame.shift</code> 等。</li>
+</ul>
+<p>### </p>
+
+            </div>
+            <hr>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;转载请注明:
+                    </span>
+                    <a href="http://yoursite.com" class="b-link-green">星晴</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/11/16/pandas-shu-ju-chu-li-ji-chu/" class="b-link-green">Pandas数据处理基础</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/11/16/sql-zhu-ru-zhong-de-dui-die-zhu-ru/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="sql注入中的堆叠注入">
+                        
+                        <span class="card-title">sql注入中的堆叠注入</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">sql注入中的堆叠注入
+堆叠注入：一堆sql语句一起执行，mysql中语句结尾添加；表示结束，多句一起使用，代码中和一般查询不同
+的是使用了muiti_query函数
+oxo1 判断堆叠注入存储过程：是一种在数据库中存储复杂程序，以便在外部</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            starjian
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ctf/" target="_blank">
+                        <span class="chip bg-color">ctf</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/16/pandas-shi-jian-xu-lie-shu-ju-chu-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Pandas 时间序列数据处理">
+                        
+                        <span class="card-title">Pandas 时间序列数据处理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Pandas 时间序列数据处理
+介绍Pandas 是非常著名的开源数据处理库，我们可以通过它完成对数据集进行快速读取、转换、过滤、分析等一系列操作。同样，Pandas 已经被证明为是非常强大的用于处理时间序列数据的工具。本节将介绍所有 Pa</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            starjian
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/机器学习/" target="_blank">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:xxx@xx.xx" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=123123123" class="tooltipped" data-tooltip="QQ联系我: 123123123" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

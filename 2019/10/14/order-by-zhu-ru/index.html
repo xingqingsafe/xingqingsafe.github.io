@@ -598,20 +598,20 @@ order by 在不知道列名的情况下，可以通过列的序号来代替相�
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/14/sql-zhu-ru-zhong-de-dui-die-zhu-ru/">
+                <a href="/2019/10/14/ctf-kuan-zi-jie-zhu-ru/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="sql注入中的堆叠注入以及MISC隐写">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="CTF宽字节注入">
                         
-                        <span class="card-title">sql注入中的堆叠注入以及MISC隐写</span>
+                        <span class="card-title">CTF宽字节注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">sql注入中的堆叠注入
-堆叠注入：一堆sql语句一起执行，mysql中语句结尾添加；表示结束，多句一起使用，代码中和一般查询不同
-的是使用了muiti_query函数
-oxo1 判断堆叠注入存储过程：是一种在数据库中存储复杂程序，以便在外部</div>
+                    <div class="summary">CTF宽字节注入
+oxo1 宽字节注入的原理addslashes`函数，会在 单引号 ，双引号，反斜线，NULL字符前面加上一个转义字符反斜杠，那么如何逃逸这个过滤呢？
+
+前面再加一个\，变成 \\&#39;,这样的\就会被转义了，’逃出了</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
@@ -642,24 +642,29 @@ oxo1 判断堆叠注入存储过程：是一种在数据库中存储复杂程序
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/14/ctf-ji-yu-yue-shu-de-sql-gong-ji/">
+                <a href="/2019/10/13/ctf-jie-ti-si-lu-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="CTF-基于约束的sql攻击">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="ctf解题思路笔记">
                         
-                        <span class="card-title">CTF-基于约束的sql攻击</span>
+                        <span class="card-title">ctf解题思路笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">CTF-基于约束的sql攻击
-用空格代替空位置，表的字段约束为30个字符，如果插入admin null*30，那么就会重新插入新的记录，此时如果在select就会含有好几个admin用户
-报错注入
-floor报错简单的一个公式：
-and (</div>
+                    <div class="summary">CTF解题思路
+0x01  越来越难
+sql注入-》ssrf
+栈利用-》堆利用
+古典密码 -》 区块链
+容易入门，难以精通ctf-wiki:社区，新手友好
+大量WP,大量OJ
+难以提升，需要大量的精力
+今年：硬核
+内核提权，虚拟机逃逸，浏览</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-13
                             </span>
                         <span class="publish-author">
                             

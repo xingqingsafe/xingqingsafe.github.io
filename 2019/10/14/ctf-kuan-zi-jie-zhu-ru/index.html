@@ -668,20 +668,19 @@ and (</div>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/14/ji-yu-shi-jian-mang-zhu-de-bu-fen-xiang-guan-han-shu/">
+                <a href="/2019/10/14/order-by-zhu-ru/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="基于时间盲注的部分相关函数">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="order by 注入">
                         
-                        <span class="card-title">基于时间盲注的部分相关函数</span>
+                        <span class="card-title">order by 注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">基于时间盲注的部分相关函数
-时间盲注的函数
-sleep()函数：
-如果where 语句一 and sleep(3)    语句一如果成真，那么需要执行后面sleep()，那么会造成延迟，加入语句一是假的，那么就不会运行后面的sleep语句，</div>
+                    <div class="summary">order by 注入
+order by 在不知道列名的情况下，可以通过列的序号来代替相应的列。但是经过测试这里无法做运算，如order by 3-1和order by 2是不一样的。
+当desc参数可控的时候，使用if(exp,desc,</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
