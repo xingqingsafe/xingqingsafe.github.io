@@ -509,7 +509,7 @@ rate:  0.10-kpps, 21.00% done,   0:09:01 remaining, found=0       rate:  0.10-kp
 <p><strong>sparta</strong>: 是一款可以通过帮助渗透测试者分阶段扫描和枚举来简化网络基础设施渗透测试的python GUI应用。通过指向和点击这些工具套件以及简便地显示所有工具扫描结果来允许测试者节省时间。花越少的时间在设置命令和工具上，就可以有更多的时间花在聚焦分析结果上。</p>
 <hr>
 <p>可以直接在kali 搜索SPARTA，或者在 applications—information gathering –sparta 运行打开。</p>
-<p><img src="mysql提权笔记/1562576877775.png" alt="1562576877775"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006d1Stply1g9983fpdyjj31h80sxtde.jpg"></p>
 <p>将192.168.110.140加入后进行扫描，进行扫描后，可以看到services每个端口运行的服务，以及使用nikto扫描的结果，同时还有screenshot抓取的80端口网站的相应的banner图。这个工具还支持将扫描的端口直接发送到九头蛇进行一个爆破(ssh等),通过这个工具我们并没有将mysql以及ssh爆破出来密码。同时这个工具还可以探测到网页的截屏。</p>
 <h2 id="0x02-漏洞挖掘"><a href="#0x02-漏洞挖掘" class="headerlink" title="0x02 漏洞挖掘"></a>0x02 漏洞挖掘</h2><h3 id="1-根据提示信息登录cms后台"><a href="#1-根据提示信息登录cms后台" class="headerlink" title="1.根据提示信息登录cms后台"></a>1.根据提示信息登录cms后台</h3><p>根据上面<strong>sparta</strong>扫描的<strong>nikto</strong>模块我们可以看到：</p>
 <ul>
